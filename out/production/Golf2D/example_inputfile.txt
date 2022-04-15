@@ -1,8 +1,8 @@
-x0 = 0
-y0 = 0
+x0 = -1
+y0 = -0.5
 xt = 200
 yt = 200
-r = 015
-muk = 0.05
+r = 15
+muk = 0.1
 mus = 0.2
-heightProfile = 0.1*x+1
+heightProfile = e^(−(x^2+y^2)/40))
