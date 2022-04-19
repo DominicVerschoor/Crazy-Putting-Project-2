@@ -73,8 +73,12 @@ for t = 0.1:hs:0.2 %only do 2 steps
 end
  */
 
-    public static double velEquation(double v0, double a, double h){
-        return Math.sqrt(Math.pow(v0,2) + 2*(a)*(h));
+    public static double accelerationEquation(double t, double w, double derivative){
+        return -g * derivative - uk * g * t/ Math.sqrt(Math.pow(t,2) + Math.pow(w,2));
+    }
+
+    public static double velEquation(double v0, double a, double h) {
+        return Math.sqrt(Math.pow(v0, 2.0D) + 2.0D * a * h);
     }
 
     public static void RungeKuttaSecondOrder(double[] arrXt) {
@@ -82,24 +86,26 @@ end
         //when the velocity of x, y are not 0, cuz its quite impossible to get them to 0,
         // so we take the little range 0.1 instead
         while (Math.abs(arrXt[2]) > 0.1 || Math.abs(arrXt[3]) > 0.1) {
+//            double posk1X = h * velEquation(arrXt[2],);
+//            double posk1Y = h * ;
+
             newArrXt[0] = arrXt[0] + h * arrXt[2];     //position + step * velocity --> get the new position X
             newArrXt[1] = arrXt[1] + h * arrXt[3];     //position + step * velocity --> get the new position Y
 
             double partialX = derivate.derivateX(arrXt[0], arrXt[1]);    //the partial derivative of X
             double partialY = derivate.derivateY(arrXt[0], arrXt[1]);    //the partial derivative of Y
 
-            //the second-order derivative equation, which is the acceleration of X, Y
-            double accX = -g * partialX - uk * g * arrXt[2] / Math.sqrt(arrXt[2] * arrXt[2] + arrXt[3] * arrXt[3]);
-            double accY = -g * partialY - uk * g * arrXt[3] / Math.sqrt(arrXt[2] * arrXt[2] + arrXt[3] * arrXt[3]);
+            //TODO
+//          hki1 = hs * f(t,wi);
+//          hki2 = hs * f(t + (3/4 * hs), wi + (3/4 * hki1 * hs));
+            double k1X = h * accelerationEquation(arrXt[2], arrXt[3], partialX);
+            double k1Y = h * accelerationEquation(arrXt[3], arrXt[2], partialY);
 
-            double k1X = h * velEquation(arrXt[2], accX, h);
-            double k1Y = h * velEquation(arrXt[3], accY, h);
+            double k2X = h * accelerationEquation(arrXt[2] + ((2*h)/3), arrXt[3] + ((2*k1X)/3), partialX);
+            double k2Y = h * accelerationEquation(arrXt[3] + ((2*h)/3), arrXt[2] + ((2*k1Y)/3), partialY);
 
-            double k2X = h * velEquation(arrXt[2] + 3/4 * h, arrXt[2] + 3/4*k1X*h, h);
-            double k2Y = h * velEquation(arrXt[3] + 3/4 * h, arrXt[3] + 3/4*k1Y*h, h);
-
-            newArrXt[2] = arrXt[2] + h * ((1/3 * k1X) + (2/3 * k2X));        //X velocity + step * acceleration --> new velocity
-            newArrXt[3] = arrXt[3] + h * ((1/3 * k1Y) + (2/3 * k2Y));         //Y velocity + step * acceleration --> new velocity
+            newArrXt[2] = arrXt[2] + h * ((k1X/3) + ((2*k2X)/3));        //X velocity + step * acceleration --> new velocity
+            newArrXt[3] = arrXt[3] + h * ((k1Y/3) + ((2*k2Y)/3));        //Y velocity + step * acceleration --> new velocity
 
             for (int i = 0; i < arrXt.length; i++) {
                 arrXt[i] = newArrXt[i];              //clone newArrXt back to arrXt
@@ -114,10 +120,10 @@ end
     public static void main(String[] args) {
         newArrXt[0] = 0;
         newArrXt[1] = 0;
-        newArrXt[2] = Double.parseDouble("1");
+        newArrXt[2] = Double.parseDouble("2");
         newArrXt[3] = Double.parseDouble("0");
 
-        Euler(newArrXt);
-        //RungeKuttaSecondOrder(newArrXt);
+        //Euler(newArrXt);
+        RungeKuttaSecondOrder(newArrXt);
     }
 }
