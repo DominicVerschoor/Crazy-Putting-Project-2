@@ -300,8 +300,6 @@ public class gameField {
         //when the velocity of x, y are not 0, cuz its quite impossible to get them to 0,
         // so we take the little range 0.1 instead
         while (Math.abs(arrXt[2]) > 0.1 || Math.abs(arrXt[3]) > 0.1) {
-
-
             newArrXt[0] = arrXt[0] + h * arrXt[2];     //position + step * velocity --> get the new position X
             newArrXt[1] = arrXt[1] + h * arrXt[3];     //position + step * velocity --> get the new position Y
 
@@ -358,13 +356,51 @@ public class gameField {
         System.out.println("Y: " + arrXt[1]);
     }
 
+/*
+%Second order Runge-Kutta: Ralston's Method
+f = @(t,y)(sin(t) + y - y^3); %ODE equation
+hs = 0.1; %step size
+wi = 2; %initial y
+
+step = 0;
+for t = 0.1:hs:0.2 %only do 2 steps
+    counter = counter + 1;
+    hki1 = hs * f(t,wi);
+    hki2 = hs * f(t + (3/4 * hs), wi + (3/4 * hki1 * hs));
+    wi = wi + (1/4) * hs * ((1/3) hki1 + (2/3 * hki2)); %change wi for next iteration
+    solutions(counter) = wi; %store solutions
+end
+ */
 
 
     public void RungeKuttaSecondOrder(double[] arrXt) {
+
+
         //when the velocity of x, y are not 0, cuz its quite impossible to get them to 0,
         // so we take the little range 0.1 instead
         while (Math.abs(arrXt[2]) > 0.1 || Math.abs(arrXt[3]) > 0.1) {
+            newArrXt[0] = arrXt[0] + h * arrXt[2];     //position + step * velocity --> get the new position X
+            newArrXt[1] = arrXt[1] + h * arrXt[3];     //position + step * velocity --> get the new position Y
 
+            double partialX = derivate.derivateX(arrXt[0], arrXt[1]);    //the partial derivative of X
+            double partialY = derivate.derivateY(arrXt[0], arrXt[1]);    //the partial derivative of Y
+
+            //the second-order derivative equation, which is the acceleration of X, Y
+            double accX = -g * partialX - uk * g * arrXt[2] / Math.sqrt(arrXt[2] * arrXt[2] + arrXt[3] * arrXt[3]);
+            double accY = -g * partialY - uk * g * arrXt[3] / Math.sqrt(arrXt[2] * arrXt[2] + arrXt[3] * arrXt[3]);
+
+            double posK1X = h * arrXt[2];
+            double posK1Y = h * arrXt[3];
+
+            double posK2X = h * arrXt[2];
+            double posK2Y = h * arrXt[3];
+
+            newArrXt[2] = arrXt[2] + h * accX;        //X velocity + step * acceleration --> new velocity
+            newArrXt[3] = arrXt[3] + h * accY;        //Y velocity + step * acceleration --> new velocity
+
+            for (int i = 0; i < arrXt.length; i++) {
+                arrXt[i] = newArrXt[i];              //clone newArrXt back to arrXt
+            }
         }
 
         double distance = Math.sqrt(Math.pow(arrXt[0] - hole.getCenterX(), 2) + Math.pow(arrXt[1] - hole.getCenterY(), 2));
