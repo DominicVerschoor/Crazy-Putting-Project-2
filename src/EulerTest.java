@@ -64,21 +64,24 @@ hs = 0.1; %step size
 wi = 2; %initial y
 
 step = 0;
-for t = 0.1:hs:0.2 %only do 2 steps
+for thing
     counter = counter + 1;
     hki1 = hs * f(t,wi);
     hki2 = hs * f(t + (3/4 * hs), wi + (3/4 * hki1 * hs));
     wi = wi + (1/4) * hs * ((1/3) hki1 + (2/3 * hki2)); %change wi for next iteration
     solutions(counter) = wi; %store solutions
-end
  */
 
     public static double accelerationEquation(double t, double w, double derivative){
-        return -g * derivative - uk * g * t/ Math.sqrt(Math.pow(t,2) + Math.pow(w,2));
+        return -g * derivative - uk * g * t / Math.sqrt(Math.pow(t,2) + Math.pow(w,2));
     }
 
-    public static double velEquation(double v0, double a, double h) {
-        return Math.sqrt(Math.pow(v0, 2.0D) + 2.0D * a * h);
+    public static double velEquation(double v0, double a) {
+        double inSqrt = Math.pow(v0, 2) + 2 * a * h;
+        if (inSqrt < 0){
+           return -1*Math.sqrt(Math.abs(inSqrt));
+        }
+        return Math.sqrt(inSqrt);
     }
 
     public static void RungeKuttaSecondOrder(double[] arrXt) {
@@ -86,29 +89,43 @@ end
         //when the velocity of x, y are not 0, cuz its quite impossible to get them to 0,
         // so we take the little range 0.1 instead
         while (Math.abs(arrXt[2]) > 0.1 || Math.abs(arrXt[3]) > 0.1) {
-//            double posk1X = h * velEquation(arrXt[2],);
-//            double posk1Y = h * ;
-
-            newArrXt[0] = arrXt[0] + h * arrXt[2];     //position + step * velocity --> get the new position X
-            newArrXt[1] = arrXt[1] + h * arrXt[3];     //position + step * velocity --> get the new position Y
-
+            //TODO
             double partialX = derivate.derivateX(arrXt[0], arrXt[1]);    //the partial derivative of X
             double partialY = derivate.derivateY(arrXt[0], arrXt[1]);    //the partial derivative of Y
 
+            double posk1X = h * velEquation(arrXt[2], accelerationEquation(arrXt[2], arrXt[3], partialX));
+            double posk1Y = h * velEquation(arrXt[3], accelerationEquation(arrXt[3], arrXt[2], partialY));
+
+            double posk2X = h * velEquation(arrXt[2] + ((2*h)/3.0), accelerationEquation(arrXt[2], arrXt[3], partialX + ((2*posk1X)/3.0)));
+            double posk2Y = h * velEquation(arrXt[3] + ((2*h)/3.0), accelerationEquation(arrXt[3], arrXt[2], partialY + ((2*posk1Y)/3.0)));
+
+            newArrXt[0] = arrXt[0] + (1.0/4) * (posk1X + (3 * posk2X));
+            newArrXt[1] = arrXt[1] + (1.0/4) * (posk1Y + (3 * posk2Y));
+
+            partialX = derivate.derivateX(arrXt[0], arrXt[1]);    //the partial derivative of X
+            partialY = derivate.derivateY(arrXt[0], arrXt[1]);    //the partial derivative of Y
+
             //TODO
-//          hki1 = hs * f(t,wi);
-//          hki2 = hs * f(t + (3/4 * hs), wi + (3/4 * hki1 * hs));
             double k1X = h * accelerationEquation(arrXt[2], arrXt[3], partialX);
             double k1Y = h * accelerationEquation(arrXt[3], arrXt[2], partialY);
 
-            double k2X = h * accelerationEquation(arrXt[2] + ((2*h)/3), arrXt[3] + ((2*k1X)/3), partialX);
-            double k2Y = h * accelerationEquation(arrXt[3] + ((2*h)/3), arrXt[2] + ((2*k1Y)/3), partialY);
+            double k2X = h * accelerationEquation(arrXt[2] + ((2*h)/3.0), arrXt[3] + ((2*k1X)/3.0), partialX);
+            double k2Y = h * accelerationEquation(arrXt[3] + ((2*h)/3.0), arrXt[2] + ((2*k1Y)/3.0), partialY);
 
-            newArrXt[2] = arrXt[2] + h * ((k1X/3) + ((2*k2X)/3));        //X velocity + step * acceleration --> new velocity
-            newArrXt[3] = arrXt[3] + h * ((k1Y/3) + ((2*k2Y)/3));        //Y velocity + step * acceleration --> new velocity
+            newArrXt[2] = arrXt[2] + (1.0/4) * (k1X + (3 * k2X));
+            newArrXt[3] = arrXt[3] + (1.0/4) * (k1Y + (3 * k2Y));
 
-            for (int i = 0; i < arrXt.length; i++) {
-                arrXt[i] = newArrXt[i];              //clone newArrXt back to arrXt
+            //clone newArrXt back to arrXt
+            System.arraycopy(newArrXt, 0, arrXt, 0, arrXt.length);
+
+            if ((Math.abs(arrXt[2]) <= 0.1 && Math.abs(arrXt[3]) <= 0.1) && (Math.abs(partialX) > 0.1 || Math.abs(partialY) > 0.1)) {
+                if (us > Math.sqrt(partialX * partialX + partialY * partialY)) {
+                    break;
+                } else {
+                    arrXt[2] = h * -g * partialX + uk * g * partialX / Math.sqrt(partialX * partialX + partialY * partialY);
+                    arrXt[3] = h * -g * partialY + uk * g * partialY / Math.sqrt(partialX * partialX + partialY * partialY);
+
+                }
             }
         }
 
