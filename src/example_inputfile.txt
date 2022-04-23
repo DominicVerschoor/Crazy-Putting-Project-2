@@ -3,6 +3,6 @@ y0 = 0
 xt = 200
 yt = 200
 r = 15
-muk = 0.1
+muk = 0.05
 mus = 0.2
 heightProfile = 0.1x+1
