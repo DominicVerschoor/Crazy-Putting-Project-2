@@ -6,8 +6,8 @@ public class EulerTest {
     private static double g = 9.81;          // gravity;
     private static double x = read.x0;       // x-coordinate of the initial position
     private static double y = read.y0;       // y-coordinate of the initial position
-    private static double uk = read.muk;     // kinetic friction coefficient of grass
-    private static double us = read.mus;     // static friction coefficient of grass
+    private static double uk = 0.05;     // kinetic friction coefficient of grass
+    private static double us = 0.1;     // static friction coefficient of grass
     private static double h = 0.01;   //step size
 
     public static void Euler(double[] arrXt) {
@@ -18,8 +18,8 @@ public class EulerTest {
             newArrXt[0] = arrXt[0] + h * arrXt[2];     //position + step * velocity --> get the new position X
             newArrXt[1] = arrXt[1] + h * arrXt[3];     //position + step * velocity --> get the new position Y
 
-            double partialX = derivate.derivateX(arrXt[0], arrXt[1]);    //the partial derivative of X
-            double partialY = derivate.derivateY(arrXt[0], arrXt[1]);    //the partial derivative of Y
+            double partialX = 0.1;    //the partial derivative of X
+            double partialY = 0;    //the partial derivative of Y
 
             //the second-order derivative equation, which is the acceleration of X, Y
             double accX = -g * partialX - uk * g * arrXt[2] / Math.sqrt(arrXt[2] * arrXt[2] + arrXt[3] * arrXt[3]);
@@ -62,11 +62,7 @@ public class EulerTest {
     }
 
     public static double velEquation(double v0, double a) {
-        double inSqrt = Math.pow(v0, 2) + 2 * a * h;
-        if (inSqrt < 0){
-           return -1*Math.sqrt(Math.abs(inSqrt));
-        }
-        return Math.sqrt(inSqrt);
+        return v0+=a*h;
     }
 
     public static void RungeKuttaSecondOrder(double [] arrXt) {
@@ -74,30 +70,36 @@ public class EulerTest {
         // so we take the little range 0.1 instead
         while (Math.abs(arrXt[2]) > 0.1 || Math.abs(arrXt[3]) > 0.1) {
             //TODO
-            double partialX = derivate.derivateX(arrXt[0], arrXt[1]);    //the partial derivative of X
-            double partialY = derivate.derivateY(arrXt[0], arrXt[1]);    //the partial derivative of Y
+            double partialX = 0.1;    //the partial derivative of X
+            double partialY = 0;    //the partial derivative of Y
 
-            double yX = accelerationEquation(arrXt[2], arrXt[3], partialX);
-            double yY = accelerationEquation(arrXt[3], arrXt[2], partialY);
+            double yX = -g * partialX - uk * g * arrXt[2] / Math.sqrt(arrXt[2] * arrXt[2] + arrXt[3] * arrXt[3]);
+            double yY =-g * partialY - uk * g * arrXt[3] / Math.sqrt(arrXt[2] * arrXt[2] + arrXt[3] * arrXt[3]);
 
             double posk1X = h * velEquation(arrXt[2], yX);
             double posk1Y = h * velEquation(arrXt[3], yY);
 
-            double posk2X = h * velEquation(arrXt[2] + ((2*h)/3.0), yX + ((2*posk1X)/3.0));
-            double posk2Y = h * velEquation(arrXt[3] + ((2*h)/3.0), yY + ((2*posk1Y)/3.0));
+
+            double posk2X = h * velEquation(arrXt[2] , yX + ((2*posk1X)/3.0));
+            double posk2Y = h * velEquation(arrXt[3] , yY + ((2*posk1Y)/3.0));
+            System.out.println(posk2Y);
+
 
             newArrXt[0] = arrXt[0] + (1.0/4) * (posk1X + (3 * posk2X));
             newArrXt[1] = arrXt[1] + (1.0/4) * (posk1Y + (3 * posk2Y));
 
-            partialX = derivate.derivateX(arrXt[0], arrXt[1]);    //the partial derivative of X
-            partialY = derivate.derivateY(arrXt[0], arrXt[1]);    //the partial derivative of Y
+            partialX = 0.1;    //the partial derivative of X
+            partialY = 0;    //the partial derivative of Y
 
             //TODO
-            double k1X = h * accelerationEquation(arrXt[2], arrXt[3], partialX);
-            double k1Y = h * accelerationEquation(arrXt[3], arrXt[2], partialY);
+            double k1X = h*(-g * partialX - uk * g * arrXt[2] / Math.sqrt(arrXt[2] * arrXt[2] + arrXt[3] * arrXt[3]));
+            double k1Y = h*(-g * partialY - uk * g * arrXt[3] / Math.sqrt(arrXt[2] * arrXt[2] + arrXt[3] * arrXt[3]));
 
-            double k2X = h * accelerationEquation(arrXt[2] + ((2*h)/3.0), arrXt[3] + ((2*k1X)/3.0), partialX);
-            double k2Y = h * accelerationEquation(arrXt[3] + ((2*h)/3.0), arrXt[2] + ((2*k1Y)/3.0), partialY);
+            double k2X = h * (-g * partialX - uk * g * (arrXt[2]) / Math.sqrt((arrXt[2] ) * (arrXt[2] ) + (arrXt[3]+ ((2*k1X)/3.0)) * (arrXt[3])+ ((2*k1X)/3.0)));
+            double k2Y = h * (-g * partialY - uk * g * (arrXt[3]) / Math.sqrt((arrXt[2]+ ((2*k1Y)/3.0)) * (arrXt[2]+ ((2*k1Y)/3.0)) + (arrXt[3]) * (arrXt[3])));
+
+
+            System.out.println( " ");
 
             newArrXt[2] = arrXt[2] + (1.0/4) * (k1X + (3 * k2X));
             newArrXt[3] = arrXt[3] + (1.0/4) * (k1Y + (3 * k2Y));
@@ -194,12 +196,12 @@ public class EulerTest {
         newArrXt[2] = Double.parseDouble("2");
         newArrXt[3] = Double.parseDouble("0");
 
-        System.out.println("Euler");
-        Euler(newArrXt);
-        newArrXt[0] = 0;
-        newArrXt[1] = 0;
-        newArrXt[2] = Double.parseDouble("2");
-        newArrXt[3] = Double.parseDouble("0");
+//        System.out.println("Euler");
+//        Euler(newArrXt);
+//        newArrXt[0] = 0;
+//        newArrXt[1] = 0;
+//        newArrXt[2] = Double.parseDouble("2");
+//        newArrXt[3] = Double.parseDouble("0");
 
         System.out.println("RK2");
         RungeKuttaSecondOrder(newArrXt);
@@ -208,7 +210,7 @@ public class EulerTest {
         newArrXt[2] = Double.parseDouble("2");
         newArrXt[3] = Double.parseDouble("0");
 
-        System.out.println("RK4");
-        RungeKuttaFourthOrder(newArrXt);
+//        System.out.println("RK4");
+//        RungeKuttaFourthOrder(newArrXt);
     }
 }
