@@ -5,4 +5,4 @@ yt = 200
 r = 15
 muk = 0.05
 mus = 0.2
-heightProfile = 0.1x+1
+heightProfile = Math.exp(-(Math.pow(x,2) + Math.pow(y,2)) / 40)

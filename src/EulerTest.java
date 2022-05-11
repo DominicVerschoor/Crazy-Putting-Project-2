@@ -18,8 +18,8 @@ public class EulerTest {
             newArrXt[0] = arrXt[0] + h * arrXt[2];     //position + step * velocity --> get the new position X
             newArrXt[1] = arrXt[1] + h * arrXt[3];     //position + step * velocity --> get the new position Y
 
-            double partialX = 0.1;    //the partial derivative of X
-            double partialY = 0;    //the partial derivative of Y
+            double partialX = PartialDerivate.derivateX(newArrXt[0],newArrXt[1]);    //the partial derivative of X
+            double partialY = PartialDerivate.derivateY(newArrXt[0],newArrXt[1]);    //the partial derivative of Y
 
             //the second-order derivative equation, which is the acceleration of X, Y
             double accX = -g * partialX - uk * g * arrXt[2] / Math.sqrt(arrXt[2] * arrXt[2] + arrXt[3] * arrXt[3]);
@@ -207,24 +207,24 @@ public class EulerTest {
 //        newArrXt[2] = Double.parseDouble("2");
 //        newArrXt[3] = Double.parseDouble("0");
 
-        System.out.println("RK2");
-        BetterEstimationRK2(newArrXt);
-        newArrXt[0] = 0;
-        newArrXt[1] = 0;
-        newArrXt[2] = Double.parseDouble("2");
-        newArrXt[3] = Double.parseDouble("0");
-
-        newArrXt[0] = 0;
-        newArrXt[1] = 0;
-        newArrXt[2] = Double.parseDouble("2");
-        newArrXt[3] = Double.parseDouble("0");
-
-        System.out.println("RK4");
-        newRK4(newArrXt);
-        newArrXt[0] = 0;
-        newArrXt[1] = 0;
-        newArrXt[2] = Double.parseDouble("2");
-        newArrXt[3] = Double.parseDouble("0");
+//        System.out.println("RK2");
+//        BetterEstimationRK2(newArrXt);
+//        newArrXt[0] = 0;
+//        newArrXt[1] = 0;
+//        newArrXt[2] = Double.parseDouble("2");
+//        newArrXt[3] = Double.parseDouble("0");
+//
+//        newArrXt[0] = 0;
+//        newArrXt[1] = 0;
+//        newArrXt[2] = Double.parseDouble("2");
+//        newArrXt[3] = Double.parseDouble("0");
+//
+//        System.out.println("RK4");
+//        newRK4(newArrXt);
+//        newArrXt[0] = 0;
+//        newArrXt[1] = 0;
+//        newArrXt[2] = Double.parseDouble("2");
+//        newArrXt[3] = Double.parseDouble("0");
 
         newArrXt[0] = 0;
         newArrXt[1] = 0;
@@ -233,10 +233,10 @@ public class EulerTest {
 
         System.out.println("Euler");
         Euler(newArrXt);
-        newArrXt[0] = 0;
-        newArrXt[1] = 0;
-        newArrXt[2] = Double.parseDouble("2");
-        newArrXt[3] = Double.parseDouble("0");
+//        newArrXt[0] = 0;
+//        newArrXt[1] = 0;
+//        newArrXt[2] = Double.parseDouble("2");
+//        newArrXt[3] = Double.parseDouble("0");
 
 //        System.out.println("RK2");
 //        RungeKuttaSecondOrder(newArrXt);

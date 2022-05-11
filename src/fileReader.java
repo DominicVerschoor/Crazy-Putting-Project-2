@@ -27,16 +27,17 @@ public class fileReader {
      */
     public  void readFile(){
         try {
-            ArrayList<Double> addLines = new ArrayList<Double>();
-            BufferedReader reader = new BufferedReader(new FileReader("C://Users//DELL//OneDrive//Desktop//School//Project 2//Golf2D//src//example_inputfile.txt"));
+            ArrayList<Double> addLines = new ArrayList<>();
+            BufferedReader reader = new BufferedReader(new FileReader("C://Users//DELL//OneDrive//Desktop//School//Crazy-Putting-Project-2//src//example_inputfile.txt"));
             String lines = "";
             while ((lines = reader.readLine()) != null){
-                if (lines.indexOf("=")>=0){
+                if (lines.contains("=")){
                    if(lines.charAt(0)=='h')
                    {
                        String sub = lines.substring(lines.indexOf("=")+1,lines.length());
-                       sub = sub.replaceAll("Math.", "");
+                       //sub = sub.replaceAll("Math.", "");
                        sub = sub.replaceAll(" ","");
+                       //sub = sub.replaceAll("e", "2.7182818284590452");
                        function=sub;
                    }
                    else
