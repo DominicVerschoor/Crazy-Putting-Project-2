@@ -101,7 +101,7 @@ public class MainMenuScreen implements Screen {
             Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
             if(Gdx.input.isTouched()){
                 this.dispose();
-                game.setScreen(new optionsGameScreen(game));
+                game.setScreen(new OptionsGameScreen(game));
             };
         }
         //BOT GAME BUTTON

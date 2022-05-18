@@ -1,9 +1,6 @@
 package com.badlogic.Screens;
 
-import com.badlogic.mygame.App;
-
 import javax.swing.*;
-import javax.xml.crypto.dom.DOMCryptoContext;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,7 +22,7 @@ public class GamePanel implements ActionListener {
     JLabel x;
     JLabel xOutput;
     JLabel yOutput;
-    fileReader read = new fileReader();
+    FileReader read = new FileReader();
     double positionX = read.x0;
     double positionY = read.y0;
     boolean shoot=false;

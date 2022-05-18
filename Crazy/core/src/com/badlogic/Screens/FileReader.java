@@ -5,7 +5,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 
-public class fileReader {
+public class FileReader {
     /**
      @param x0 x-coordinate of the initial position
      @param y0 y-coordinate of the initial position
@@ -24,21 +24,20 @@ public class fileReader {
     float x0,y0,xt,yt,r,muk,mus,sandPitXMin,sandPitXMax,sandPitYMin,sandPitYMax; //
     String function;
 
-
-    public fileReader(){
+    public FileReader(){
         readFile();
     }
 
     /**
      Reading the values from the given file and assigning them globally
      */
-    public  void readFile(){
+    public void readFile(){
         try {
             ArrayList<Float> addLines = new ArrayList<Float>();
-            BufferedReader reader = new BufferedReader(new FileReader("C://Users//DELL//OneDrive//Desktop//School//Project 2//Crazy//Crazy//desktop//build//resources//main//input.txt"));
+            BufferedReader reader = new BufferedReader(new java.io.FileReader("C://Users//DELL//OneDrive//Desktop//School//Crazy-Putting-Project-2//Crazy//desktop//build//resources//main//input.txt"));
             String lines = "";
             while ((lines = reader.readLine()) != null){
-                if (lines.indexOf("=")>=0){
+                if (lines.contains("=")){
                    if(lines.charAt(0)=='h')
                    {
                        String sub = lines.substring(lines.indexOf("=")+1,lines.length());
@@ -70,7 +69,6 @@ public class fileReader {
               this.sandPitYMin=addLines.get(9);
               this.sandPitYMax=addLines.get(10);
 
-            reader.close();
         }catch (Exception ex){
             ex.printStackTrace();
         }

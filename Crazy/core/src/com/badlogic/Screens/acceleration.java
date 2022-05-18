@@ -1,7 +1,7 @@
 package com.badlogic.Screens;
 
 public class acceleration {
-    fileReader read = new fileReader();
+    FileReader read = new FileReader();
     double uk= read.muk;
     private final double  g=9.81;
     public double accelerationEquationXx(double[] ArrXt,double derivative){

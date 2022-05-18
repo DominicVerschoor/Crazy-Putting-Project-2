@@ -1,6 +1,6 @@
 package com.badlogic.Screens;
 
-public class partialDerivative {
+public class PartialDerivative {
     Terrain function = new Terrain();
     public double partialX(double x, double y){
          return (function.terrain(x+0.0000000001,y)- function.terrain(x,y))/0.0000000001;

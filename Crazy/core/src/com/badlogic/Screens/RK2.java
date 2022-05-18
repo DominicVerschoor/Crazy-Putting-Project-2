@@ -1,8 +1,8 @@
 package com.badlogic.Screens;
 
 public class RK2 {
-    partialDerivative derive = new partialDerivative();
-    fileReader read = new fileReader();
+    PartialDerivative derive = new PartialDerivative();
+    FileReader read = new FileReader();
     private final double  g=9.81;
     double h = 0.0001;
     private double uk = read.muk;     // kinetic friction coefficient of grass

@@ -1,20 +1,13 @@
 package com.badlogic.Screens;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-
-import javax.swing.*;
-
 public class Euler {
-    fileReader read = new fileReader();
+    FileReader read = new FileReader();
     private final double  g=9.81;
     double h = 0.0001;
     private double uk = read.muk;     // kinetic friction coefficient of grass
     private double us = read.mus;
     static private double[] newArrXt = new double[4];
-    partialDerivative Derive = new partialDerivative();
+    PartialDerivative Derive = new PartialDerivative();
     Terrain function = new Terrain();
 
 
@@ -37,8 +30,8 @@ public class Euler {
             arrXt[3]=-5;
         }
 
-        System.out.println(arrXt[2]);
-        System.out.println(arrXt[3]);
+//        System.out.println(arrXt[2]);
+//        System.out.println(arrXt[3]);
         while (Math.abs(arrXt[2]) > 0.01 || Math.abs(arrXt[3]) > 0.01) {
 
             newArrXt[0] = arrXt[0] + h * arrXt[2];     //position + step * velocity --> get the new position X
@@ -57,8 +50,8 @@ public class Euler {
                 newArrXt[0] = initialX;
                 newArrXt[1] = initialY;
                 System.arraycopy(newArrXt, 0, arrXt, 0, arrXt.length);
-                System.out.println(newArrXt[0]);
-                System.out.println(newArrXt[1]);
+                //System.out.println(newArrXt[0]);
+                //System.out.println(newArrXt[1]);
 
                 System.out.println("HELP ME im unda tha wata ");
                 return newArrXt;
@@ -67,8 +60,8 @@ public class Euler {
                 newArrXt[0] = initialX;
                 newArrXt[1] = initialY;
                 System.arraycopy(newArrXt, 0, arrXt, 0, arrXt.length);
-                System.out.println(newArrXt[0]);
-                System.out.println(newArrXt[1]);
+                //System.out.println(newArrXt[0]);
+                //System.out.println(newArrXt[1]);
 
                 System.out.println("BALL OUT OF BOUNDS");
                 return newArrXt;
@@ -88,8 +81,8 @@ public class Euler {
             }
         }
 
-        System.out.println("X: " + newArrXt[0]);
-        System.out.println("Y: " + newArrXt[1]);
+//        System.out.println("X: " + newArrXt[0]);
+//        System.out.println("Y: " + newArrXt[1]);
 
         return newArrXt;
     }

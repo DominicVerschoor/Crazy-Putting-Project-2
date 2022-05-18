@@ -21,7 +21,7 @@ public class MainGameScreen implements Screen{
     Euler e = new Euler();
     App game = new App();
     GamePanel options = new GamePanel();
-    static fileReader fileReader= new fileReader();
+    static FileReader fileReader= new FileReader();
     Terrain function = new Terrain();
 
     //INITIALIZING VARIABLES
@@ -255,7 +255,7 @@ public class MainGameScreen implements Screen{
     public void shoot(){
 
         if (options.shoot==true){
-            if (optionsGameScreen.Euler==true) {
+            if (OptionsGameScreen.Euler==true) {
                 System.out.println("Euler");
                 newArrXt[2] = options.xVel;
                 newArrXt[3] = options.yVel;
@@ -266,7 +266,7 @@ public class MainGameScreen implements Screen{
                 options.shoot = false;
                 winCondition();
             }
-            if (optionsGameScreen.RK2==true) {
+            if (OptionsGameScreen.RK2==true) {
                 //TODO
                 System.out.println("RK2");
                 newArrXt[2] = options.xVel;
@@ -278,7 +278,7 @@ public class MainGameScreen implements Screen{
                 options.shoot = false;
                 winCondition();
             }
-            if (optionsGameScreen.RK4==true) {
+            if (OptionsGameScreen.RK4==true) {
                 //TODO
                 System.out.println("RK4");
                 newArrXt[2] = options.xVel;

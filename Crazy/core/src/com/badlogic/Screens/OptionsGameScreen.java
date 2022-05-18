@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.mygame.Animations;
 import com.badlogic.mygame.App;
 
-public class optionsGameScreen implements Screen {
+public class OptionsGameScreen implements Screen {
     Animation<TextureRegion> animation;
     Texture musicLogo,exitButton,onButton,offButton,mathSolverButton,RK2Button,RK4Button,EulerButton,
             advancedBotButton,basicBotButton,botsLogo;
@@ -24,7 +24,7 @@ public class optionsGameScreen implements Screen {
     static boolean Euler =true;
 
 
-    public optionsGameScreen(App game) {
+    public OptionsGameScreen(App game) {
         this.game=game;
         //TEXTURES
         musicLogo = new Texture("Music.png");
