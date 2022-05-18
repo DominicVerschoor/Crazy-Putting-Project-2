@@ -1,0 +1,12 @@
+x0 = 1
+y0 = 0
+xt = 20
+yt = 9
+r = 0.5
+muk = 0.1
+mus = 0.2
+sandPitXMin =1
+sandPitXMax =2
+sandPitYMin =-1
+sandPitYMax =2
+
