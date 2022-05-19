@@ -30,9 +30,15 @@ public class Euler {
             arrXt[3]=-5;
         }
 
-//        System.out.println(arrXt[2]);
-//        System.out.println(arrXt[3]);
         while (Math.abs(arrXt[2]) > 0.01 || Math.abs(arrXt[3]) > 0.01) {
+            uk = read.muk;
+            us = read.mus;
+            if ((arrXt[0] >= read.sandPitXMin && arrXt[0] <= read.sandPitXMin)
+                    && (arrXt[1] >= read.sandPitXMin && arrXt[1] <= read.sandPitXMin)){
+                uk = read.muks;
+                us = read.muss;
+                System.out.println("ew sand");
+            }
 
             newArrXt[0] = arrXt[0] + h * arrXt[2];     //position + step * velocity --> get the new position X
             newArrXt[1] = arrXt[1] + h * arrXt[3];     //position + step * velocity --> get the new position Y
@@ -50,8 +56,6 @@ public class Euler {
                 newArrXt[0] = initialX;
                 newArrXt[1] = initialY;
                 System.arraycopy(newArrXt, 0, arrXt, 0, arrXt.length);
-                //System.out.println(newArrXt[0]);
-                //System.out.println(newArrXt[1]);
 
                 System.out.println("HELP ME im unda tha wata ");
                 return newArrXt;
@@ -60,8 +64,6 @@ public class Euler {
                 newArrXt[0] = initialX;
                 newArrXt[1] = initialY;
                 System.arraycopy(newArrXt, 0, arrXt, 0, arrXt.length);
-                //System.out.println(newArrXt[0]);
-                //System.out.println(newArrXt[1]);
 
                 System.out.println("BALL OUT OF BOUNDS");
                 return newArrXt;
@@ -80,10 +82,6 @@ public class Euler {
                 }
             }
         }
-
-//        System.out.println("X: " + newArrXt[0]);
-//        System.out.println("Y: " + newArrXt[1]);
-
         return newArrXt;
     }
 }

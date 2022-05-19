@@ -6,13 +6,11 @@ public class BasicBot {
     private static final RK4 rk4 = new RK4();
     private static final RK2 rk2 = new RK2();
     private static final Euler euler = new Euler();
-
+    private static final float radius = 0.2f;
 
     public static double[] basicShooting() {
         double holeX = r.xt;
         double holeY = r.yt;
-        System.out.println("XGOAL: " + holeX);
-        System.out.println("YGOAL: " + holeY);
 
         double[] arrXt = new double[4];
         double[] save = new double[4];
@@ -31,19 +29,21 @@ public class BasicBot {
         save[2] = xvel;
         save[3] = yvel;
 
-        while (((save[0] >= holeX + r.r) || (save[0] <= holeY - r.r)) ||
-                ((save[1] >= holeX + r.r) || (save[1] <= holeY - r.r))) {
+        while ((r.r <= distance(save[0], save[1], holeX, holeY) - radius)) {
             xvel = -5;
             yvel = -5;
-            while ((((save[0] >= holeX + r.r) || (save[0] <= holeY - r.r)) ||
-                    ((save[1] >= holeX + r.r) || (save[1] <= holeY - r.r)))
-                            && (yvel <= 5 || (xvel <= 5))) {
+            while (((r.r <= distance(save[0], save[1], holeX, holeY) - radius))
+                    && (yvel <= 5 || (xvel <= 5))) {
 
                 if (xvel <= 5) {
-                    xvel += Math.max(Math.abs(xpos - holeX) / 10, 0.1);
+                    if ((Math.abs(xpos - holeX) / 10) >= 0.1){
+                        xvel += Math.max(Math.abs(xpos - holeX) / 10, 0);
+                    }
                 }
                 if (yvel <= 5) {
-                    yvel += Math.max(Math.abs(ypos - holeY) / 10, 0.1);
+                    if ((Math.abs(ypos - holeY) / 10) >= 0.1){
+                        yvel += Math.abs(ypos - holeY) / 10;
+                    }
                 }
 
                 arrXt[0] = xpos;
@@ -51,7 +51,7 @@ public class BasicBot {
                 arrXt[2] = xvel;
                 arrXt[3] = yvel;
 
-                arrXt = euler.Euler(arrXt);
+                arrXt = rk4.newRK4(arrXt);
 
                 if (distance(save[0], save[1], holeX, holeY) > distance(arrXt[0], arrXt[1], holeX, holeY)) {
                     save[0] = arrXt[0];
@@ -69,7 +69,6 @@ public class BasicBot {
             System.out.println("EndXV: " + xvel + " EndYV: " + yvel);
             System.out.println();
         }
-//        }
         System.out.println("Found");
 
         return arrXt;

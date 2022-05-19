@@ -22,7 +22,9 @@ public class OptionsGameScreen implements Screen {
     static boolean RK2 =false;
     static boolean RK4 =false;
     static boolean Euler =true;
-
+    static boolean randomBot = true;
+    static boolean basicBot = false;
+    static boolean smartBot = false;
 
     public OptionsGameScreen(App game) {
         this.game=game;
@@ -166,6 +168,14 @@ public class OptionsGameScreen implements Screen {
             RK4=true;
             RK2=false;
         }
+        //Basic Bot Button
+        else if (Gdx.input.getX() <460 && Gdx.input.getX()>412 && Gdx.input.getY()>400 && Gdx.input.getY()<537) {
+            Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
+            basicBot = false;
+            smartBot = false;
+            randomBot = true;
+        }
+
         //DEFAULT
         else {
             Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Arrow);

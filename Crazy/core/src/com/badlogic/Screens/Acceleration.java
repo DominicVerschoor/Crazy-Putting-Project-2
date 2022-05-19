@@ -1,6 +1,6 @@
 package com.badlogic.Screens;
 
-public class acceleration {
+public class Acceleration {
     FileReader read = new FileReader();
     double uk= read.muk;
     private final double  g=9.81;

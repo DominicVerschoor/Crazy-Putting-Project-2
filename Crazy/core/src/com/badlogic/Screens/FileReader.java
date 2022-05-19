@@ -21,7 +21,7 @@ public class FileReader {
      @param sandPitYMax y-range of a sand pit
      */
 
-    float x0,y0,xt,yt,r,muk,mus,sandPitXMin,sandPitXMax,sandPitYMin,sandPitYMax; //
+    float x0,y0,xt,yt,r,muk,mus,sandPitXMin,sandPitXMax,sandPitYMin,sandPitYMax,muks,muss; //
     String function;
 
     public FileReader(){
@@ -68,7 +68,8 @@ public class FileReader {
               this.sandPitXMax=addLines.get(8);
               this.sandPitYMin=addLines.get(9);
               this.sandPitYMax=addLines.get(10);
-
+              this.muks=addLines.get(11);
+              this.muss=addLines.get(12);
         }catch (Exception ex){
             ex.printStackTrace();
         }

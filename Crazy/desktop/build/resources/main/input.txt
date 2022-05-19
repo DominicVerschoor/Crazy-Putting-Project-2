@@ -1,12 +1,14 @@
-x0 = 1
+x0 = -3
 y0 = 0
-xt = 20
+xt = 18
 yt = 9
-r = 0.5
-muk = 0.1
+r = 0.15
+muk = 0.08
 mus = 0.2
-sandPitXMin =1
-sandPitXMax =2
-sandPitYMin =-1
-sandPitYMax =2
-
+height profile = 0
+sandPitXMin =0
+sandPitXMax =0
+sandPitYMin =0
+sandPitYMax =0
+muks = 0.25
+muss = 0.3

@@ -108,7 +108,7 @@ public class MainMenuScreen implements Screen {
         else if (Gdx.input.getX() <266 && Gdx.input.getX()>110 && Gdx.input.getY()>250 && Gdx.input.getY()<294) {
             Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
             if(Gdx.input.isTouched()){
-                System.out.println("there will be bot game");
+                game.setScreen(new BotGameScreen(game));
             };
         }
         //EXIT BUTTON
