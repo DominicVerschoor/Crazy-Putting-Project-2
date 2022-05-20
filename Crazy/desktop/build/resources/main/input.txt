@@ -1,11 +1,11 @@
 x0 = -3
 y0 = 0
-xt = 18
-yt = 9
-r = 0.15
+xt = 1
+yt = 1
+r = 0.25
 muk = 0.08
 mus = 0.2
-height profile = 0
+height profile = (1.0/20)*(Math.pow(x,2) + Math.pow(y,2))
 sandPitXMin =0
 sandPitXMax =0
 sandPitYMin =0

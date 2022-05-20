@@ -112,7 +112,7 @@ public class RK4 {
                 arrXt[1] = initialY;
                 System.arraycopy(arrXt, 0, arrXt, 0, arrXt.length);
 
-                System.out.println("BALL OUT OF BOUNDS");
+                //System.out.println("BALL OUT OF BOUNDS");
                 return arrXt;
             }
 
