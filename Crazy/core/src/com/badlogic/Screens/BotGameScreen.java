@@ -253,14 +253,13 @@ public class BotGameScreen implements Screen{
     }
     RK2 rk2 = new RK2();
     RK4 rk4 = new RK4();
+    BasicBot basicBot = new BasicBot();
     public void shoot(){
 
         if (options.shoot==true){
             if (OptionsGameScreen.basicBot==true) {
                 System.out.println("Basic Bot");
-                newArrXt[2] = options.xVel;
-                newArrXt[3] = options.yVel;
-                newArrXt = e.Euler(newArrXt);
+                newArrXt = basicBot.basicShooting();
                 BallX = (float) newArrXt[0];
                 BallY = (float) newArrXt[1];
                 options.update(newArrXt[0],newArrXt[1]);

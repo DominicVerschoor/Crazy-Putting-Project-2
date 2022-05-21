@@ -37,7 +37,7 @@ public class Euler {
                     && (arrXt[1] >= read.sandPitXMin && arrXt[1] <= read.sandPitXMin)){
                 uk = read.muks;
                 us = read.muss;
-                System.out.println("ew sand");
+                //System.out.println("ew sand");
             }
 
             newArrXt[0] = arrXt[0] + h * arrXt[2];     //position + step * velocity --> get the new position X
@@ -57,7 +57,7 @@ public class Euler {
                 newArrXt[1] = initialY;
                 System.arraycopy(newArrXt, 0, arrXt, 0, arrXt.length);
 
-                System.out.println("HELP ME im unda tha wata ");
+                //System.out.println("HELP ME im unda tha wata ");
                 return newArrXt;
             }
             if (newArrXt[0]>20 || newArrXt[0]<-20 || newArrXt[1]>20 || newArrXt[1]<-20) {
@@ -65,7 +65,7 @@ public class Euler {
                 newArrXt[1] = initialY;
                 System.arraycopy(newArrXt, 0, arrXt, 0, arrXt.length);
 
-                System.out.println("BALL OUT OF BOUNDS");
+                //System.out.println("BALL OUT OF BOUNDS");
                 return newArrXt;
             }
 
@@ -82,6 +82,8 @@ public class Euler {
                 }
             }
         }
+        System.out.println(arrXt[2]);
+        System.out.println(arrXt[3]);
         return newArrXt;
     }
 }

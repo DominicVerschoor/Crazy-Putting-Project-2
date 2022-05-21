@@ -40,7 +40,7 @@ public class RK4 {
                     && (arrXt[1] >= read.sandPitXMin && arrXt[1] <= read.sandPitXMin)){
                 uk = read.muks;
                 us = read.muss;
-                System.out.println("ew sand");
+                //System.out.println("ew sand");
             }
 
             double partialx = derive.partialX(arrXt[0], arrXt[1]);    //the partial derivative of X
@@ -104,7 +104,7 @@ public class RK4 {
                 arrXt[1] = initialY;
                 System.arraycopy(arrXt, 0, arrXt, 0, arrXt.length);
 
-                System.out.println("HELP ME im unda tha wata ");
+                //System.out.println("HELP ME im unda tha wata ");
                 return arrXt;
             }
             if (arrXt[0]>20 || arrXt[0]<-20 || arrXt[1]>20 || arrXt[1]<-20) {
@@ -128,8 +128,8 @@ public class RK4 {
             }
 
         }
-//        System.out.println(arrXt[2]);
-//        System.out.println(arrXt[3]);
+        System.out.println(arrXt[2]);
+        System.out.println(arrXt[3]);
 //        System.out.println("X: " + arrXt[0]);
 //        System.out.println("Y: " + arrXt[1]);
         return arrXt;
