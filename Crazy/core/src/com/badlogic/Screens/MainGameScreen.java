@@ -184,7 +184,7 @@ public class MainGameScreen implements Screen{
                 zoom=90;
             }
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.L)){
+        if (Gdx.input.isKeyPressed(Input.Keys.EQUALS)){
             zoom--;
             if (zoom<0){
                 zoom=0;
@@ -230,6 +230,7 @@ public class MainGameScreen implements Screen{
             model = modelBuilder.createBox(1f, 1f, 1f,
                     new Material(ColorAttribute.createDiffuse(colorMap)),
                     (VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal));
+
 
             modelInstance = new ModelInstance(model, x, z, y);
             //SAND PITS ACCORDING TO COORDS
@@ -318,9 +319,9 @@ public class MainGameScreen implements Screen{
                 new Material(ColorAttribute.createDiffuse(Color.BROWN)),
                 (VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal));
 
-        modelInstanceHole = new ModelInstance(modelHole,TargetX,(float) function.terrain(TargetX,TargetY)+0.55f ,TargetY);
+        modelInstanceHole = new ModelInstance(modelHole,TargetX,(float) function.terrain(TargetX,TargetY)+0.65f ,TargetY);
 
-        modelInstanceHole.transform.setTranslation(TargetX,(float)function.terrain(TargetX,TargetY)+0.55f, TargetY);
+        modelInstanceHole.transform.setTranslation(TargetX,(float)function.terrain(TargetX,TargetY)+0.65f, TargetY);
 
         modelBatch.render(modelInstanceHole, environment);
     }

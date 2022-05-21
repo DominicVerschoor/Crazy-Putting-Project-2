@@ -1,5 +1,7 @@
 package com.badlogic.Screens;
 
+import javax.swing.*;
+
 public class Euler {
     FileReader read = new FileReader();
     private final double  g=9.81;
@@ -57,15 +59,14 @@ public class Euler {
                 newArrXt[1] = initialY;
                 System.arraycopy(newArrXt, 0, arrXt, 0, arrXt.length);
 
-                //System.out.println("HELP ME im unda tha wata ");
+                JOptionPane.showMessageDialog(new JFrame(),"Ball under water");
                 return newArrXt;
             }
             if (newArrXt[0]>20 || newArrXt[0]<-20 || newArrXt[1]>20 || newArrXt[1]<-20) {
                 newArrXt[0] = initialX;
                 newArrXt[1] = initialY;
                 System.arraycopy(newArrXt, 0, arrXt, 0, arrXt.length);
-
-                //System.out.println("BALL OUT OF BOUNDS");
+                JOptionPane.showMessageDialog(new JFrame(),"Ball out of bounds");
                 return newArrXt;
             }
 
