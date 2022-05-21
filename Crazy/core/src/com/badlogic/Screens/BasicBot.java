@@ -29,11 +29,11 @@ public class BasicBot {
         save[2] = xvel;
         save[3] = yvel;
 
-        while ((r.r <= distance(save[0], save[1], holeX, holeY) )) {
+        while ((r.r <= distance(save[0], save[1], holeX, holeY) - radius)) {
             xvel = -5;
             yvel = -5;
 
-            while (((r.r <= distance(save[0], save[1], holeX, holeY) ))
+            while (((r.r <= distance(save[0], save[1], holeX, holeY) - radius))
                     && (yvel <= 5 || (xvel <= 5))) {
 
                 if (xvel <= 5) {
@@ -63,7 +63,7 @@ public class BasicBot {
             }
 
             yvel = -5;
-            while (((r.r <= distance(save[0], save[1], holeX, holeY) ))
+            while (((r.r <= distance(save[0], save[1], holeX, holeY) - radius))
                     && (yvel <= 5)) {
 
                 yvel += Math.abs(ypos - holeY) / 10;
@@ -84,7 +84,7 @@ public class BasicBot {
             }
 
             xvel = -5;
-            while (((r.r <= distance(save[0], save[1], holeX, holeY)))
+            while (((r.r <= distance(save[0], save[1], holeX, holeY) - radius))
                     && (xvel <= 5)) {
 
                 xvel += Math.abs(xpos - holeY) / 10;

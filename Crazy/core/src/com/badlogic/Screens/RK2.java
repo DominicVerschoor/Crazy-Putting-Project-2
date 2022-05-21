@@ -71,7 +71,7 @@ public class RK2 {
                 newArrXt[1] = initialY;
                 System.arraycopy(newArrXt, 0, arrXt, 0, arrXt.length);
 
-                System.out.println("HELP ME im unda tha wata ");
+                //System.out.println("HELP ME im unda tha wata ");
                 return newArrXt;
             }
             if (newArrXt[0]>20 || newArrXt[0]<-20 || newArrXt[1]>20 || newArrXt[1]<-20) {
@@ -79,7 +79,7 @@ public class RK2 {
                 newArrXt[1] = initialY;
                 System.arraycopy(newArrXt, 0, arrXt, 0, arrXt.length);
 
-                System.out.println("BALL OUT OF BOUNDS");
+                //System.out.println("BALL OUT OF BOUNDS");
                 return newArrXt;
             }
 
@@ -97,8 +97,8 @@ public class RK2 {
 
         System.out.println("X: " + arrXt[0]);
         System.out.println("Y: " + arrXt[1]);
-        System.out.println(arrXt[2]);
-        System.out.println(arrXt[3]);
+        //System.out.println(arrXt[2]);
+        //System.out.println(arrXt[3]);
         return arrXt;
     }
 }
