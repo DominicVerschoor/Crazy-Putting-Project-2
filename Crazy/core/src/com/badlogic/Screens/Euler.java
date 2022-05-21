@@ -30,7 +30,7 @@ public class Euler {
             arrXt[3]=-5;
         }
 
-        while (Math.abs(arrXt[2]) > 0.01 || Math.abs(arrXt[3]) > 0.01) {
+        while (Math.abs(arrXt[2]) > 0.001 || Math.abs(arrXt[3]) > 0.001) {
             uk = read.muk;
             us = read.mus;
             if ((arrXt[0] >= read.sandPitXMin && arrXt[0] <= read.sandPitXMin)
@@ -71,7 +71,7 @@ public class Euler {
 
             System.arraycopy(newArrXt, 0, arrXt, 0, arrXt.length);
 
-            if ((Math.abs(arrXt[2]) <= 0.01 && Math.abs(arrXt[3]) <= 0.01) && (Math.abs(partialX) > 0.01 || Math.abs(partialY) > 0.01)) {
+            if ((Math.abs(arrXt[2]) <= 0.001 && Math.abs(arrXt[3]) <= 0.001) && (Math.abs(partialX) > 0.01 || Math.abs(partialY) > 0.01)) {
                 double sqrt = Math.sqrt(partialX * partialX + partialY * partialY);
                 if (us > sqrt) {
                     break;

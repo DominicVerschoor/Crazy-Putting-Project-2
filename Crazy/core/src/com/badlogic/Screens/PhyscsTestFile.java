@@ -13,8 +13,8 @@ public class PhyscsTestFile {
 
         double x0 = 0;
         double y0 = 0;
-        double vx0 = 0;
-        double vy0 = 0;
+        double vx0 = 1;
+        double vy0 = 1;
 
         System.out.println("Euler");
         testArray[0] = x0;
