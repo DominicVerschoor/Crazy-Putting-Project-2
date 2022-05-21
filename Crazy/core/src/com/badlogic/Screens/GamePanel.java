@@ -20,11 +20,15 @@ public class GamePanel implements ActionListener {
     JPanel scorePanel;
     JLabel y;
     JLabel x;
+    JLabel z;
     JLabel xOutput;
     JLabel yOutput;
+    JLabel zOutput;
     FileReader read = new FileReader();
+    Terrain function = new Terrain();
     double positionX = read.x0;
     double positionY = read.y0;
+    double positionZ = 0;
     boolean shoot=false;
     int score=0;
 
@@ -79,21 +83,26 @@ public class GamePanel implements ActionListener {
         velOutputPane = new JPanel();
         xOutput = new JLabel();
         yOutput = new JLabel();
+        zOutput = new JLabel();
         xOutput.setText("X FINAL POSITION:" + positionX);
         yOutput.setText("Y FINAL POSITION:" + positionY);
+        zOutput.setText("Z FINAL POSITION:" + positionZ);
         yOutput.setFont(new Font("MV Boli",Font.PLAIN,15));
         xOutput.setForeground(Color.WHITE);
         xOutput.setFont(new Font("MV Boli",Font.PLAIN,15));
         yOutput.setForeground(Color.WHITE);
+        zOutput.setFont(new Font("MV Boli",Font.PLAIN,15));
+        zOutput.setForeground(Color.WHITE);
         velOutputPane.setBackground(Color.DARK_GRAY);
         velOutputPane.setBounds(-10,125,300,70);
         velOutputPane.add(xOutput);
         velOutputPane.add(yOutput);
+        velOutputPane.add(zOutput);
 
         scoreLabel = new JLabel();
         scorePanel = new JPanel();
         scorePanel.setBackground(Color.DARK_GRAY);
-        scorePanel.setBounds(-62,185,300,50);
+        scorePanel.setBounds(-62,195,300,50);
         scoreLabel.setText("Score: "+ score);
         scoreLabel.setFont(new Font("MV Boli",Font.PLAIN,18));
         scoreLabel.setForeground(Color.WHITE);
@@ -118,9 +127,12 @@ public class GamePanel implements ActionListener {
     public void update (double x,double y){
         positionX= x;
         positionY= y;
+        positionZ = function.terrain(x,y);
+
         System.out.println("im updating");
         xOutput.setText("X FINAL POSITION: " + positionX);
         yOutput.setText("Y FINAL POSITION: " + positionY);
+        zOutput.setText("Z FINAL POSITION: " + positionZ);
     }
 
 
