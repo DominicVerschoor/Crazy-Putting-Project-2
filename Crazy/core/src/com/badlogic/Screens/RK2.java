@@ -83,7 +83,7 @@ public class RK2 {
                 return newArrXt;
             }
 
-            if ((Math.abs(arrXt[2]) <= 0.001 && Math.abs(arrXt[3]) <= 0.001) && (Math.abs(partialX) > 0.01 || Math.abs(partialY) > 0.01)) {
+            if ((Math.abs(arrXt[2]) <= 0.001 && Math.abs(arrXt[3]) <= 0.001) && (Math.abs(partialX) > 0.001 || Math.abs(partialY) > 0.001)) {
                 double sqrt = Math.sqrt(partialX * partialX + partialY * partialY);
                 if (us > sqrt) {
                     break;
