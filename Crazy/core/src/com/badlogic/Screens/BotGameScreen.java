@@ -308,7 +308,7 @@ public class BotGameScreen implements Screen{
     public void winCondition(){
 
         double distance = Math.sqrt(Math.pow(newArrXt[0] - TargetX, 2) + Math.pow(newArrXt[1] - TargetY, 2));
-        if ((radius > ballRadius + distance)) {
+        if ((radius >  distance)) {
             System.out.println("win");
 
             JOptionPane.showMessageDialog(new JFrame(),"You finished with score: ");

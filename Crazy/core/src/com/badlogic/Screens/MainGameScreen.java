@@ -41,7 +41,6 @@ public class MainGameScreen implements Screen{
     ArrayList<Float> arrayZ = new ArrayList<Float>();
     ArrayList<Color> heightColor = new ArrayList<Color>();
     ArrayList<ModelInstance> map = new ArrayList<ModelInstance>();
-    double scroll = 30;
 
     //FILE INPUT VARIABLES INITIALIZATIONS
     static float BallX;
@@ -91,6 +90,7 @@ public class MainGameScreen implements Screen{
        // map2DGenerator(); <--- render 2D map
         ballPerspective.update();
         modelBatch.begin(ballPerspective);
+        cameraPerspective();
         golfBall();
         hole();
         renderMap();
@@ -144,7 +144,7 @@ public class MainGameScreen implements Screen{
        // return new Color(Color.argb8888(0.0f, 0, 0.0f,1.0f));
         return Color.BLACK;
     }
-
+    float zoom =30;
     /**
      * All keyboard actions are being handled in this method
      */
@@ -156,25 +156,39 @@ public class MainGameScreen implements Screen{
             }
             game.setScreen(new MainMenuScreen(game));
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.P)){
-            ballPerspective.rotateAround(new Vector3(0f,0f,0f),new Vector3(0f,1f,0f), -1f);
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+    //            ballPerspective.rotateAround(new Vector3(0f,0f,0f),new Vector3(0f,1f,0f), -1f);
+            cameraY--;
+            if (zoom<-50){
+                zoom=0;
+            }
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.O)){
-            ballPerspective.rotateAround(new Vector3(0f,0f,0f),new Vector3(0f,1f,0f), 1f);
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+//            ballPerspective.rotateAround(new Vector3(0f,0f,0f),new Vector3(0f,1f,0f), 1f);
+            cameraY++;
+            if (zoom>50){
+                zoom=90;
+            }
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.I)){
-            ballPerspective.rotateAround(new Vector3(0f,0f,0f),new Vector3(1f,0f,0f), 1f);
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)){
+//            ballPerspective.rotateAround(new Vector3(0f,0f,0f),new Vector3(1f,0f,0f), 1f);
+            cameraZ++;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.U)){
-            ballPerspective.rotateAround(new Vector3(0f,0f,0f),new Vector3(1f,0f,0f), -1f);
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.L)){
-            scroll--;
-            ballPerspective.rotateAround(new Vector3(0f,0f,0f),new Vector3(0f,0f,(float) scroll),-1f);
-
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)){
+            cameraZ--;
+//            ballPerspective.rotateAround(new Vector3(0f,0f,0f),new Vector3(1f,0f,0f), -1f);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.MINUS)){
-            scroll++;
+            zoom++;
+            if (zoom>90){
+                zoom=90;
+            }
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.L)){
+            zoom--;
+            if (zoom<0){
+                zoom=0;
+            }
         }
     }
 
@@ -265,6 +279,8 @@ public class MainGameScreen implements Screen{
                 options.update(newArrXt[0],newArrXt[1]);
                 options.shoot = false;
                 winCondition();
+                System.out.println(newArrXt[0]);
+                System.out.println(newArrXt[1]);
             }
             if (OptionsGameScreen.RK2==true) {
                 //TODO
@@ -277,6 +293,8 @@ public class MainGameScreen implements Screen{
                 options.update(newArrXt[0],newArrXt[1]);
                 options.shoot = false;
                 winCondition();
+                System.out.println(newArrXt[0]);
+                System.out.println(newArrXt[1]);
             }
             if (OptionsGameScreen.RK4==true) {
                 //TODO
@@ -289,6 +307,8 @@ public class MainGameScreen implements Screen{
                 options.update(newArrXt[0],newArrXt[1]);
                 options.shoot = false;
                 winCondition();
+                System.out.println(newArrXt[0]);
+                System.out.println(newArrXt[1]);
             }
         }
 
@@ -308,7 +328,7 @@ public class MainGameScreen implements Screen{
     public void winCondition(){
 
         double distance = Math.sqrt(Math.pow(newArrXt[0] - TargetX, 2) + Math.pow(newArrXt[1] - TargetY, 2));
-        if ((radius > ballRadius + distance)) {
+        if ((radius >  distance)) {
             System.out.println("win");
 
             JOptionPane.showMessageDialog(new JFrame(),"You finished with score: ");
@@ -322,11 +342,13 @@ public class MainGameScreen implements Screen{
     /**
      * Handling the perspective of the player
      */
-
+    float cameraX=10;
+    float cameraY=10;
+    float cameraZ=10;
     public void cameraPerspective(){
-        ballPerspective=new PerspectiveCamera(65, Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
-        ballPerspective.position.set(BallX+10,BallY+10,25f);
-        ballPerspective.lookAt(BallX,0f,BallY);
+        ballPerspective=new PerspectiveCamera(zoom, Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+        ballPerspective.position.set(cameraX,cameraZ,cameraY);
+        ballPerspective.lookAt(BallX,0,BallY);
         ballPerspective.near = 0.1f;
         ballPerspective.far = 300f;
     }

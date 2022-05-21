@@ -34,7 +34,7 @@ public class FileReader {
     public void readFile(){
         try {
             ArrayList<Float> addLines = new ArrayList<Float>();
-            BufferedReader reader = new BufferedReader(new java.io.FileReader("C://Users//DELL//OneDrive//Desktop//School//Crazy-Putting-Project-2//Crazy//desktop//build//resources//main//input.txt"));
+            BufferedReader reader = new BufferedReader(new java.io.FileReader("Crazy/desktop/build/resources/main/input.txt"));
             String lines = "";
             while ((lines = reader.readLine()) != null){
                 if (lines.contains("=")){

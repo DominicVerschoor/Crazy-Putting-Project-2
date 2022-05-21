@@ -171,9 +171,9 @@ public class OptionsGameScreen implements Screen {
         //Basic Bot Button
         else if (Gdx.input.getX() <460 && Gdx.input.getX()>412 && Gdx.input.getY()>400 && Gdx.input.getY()<537) {
             Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
-            basicBot = false;
+            basicBot = true;
             smartBot = false;
-            randomBot = true;
+            randomBot = false;
         }
 
         //DEFAULT

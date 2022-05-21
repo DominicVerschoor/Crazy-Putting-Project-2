@@ -9,7 +9,7 @@ public class FileWriter {
 
         {
             try {
-                java.io.FileWriter writer = new java.io.FileWriter("C://Users//DELL//OneDrive//Desktop//School//Crazy-Putting-Project-2//Crazy//core//src//com//badlogic//Screens//Terrain.java");
+                java.io.FileWriter writer = new java.io.FileWriter("Crazy/core/src/com/badlogic/Screens/Terrain.java");
 
                 writer.write("package com.badlogic.Screens;\n");
                 writer.write("public class Terrain{\n");
