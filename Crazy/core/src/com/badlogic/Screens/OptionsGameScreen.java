@@ -115,18 +115,19 @@ public class OptionsGameScreen implements Screen {
     /**
      * All keyboard actions are being handled in this method
      */
-    public void keyboardHandler(){
+    public void keyboardHandler() {
         //EXIT BUTTON EVENT HANDLING
-        if (Gdx.input.getX() <880 && Gdx.input.getX()>812 && Gdx.input.getY()>637 && Gdx.input.getY()<684) {
+        if (Gdx.input.getX() < 880 && Gdx.input.getX() > 812 && Gdx.input.getY() > 637 && Gdx.input.getY() < 684) {
             Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
-            if(Gdx.input.isTouched()){
+            if (Gdx.input.isTouched()) {
                 this.dispose();
                 game.setScreen(new MainMenuScreen(game));
-            };
+            }
+            ;
             //ON BUTTON EVENT HANDLING
-        } else if (Gdx.input.getX() <340 && Gdx.input.getX()>300 && Gdx.input.getY()>310 && Gdx.input.getY()<346) {
+        } else if (Gdx.input.getX() < 340 && Gdx.input.getX() > 300 && Gdx.input.getY() > 310 && Gdx.input.getY() < 346) {
             Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
-            if(Gdx.input.isTouched()){
+            if (Gdx.input.isTouched()) {
                 System.out.println("im over");
                 if (!gameMusic.isPlaying()) {
                     System.out.println("im in");
@@ -134,12 +135,12 @@ public class OptionsGameScreen implements Screen {
                     gameMusic.setVolume(0.05f);
                     gameMusic.play();
                 }
-            };
+            }
         }
         //OFF BUTTON EVENT HANDLING
-        else if (Gdx.input.getX() <405 && Gdx.input.getX()>350 && Gdx.input.getY()>310 && Gdx.input.getY()<346) {
+        else if (Gdx.input.getX() < 405 && Gdx.input.getX() > 350 && Gdx.input.getY() > 310 && Gdx.input.getY() < 346) {
             Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
-            if(Gdx.input.isTouched()) {
+            if (Gdx.input.isTouched()) {
                 if (gameMusic.isPlaying()) {
                     gameMusic.setLooping(false);
                     gameMusic.stop();
@@ -148,22 +149,26 @@ public class OptionsGameScreen implements Screen {
 
         }
         //EULER BUTTON EVENT HANDLING
-        else if (Gdx.input.getX() <324 && Gdx.input.getX()>258 && Gdx.input.getY()>400 && Gdx.input.getY()<437) {
-            Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
-            Euler=true;
-            RK4=false;
-            RK2=false;
+        else if (Gdx.input.getX() < 324 && Gdx.input.getX() > 258 && Gdx.input.getY() > 400 && Gdx.input.getY() < 437) {
 
+            Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
+            if (Gdx.input.isTouched()) {
+                Euler = true;
+                RK4 = false;
+                RK2 = false;
+            }
         }
         //RK2 BUTTON EVENT HANDLING
-        else if (Gdx.input.getX() <396 && Gdx.input.getX()>342 && Gdx.input.getY()>400 && Gdx.input.getY()<437) {
+        else if (Gdx.input.getX() < 396 && Gdx.input.getX() > 342 && Gdx.input.getY() > 400 && Gdx.input.getY() < 437) {
             Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
-            Euler=false;
-            RK4=false;
-            RK2=true;
+            if (Gdx.input.isTouched()) {
+                Euler = false;
+                RK4 = false;
+                RK2 = true;
+            }
         }
         //RK4 BUTTON EVENT HANDLING
-        else if (Gdx.input.getX() <460 && Gdx.input.getX()>412 && Gdx.input.getY()>400 && Gdx.input.getY()<437) {
+        else if (Gdx.input.getX() < 460 && Gdx.input.getX() > 412 && Gdx.input.getY() > 400 && Gdx.input.getY() < 437) {
             Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
             if (Gdx.input.isTouched()) {
                 Euler = false;
@@ -199,11 +204,11 @@ public class OptionsGameScreen implements Screen {
                 }
             }
 
-        //DEFAULT
-        else {
-            Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Arrow);
+            //DEFAULT
+            else {
+                Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Arrow);
+            }
         }
-    }
 
     }
 
