@@ -14,7 +14,7 @@ import com.badlogic.mygame.App;
 public class OptionsGameScreen implements Screen {
     Animation<TextureRegion> animation;
     Texture musicLogo,exitButton,onButton,offButton,mathSolverButton,RK2Button,RK4Button,EulerButton,
-            advancedBotButton,basicBotButton,botsLogo;
+            advancedBotButton,basicBotButton,botsLogo,randomBotButton;
 
     App game = new App();
     public static Music gameMusic = Gdx.audio.newMusic(Gdx.files.internal("Melody.wav"));
@@ -40,6 +40,7 @@ public class OptionsGameScreen implements Screen {
         advancedBotButton = new Texture("AdvancedBot.png");
         basicBotButton = new Texture("BasicBot.png");
         botsLogo = new Texture("Bots.png");
+        randomBotButton = new Texture("RandomBot.png");
 
 
         animation = Animations.loadGIFAnimation(Animation.PlayMode.LOOP, Gdx.files.internal("menu.gif").read());
@@ -68,17 +69,17 @@ public class OptionsGameScreen implements Screen {
         // DRAWING BUTTONS
         game.batch.draw(animation.getKeyFrame(elapsed), 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         game.batch.draw(exitButton,810,0,70,70);
-        game.batch.draw(musicLogo,308,400);
+        game.batch.draw(musicLogo,305,390);
         game.batch.draw(onButton,300,350);
         game.batch.draw(offButton,350,350);
-        game.batch.draw(mathSolverButton,285,300,150,50);
+        game.batch.draw(mathSolverButton,275,300,170,55);
         game.batch.draw(EulerButton,240,255,100,50);
         game.batch.draw(RK2Button,320,255,100,50);
         game.batch.draw(RK4Button,385,255,100,50);
-        game.batch.draw(botsLogo,310,205,100,50);
+        game.batch.draw(botsLogo,270,205,190,55);
         game.batch.draw(advancedBotButton,228,160,150,50);
         game.batch.draw(basicBotButton,370,160,150,50);
-
+        game.batch.draw(randomBotButton,290,120,150,50);
 
         keyboardHandler();
 
@@ -164,17 +165,39 @@ public class OptionsGameScreen implements Screen {
         //RK4 BUTTON EVENT HANDLING
         else if (Gdx.input.getX() <460 && Gdx.input.getX()>412 && Gdx.input.getY()>400 && Gdx.input.getY()<437) {
             Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
-            Euler=false;
-            RK4=true;
-            RK2=false;
+            if (Gdx.input.isTouched()) {
+                Euler = false;
+                RK4 = true;
+                RK2 = false;
+            }
         }
-        //Basic Bot Button
-        else if (Gdx.input.getX() <460 && Gdx.input.getX()>412 && Gdx.input.getY()>400 && Gdx.input.getY()<537) {
-            Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
-            basicBot = true;
-            smartBot = false;
-            randomBot = false;
-        }
+            //Basic Bot Button
+            else if (Gdx.input.getX() < 500 && Gdx.input.getX() > 390 && Gdx.input.getY() > 500 && Gdx.input.getY() < 537) {
+                Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
+                if (Gdx.input.isTouched()) {
+                    basicBot = true;
+                    smartBot = false;
+                    randomBot = false;
+                }
+            }
+            //Random Bot Button
+            else if (Gdx.input.getX() < 425 && Gdx.input.getX() > 295 && Gdx.input.getY() > 535 && Gdx.input.getY() < 567) {
+                Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
+                if (Gdx.input.isTouched()) {
+                    basicBot = false;
+                    smartBot = false;
+                    randomBot = true;
+                }
+            }
+            //Advanced Bot Button
+            else if (Gdx.input.getX() < 376 && Gdx.input.getX() > 227 && Gdx.input.getY() > 500 && Gdx.input.getY() < 537) {
+                Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
+                if (Gdx.input.isTouched()) {
+                    basicBot = false;
+                    smartBot = true;
+                    randomBot = false;
+                }
+            }
 
         //DEFAULT
         else {
@@ -182,4 +205,5 @@ public class OptionsGameScreen implements Screen {
         }
     }
 
-}
+    }
+

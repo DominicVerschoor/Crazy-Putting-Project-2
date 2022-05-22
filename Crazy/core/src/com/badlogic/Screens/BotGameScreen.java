@@ -45,8 +45,8 @@ public class BotGameScreen implements Screen{
     double scroll = 30;
 
     //FILE INPUT VARIABLES INITIALIZATIONS
-    static float BallX;
-    static float BallY;
+    static double BallX;
+    static double BallY;
     float TargetX = fileReader.xt;
     float TargetY = fileReader.yt;
     float radius =fileReader.r;
@@ -258,10 +258,10 @@ public class BotGameScreen implements Screen{
                 new Material(ColorAttribute.createDiffuse(Color.WHITE)),
                 (VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal));
 
-        modelInstanceBall = new ModelInstance(modelBall,BallX,(float) function.terrain(BallX,BallY)+0.75f ,BallY);
+        modelInstanceBall = new ModelInstance(modelBall,(float) BallX,(float) function.terrain((float) BallX,(float) BallY)+0.75f ,(float) BallY);
         //modelInstanceBall.transform.setToTranslation();
 
-        modelInstanceBall.transform.setTranslation(BallX,(float)function.terrain(BallX,BallY)+0.75f, BallY);
+        modelInstanceBall.transform.setTranslation((float) BallX,(float)function.terrain(BallX,BallY)+0.75f, (float) BallY);
 
         modelBatch.render(modelInstanceBall, environment);
 
@@ -284,22 +284,14 @@ public class BotGameScreen implements Screen{
             if (OptionsGameScreen.smartBot==true) {
                 //TODO
                 System.out.println("Advanced Bot");
+                double[] ballPos = new double[]{BallX, BallY};
+                double [] holePos = new double[]{fileReader.xt, fileReader.yt};
+                AdvancedBot advancedBot = new AdvancedBot(ballPos, holePos);
+                AdvancedBot result = advancedBot.HillClimbingMethod(ballPos, holePos);
 
-
-                double [] startPosition = new double [2];
-
-                double [] goalPosition = {4,1};
-
-                AdvancedBot advancedBot = new AdvancedBot(BallX, BallY);
-
-                AdvancedBot result = advancedBot.HillClimbingMethod(startPosition, goalPosition, 0.1);
-
-                newArrXt[2] = options.xVel;
-                newArrXt[3] = options.yVel;
-                newArrXt = rk2.BetterEstimationRK2(newArrXt);
-                BallX = (float) newArrXt[0];
-                BallY = (float) newArrXt[1];
-                options.update(newArrXt[0],newArrXt[1]);
+                BallX = result.getAdvancedBot()[0];
+                BallY = result.getAdvancedBot()[1];
+                options.update(BallX,BallY);
                 options.shoot = false;
                 winCondition();
             }
@@ -353,7 +345,7 @@ public class BotGameScreen implements Screen{
     public void cameraPerspective(){
         ballPerspective=new PerspectiveCamera(zoom, Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         ballPerspective.position.set(cameraX,cameraZ,cameraY);
-        ballPerspective.lookAt(BallX,0,BallY);
+        ballPerspective.lookAt((float) BallX,0,(float) BallY);
         ballPerspective.near = 0.1f;
         ballPerspective.far = 300f;
     }
