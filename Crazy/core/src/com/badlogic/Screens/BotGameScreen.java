@@ -92,6 +92,7 @@ public class BotGameScreen implements Screen{
         // map2DGenerator(); <--- render 2D map
         ballPerspective.update();
         modelBatch.begin(ballPerspective);
+        cameraPerspective();
         golfBall();
         hole();
         renderMap();
@@ -145,7 +146,7 @@ public class BotGameScreen implements Screen{
         // return new Color(Color.argb8888(0.0f, 0, 0.0f,1.0f));
         return Color.BLACK;
     }
-
+    float zoom =30;
     /**
      * All keyboard actions are being handled in this method
      */
@@ -157,25 +158,39 @@ public class BotGameScreen implements Screen{
             }
             game.setScreen(new MainMenuScreen(game));
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.P)){
-            ballPerspective.rotateAround(new Vector3(0f,0f,0f),new Vector3(0f,1f,0f), -1f);
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+            //            ballPerspective.rotateAround(new Vector3(0f,0f,0f),new Vector3(0f,1f,0f), -1f);
+            cameraY--;
+            if (zoom<-50){
+                zoom=0;
+            }
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.O)){
-            ballPerspective.rotateAround(new Vector3(0f,0f,0f),new Vector3(0f,1f,0f), 1f);
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+//            ballPerspective.rotateAround(new Vector3(0f,0f,0f),new Vector3(0f,1f,0f), 1f);
+            cameraY++;
+            if (zoom>50){
+                zoom=90;
+            }
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.I)){
-            ballPerspective.rotateAround(new Vector3(0f,0f,0f),new Vector3(1f,0f,0f), 1f);
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)){
+//            ballPerspective.rotateAround(new Vector3(0f,0f,0f),new Vector3(1f,0f,0f), 1f);
+            cameraZ++;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.U)){
-            ballPerspective.rotateAround(new Vector3(0f,0f,0f),new Vector3(1f,0f,0f), -1f);
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.L)){
-            scroll--;
-            ballPerspective.rotateAround(new Vector3(0f,0f,0f),new Vector3(0f,0f,(float) scroll),-1f);
-
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)){
+            cameraZ--;
+//            ballPerspective.rotateAround(new Vector3(0f,0f,0f),new Vector3(1f,0f,0f), -1f);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.MINUS)){
-            scroll++;
+            zoom++;
+            if (zoom>90){
+                zoom=90;
+            }
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.EQUALS)){
+            zoom--;
+            if (zoom<0){
+                zoom=0;
+            }
         }
     }
 
@@ -259,7 +274,7 @@ public class BotGameScreen implements Screen{
         if (options.shoot==true){
             if (OptionsGameScreen.basicBot==true) {
                 System.out.println("Basic Bot");
-                newArrXt = basicBot.basicShooting();
+                newArrXt = basicBot.basicShooting(BallX, BallY);
                 BallX = (float) newArrXt[0];
                 BallY = (float) newArrXt[1];
                 options.update(newArrXt[0],newArrXt[1]);
@@ -269,6 +284,16 @@ public class BotGameScreen implements Screen{
             if (OptionsGameScreen.smartBot==true) {
                 //TODO
                 System.out.println("Advanced Bot");
+
+
+                double [] startPosition = new double [2];
+
+                double [] goalPosition = {4,1};
+
+                AdvancedBot advancedBot = new AdvancedBot(BallX, BallY);
+
+                AdvancedBot result = advancedBot.HillClimbingMethod(startPosition, goalPosition, 0.1);
+
                 newArrXt[2] = options.xVel;
                 newArrXt[3] = options.yVel;
                 newArrXt = rk2.BetterEstimationRK2(newArrXt);
@@ -322,10 +347,13 @@ public class BotGameScreen implements Screen{
      * Handling the perspective of the player
      */
 
+    float cameraX=10;
+    float cameraY=10;
+    float cameraZ=10;
     public void cameraPerspective(){
-        ballPerspective=new PerspectiveCamera(65, Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
-        ballPerspective.position.set(BallX+10,BallY+10,25f);
-        ballPerspective.lookAt(BallX,0f,BallY);
+        ballPerspective=new PerspectiveCamera(zoom, Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+        ballPerspective.position.set(cameraX,cameraZ,cameraY);
+        ballPerspective.lookAt(BallX,0,BallY);
         ballPerspective.near = 0.1f;
         ballPerspective.far = 300f;
     }

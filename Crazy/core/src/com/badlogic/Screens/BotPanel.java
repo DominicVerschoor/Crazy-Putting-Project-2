@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 
 public class BotPanel implements ActionListener {
     JLabel instructions;
@@ -18,9 +19,14 @@ public class BotPanel implements ActionListener {
     JPanel scorePanel;
     JLabel xOutput;
     JLabel yOutput;
+    JLabel zOutput;
+
+    DecimalFormat rounding = new DecimalFormat("#.####");
     FileReader read = new FileReader();
+    Terrain function = new Terrain();
     double positionX = read.x0;
     double positionY = read.y0;
+    double positionZ=  function.terrain(read.x0,read.y0);
     boolean shoot=false;
     int score=0;
 
@@ -56,21 +62,26 @@ public class BotPanel implements ActionListener {
         velOutputPane = new JPanel();
         xOutput = new JLabel();
         yOutput = new JLabel();
-        xOutput.setText("X FINAL POSITION:" + positionX);
-        yOutput.setText("Y FINAL POSITION:" + positionY);
-        yOutput.setFont(new Font("MV Boli",Font.PLAIN,15));
+        zOutput = new JLabel();
+        xOutput.setText("X FINAL POSITION:" + rounding.format(positionX));
+        yOutput.setText("Y FINAL POSITION:" + rounding.format(positionY));
+        zOutput.setText("HEIGHT FINAL POSITION:" +  rounding.format(positionZ));
+        yOutput.setFont(new Font("MV Boli",Font.PLAIN,13));
         xOutput.setForeground(Color.WHITE);
-        xOutput.setFont(new Font("MV Boli",Font.PLAIN,15));
+        xOutput.setFont(new Font("MV Boli",Font.PLAIN,13));
         yOutput.setForeground(Color.WHITE);
+        zOutput.setFont(new Font("MV Boli",Font.PLAIN,13));
+        zOutput.setForeground(Color.WHITE);
         velOutputPane.setBackground(Color.DARK_GRAY);
-        velOutputPane.setBounds(-10,125,300,70);
+        velOutputPane.setBounds(-10,125,300,90);
         velOutputPane.add(xOutput);
         velOutputPane.add(yOutput);
+        velOutputPane.add(zOutput);
 
         scoreLabel = new JLabel();
         scorePanel = new JPanel();
         scorePanel.setBackground(Color.DARK_GRAY);
-        scorePanel.setBounds(-62,185,300,50);
+        scorePanel.setBounds(-62,220,300,50);
         scoreLabel.setText("Score: "+ score);
         scoreLabel.setFont(new Font("MV Boli",Font.PLAIN,18));
         scoreLabel.setForeground(Color.WHITE);
@@ -95,9 +106,11 @@ public class BotPanel implements ActionListener {
     public void update (double x,double y){
         positionX= x;
         positionY= y;
+        positionZ=function.terrain(x,y);
         System.out.println("im updating");
-        xOutput.setText("X FINAL POSITION: " + positionX);
-        yOutput.setText("Y FINAL POSITION: " + positionY);
+        xOutput.setText("X FINAL POSITION:" + rounding.format(positionX));
+        yOutput.setText("Y FINAL POSITION:" + rounding.format(positionY));
+        zOutput.setText("HEIGHT FINAL POSITION:" +  rounding.format(positionZ));
     }
 
 

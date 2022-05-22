@@ -22,8 +22,8 @@ public class OptionsGameScreen implements Screen {
     static boolean RK2 =false;
     static boolean RK4 =false;
     static boolean Euler =true;
-    static boolean randomBot = true;
-    static boolean basicBot = false;
+    static boolean randomBot = false;
+    static boolean basicBot = true;
     static boolean smartBot = false;
 
     public OptionsGameScreen(App game) {

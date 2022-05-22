@@ -10,4 +10,6 @@ public class Acceleration {
     public double accelerationEquationYy(double[] ArrXt,double derivative){
         return -g * derivative - uk * g * ArrXt[3] / Math.sqrt(Math.pow(ArrXt[2],2) + Math.pow(ArrXt[3],2));
     }
+
 }
+

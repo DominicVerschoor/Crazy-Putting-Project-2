@@ -3,14 +3,14 @@ y0 = 0.5
 xt = 4
 yt = 1
 r = 0.5
-muk = 0.2
+muk = 0.01
 mus = 0.1
 sandPitXMin =100
 sandPitXMax =100
 sandPitYMin =100
 sandPitYMax =100
-h(x,y) = 0.5*(Math.sin((x-y)/7)+0.9)
-mukk = 0.2
-muss = 0.2
+h(x,y) = 0
+mukk = 0.01
+muss = 0.1
 
 

@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 
 public class GamePanel implements ActionListener {
     JLabel instructions;
@@ -21,6 +22,7 @@ public class GamePanel implements ActionListener {
     JLabel y;
     JLabel x;
 
+    DecimalFormat rounding = new DecimalFormat("#.####");
     JLabel xOutput;
     JLabel yOutput;
     JLabel zOutput;
@@ -56,7 +58,6 @@ public class GamePanel implements ActionListener {
         x.setForeground(Color.WHITE);
 
 
-
         textFields=new JPanel();
         textFields.setBackground(Color.DARK_GRAY);
         textFields.setBounds(15,50,150,70);
@@ -84,9 +85,9 @@ public class GamePanel implements ActionListener {
         xOutput = new JLabel();
         yOutput = new JLabel();
         zOutput = new JLabel();
-        xOutput.setText("X FINAL POSITION:" + positionX);
-        yOutput.setText("Y FINAL POSITION:" + positionY);
-        zOutput.setText("HEIGHT AT GIVEN POSITION:" + positionZ);
+        xOutput.setText("X FINAL POSITION:" + rounding.format(positionX));
+        yOutput.setText("Y FINAL POSITION:" + rounding.format(positionY));
+        zOutput.setText("HEIGHT AT GIVEN POSITION:" +  rounding.format(positionZ));
         yOutput.setFont(new Font("MV Boli",Font.PLAIN,13));
         xOutput.setForeground(Color.WHITE);
         xOutput.setFont(new Font("MV Boli",Font.PLAIN,13));
@@ -130,9 +131,9 @@ public class GamePanel implements ActionListener {
         positionZ = function.terrain(positionX,positionY);
 
         System.out.println("im updating");
-        xOutput.setText("X FINAL POSITION: " + positionX);
-        yOutput.setText("Y FINAL POSITION: " + positionY);
-        zOutput.setText("HEIGHT: " + positionZ);
+        xOutput.setText("X FINAL POSITION:" + rounding.format(positionX));
+        yOutput.setText("Y FINAL POSITION:" + rounding.format(positionY));
+        zOutput.setText("HEIGHT FINAL POSITION:" +  rounding.format(positionZ));
     }
 
 

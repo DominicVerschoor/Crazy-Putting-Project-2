@@ -11,10 +11,10 @@ public class PhyscsTestFile {
 
         double[] testArray = new double[4];
 
-        double x0 = 0;
-        double y0 = 0;
+        double x0 = -1;
+        double y0 = -0.5;
         double vx0 = 1;
-        double vy0 = 1;
+        double vy0 = 0;
 
         System.out.println("Euler");
         testArray[0] = x0;
