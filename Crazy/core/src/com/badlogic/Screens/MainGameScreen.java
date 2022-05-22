@@ -268,6 +268,7 @@ public class MainGameScreen implements Screen{
     }
     RK2 rk2 = new RK2();
     RK4 rk4 = new RK4();
+    RK2New rk2New = new RK2New();
     public void shoot(){
 
         if (options.shoot==true){
@@ -289,7 +290,7 @@ public class MainGameScreen implements Screen{
                 System.out.println("RK2");
                 newArrXt[2] = options.xVel;
                 newArrXt[3] = options.yVel;
-                newArrXt = rk2.BetterEstimationRK2(newArrXt);
+                newArrXt = rk2New.newRK2(newArrXt);
                 BallX = (float) newArrXt[0];
                 BallY = (float) newArrXt[1];
                 options.update(newArrXt[0],newArrXt[1]);
