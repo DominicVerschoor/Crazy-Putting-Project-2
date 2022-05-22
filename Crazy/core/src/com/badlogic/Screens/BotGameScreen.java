@@ -290,9 +290,11 @@ public class BotGameScreen implements Screen{
                 AdvancedBot advancedBot = new AdvancedBot(ballPos, holePos);
                 AdvancedBot result = advancedBot.HillClimbingMethod(ballPos, holePos);
 
-                BallX = result.getAdvancedBot()[0];
-                BallY = result.getAdvancedBot()[1];
-                options.update(BallX,BallY);
+                newArrXt = result.getAdvancedBot();
+
+                BallX = newArrXt[0];
+                BallY = newArrXt[1];
+                options.update(newArrXt[0],newArrXt[1]);
                 options.shoot = false;
                 winCondition();
             }

@@ -53,28 +53,19 @@ public class AdvancedBot {
         newArrXt[1] = startPosition[1];
         newArrXt[2] = velocities[0];
         newArrXt[3] = velocities[1];
-        /*
-        newArrXt[0] = 0;
-        newArrXt[1] = 0;
-        newArrXt[2] = 2;
-        newArrXt[3] = 0;
-        */
 
         RK4 rk4 = new RK4();
         double[] fillarray = rk4.newRK4(newArrXt);
         double[] newVels = {fillarray[2], fillarray[3]};
         double[] newPos = {fillarray[0], fillarray[1]};
         newPosition.setPositions(newPos);
-        //newPosition.setVelocities(newVels);
 
 
         return newPosition;
     }
 
     // comparing currentPosition to newly calculated Positn of previous method and setting new AdvancedBot
-    public AdvancedBot HillClimbingMethod(double[] startPosition, double[] goalPosition)
-    //public double HillClimbingMethod(double [] startPosition, double [] goalPosition, double val)
-    {
+    public AdvancedBot HillClimbingMethod(double[] startPosition, double[] goalPosition) {
         double[] xbounds = {-5, 5};
         double[] ybounds = {-5, 5};
         double[] currentPosition = startPosition;
