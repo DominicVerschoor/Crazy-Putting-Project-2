@@ -1,16 +1,17 @@
-x0 = -1
-y0 = 0.5
-xt = 4
-yt = 1
+x0 = -19
+y0 = -19
+xt = 19
+yt = 19
 r = 0.5
-muk = 0.01
+muk = 0.2
 mus = 0.1
 sandPitXMin =100
 sandPitXMax =100
 sandPitYMin =100
 sandPitYMax =100
-h(x,y) = 0
-mukk = 0.01
-muss = 0.1
+h(x,y) = 1
+mukk = 0.2
+muss = 0.2
 
 
+xxxx

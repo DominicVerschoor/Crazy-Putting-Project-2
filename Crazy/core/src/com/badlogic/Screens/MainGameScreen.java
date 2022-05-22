@@ -153,6 +153,7 @@ public class MainGameScreen implements Screen{
             this.dispose();
             if (visible==true){
                 options.frame.setVisible(false);
+                GamePanel.score=0;
             }
             game.setScreen(new MainMenuScreen(game));
         }
@@ -332,11 +333,14 @@ public class MainGameScreen implements Screen{
         if ((radius >  distance)) {
             System.out.println("win");
 
-            JOptionPane.showMessageDialog(new JFrame(),"You finished with score: ");
+            JOptionPane.showMessageDialog(new JFrame(),"You finished with score: " + GamePanel.score);
 
             game.setScreen(new MainMenuScreen(game));
             BallX=fileReader.x0;
             BallY=fileReader.y0;
+            options.frame.setVisible(false);
+            GamePanel.score=0;
+            visible=false;
         }
     }
 

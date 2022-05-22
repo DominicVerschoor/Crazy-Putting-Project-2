@@ -155,6 +155,7 @@ public class BotGameScreen implements Screen{
             this.dispose();
             if (visible==true){
                 options.frame.setVisible(false);
+                BotPanel.score=0;
             }
             game.setScreen(new MainMenuScreen(game));
         }
@@ -327,11 +328,14 @@ public class BotGameScreen implements Screen{
         if ((radius >  distance)) {
             System.out.println("win");
 
-            JOptionPane.showMessageDialog(new JFrame(),"You finished with score: ");
+            JOptionPane.showMessageDialog(new JFrame(),"You finished with score: "+BotPanel.score);
 
             game.setScreen(new MainMenuScreen(game));
             BallX=fileReader.x0;
             BallY=fileReader.y0;
+            options.frame.setVisible(false);
+            BotPanel.score=0;
+            visible=false;
         }
     }
 

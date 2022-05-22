@@ -32,7 +32,7 @@ public class GamePanel implements ActionListener {
     double positionY = read.y0;
     double positionZ = function.terrain(read.x0,read.y0);
     boolean shoot=false;
-    int score=0;
+    static int score=0;
 
     double xVel;
     double yVel;
