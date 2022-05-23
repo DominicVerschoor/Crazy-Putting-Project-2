@@ -42,7 +42,6 @@ public class BotGameScreen implements Screen{
     ArrayList<Float> arrayZ = new ArrayList<Float>();
     ArrayList<Color> heightColor = new ArrayList<Color>();
     ArrayList<ModelInstance> map = new ArrayList<ModelInstance>();
-    double scroll = 30;
 
     //FILE INPUT VARIABLES INITIALIZATIONS
     static double BallX;
@@ -267,9 +266,10 @@ public class BotGameScreen implements Screen{
         modelBatch.render(modelInstanceBall, environment);
 
     }
-    RK2 rk2 = new RK2();
+    RK2New rk2 = new RK2New();
     RK4 rk4 = new RK4();
     BasicBot basicBot = new BasicBot();
+    HillClibing climb = new HillClibing();
     public void shoot(){
 
         if (options.shoot==true){
@@ -285,13 +285,12 @@ public class BotGameScreen implements Screen{
             if (OptionsGameScreen.smartBot==true) {
                 //TODO
                 System.out.println("Advanced Bot");
-                double[] ballPos = new double[]{BallX, BallY};
-                double [] holePos = new double[]{fileReader.xt, fileReader.yt};
-                AdvancedBot advancedBot = new AdvancedBot(ballPos, holePos);
-                AdvancedBot result = advancedBot.HillClimbingMethod(ballPos, holePos);
-
-                newArrXt = result.getAdvancedBot();
-
+//                double[] ballPos = new double[]{BallX, BallY};
+//                double [] holePos = new double[]{fileReader.xt, fileReader.yt};
+//                AdvancedBot advancedBot = new AdvancedBot(ballPos, holePos);
+//                AdvancedBot result = advancedBot.HillClimbingMethod(ballPos, holePos);
+                newArrXt = climb.hillClibing(BallX,BallY);
+                newArrXt = rk4.newRK4(newArrXt);
                 BallX = newArrXt[0];
                 BallY = newArrXt[1];
                 options.update(newArrXt[0],newArrXt[1]);
@@ -303,7 +302,7 @@ public class BotGameScreen implements Screen{
                 System.out.println("Random Bot");
                 newArrXt[2] = (Math.random()*(10))-5;
                 newArrXt[3] = (Math.random()*(10))-5;
-                newArrXt = rk4.newRK4(newArrXt);
+                newArrXt = rk2.newRK2(newArrXt);
                 BallX = (float) newArrXt[0];
                 BallY = (float) newArrXt[1];
                 options.update(newArrXt[0],newArrXt[1]);

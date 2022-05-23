@@ -15,7 +15,7 @@ public class MainMenuScreen implements Screen {
     //INITIALIZING VARIABLES
     Animation<TextureRegion> animation;
     float elapsed;
-    Texture playButton,optionsButton,exitButton,newBotGameButton;
+    Texture playButton,optionsButton,exitButton,newBotGameButton,animat;
 
     App game = new App();
 
@@ -26,6 +26,7 @@ public class MainMenuScreen implements Screen {
         exitButton = new Texture("Exit_Button.png");
         newBotGameButton = new Texture("NewGameBot.png");
         animation = Animations.loadGIFAnimation(Animation.PlayMode.LOOP, Gdx.files.internal("menu.gif").read());
+        animat = new Texture("menu.gif");
     }
 
     @Override
@@ -46,7 +47,7 @@ public class MainMenuScreen implements Screen {
 
 
         game.batch.begin();
-
+        //game.batch.draw(animat,0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         game.batch.draw(animation.getKeyFrame(elapsed), 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         game.batch.draw(playButton,110,330,150,70);
         game.batch.draw(optionsButton,110,270,150,65);

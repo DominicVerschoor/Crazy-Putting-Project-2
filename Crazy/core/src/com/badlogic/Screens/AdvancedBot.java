@@ -56,7 +56,6 @@ public class AdvancedBot {
 
         RK4 rk4 = new RK4();
         double[] fillarray = rk4.newRK4(newArrXt);
-        double[] newVels = {fillarray[2], fillarray[3]};
         double[] newPos = {fillarray[0], fillarray[1]};
         newPosition.setPositions(newPos);
 
@@ -70,69 +69,51 @@ public class AdvancedBot {
         double[] ybounds = {-5, 5};
         double[] currentPosition = startPosition;
         AdvancedBot newPosition = new AdvancedBot(currentPosition, goalPosition);
-        AdvancedBot bestPosition = new AdvancedBot(currentPosition, goalPosition);
         int count = 0;
         int limitation = 0;
 
-        // add AdvancedBotment for radius of hole -> so that goalPosition has a variety of option values e.g. 0.1m around the hole
-        // distanceOfVectors(currentPosition, goalPosition) <= 0.1
-
-        //while (!Arrays.equals(currentPosition, goalPosition))
-
-        //----------------- Important Change to make here ---------------------
-
-        while (distanceOfVectors(currentPosition, goalPosition) > 1) // Change 0.5 with the radius of our hole!!!!!!!
-
-        //----------------- Important Change to make here ---------------------
+        while (distanceOfVectors(currentPosition, goalPosition) > 1 && limitation !=500)
 
         {
-            System.out.println("I am in the while loop - before the if AdvancedBotment.");
+            //System.out.println("I am in the while loop - before the if AdvancedBotment.");
             newPosition = findNextAdvancedBot(startPosition, goalPosition, xbounds, ybounds);
             count++;
 
-            if (distanceOfVectors(currentPosition, goalPosition) >= distanceOfVectors(newPosition.getAdvancedBot(), goalPosition)) {
-                System.out.println("I am in the if AdvancedBotment and before the assignment.");
-                double[] tempvelo = newPosition.getVelocities();
-                bestPosition = newPosition;
+            if ((distanceOfVectors(currentPosition, goalPosition) >= distanceOfVectors(newPosition.getAdvancedBot(), goalPosition)) && (newPosition.getVelocities()[0] < 5 && newPosition.getVelocities()[0] > -5 && newPosition.getVelocities()[1] < 5 && newPosition.getVelocities()[1] > -5)) {
+                //System.out.println("I am in the if AdvancedBotment and before the assignment.");
+                if(newPosition.getVelocities()[0] < 5 || newPosition.getVelocities()[0] > -5 || newPosition.getVelocities()[1] < 5 || newPosition.getVelocities()[1] > -5)
                 currentPosition = newPosition.getAdvancedBot();
 
             }
+            limitation++;
 
         }
         System.out.println(newPosition.getVelocities());
         System.out.println("done");
         System.out.println(count);
 
-        try {
-            Thread.sleep(2 * 1000);
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
         xbounds[0] = newPosition.getVelocities()[0] - 0.05;
         xbounds[1] = newPosition.getVelocities()[0] + 0.05;
         ybounds[0] = newPosition.getVelocities()[1] - 0.05;
         ybounds[1] = newPosition.getVelocities()[1] + 0.05;
+        limitation = 0;
 
-
-        while (distanceOfVectors(currentPosition, goalPosition) > r.r) // Change 0.5 with the radius of our hole!!!!!!!
+        while (distanceOfVectors(currentPosition, goalPosition) > r.r && limitation != 500) //r.r radius of our hole
         {
-            System.out.println("I am in the while loop - before the if AdvancedBotment.");
+            //System.out.println("I am in the while loop - before the if AdvancedBotment.");
             newPosition = findNextAdvancedBot(startPosition, goalPosition, xbounds, ybounds);
             count++;
 
             if (distanceOfVectors(currentPosition, goalPosition) > distanceOfVectors(newPosition.getAdvancedBot(), goalPosition)) {
-                System.out.println("I am in the if AdvancedBotment and before the assignment.");
+                //System.out.println("I am in the if AdvancedBotment and before the assignment.");
                 double[] tempvelo = newPosition.getVelocities();
                 xbounds[0] = tempvelo[0] - 0.1;
                 xbounds[1] = tempvelo[0] + 0.1;
                 ybounds[0] = tempvelo[1] - 0.1;
                 ybounds[1] = tempvelo[1] + 0.1;
-                bestPosition = newPosition;
                 currentPosition = newPosition.getAdvancedBot();
-
             }
+            limitation++;
 
         }
 

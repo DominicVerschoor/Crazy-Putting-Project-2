@@ -53,8 +53,7 @@ public class FileReader {
                     // System.out.println(sub);
 
                    }
-                }else System.out.println("DONE");
-
+                }
             }
 
               this.x0=addLines.get(0);

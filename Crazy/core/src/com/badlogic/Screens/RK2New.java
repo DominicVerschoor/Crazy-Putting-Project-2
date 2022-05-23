@@ -4,7 +4,7 @@ public class RK2New {
     PartialDerivative derive = new PartialDerivative();
     FileReader read = new FileReader();
     private final double g = 9.81;
-    double h = 0.1;
+    double h = 0.001;
     private double uk = read.muk;     // kinetic friction coefficient of grass
     private double us = read.mus;
     Terrain function = new Terrain();
@@ -20,20 +20,20 @@ public class RK2New {
     public double[] newRK2(double[] arrXt) {
         double initialX=arrXt[0];
         double initialY=arrXt[1];
-        if (arrXt[2]>5){
-            arrXt[2]=5;
-        }
-        if (arrXt[2]<-5){
-            arrXt[2]=-5;
-        }
-        if (arrXt[3]>5){
-            arrXt[3]=5;
-        }
-        if (arrXt[3]<-5){
-            arrXt[3]=-5;
-        }
+//        if (arrXt[2]>5){
+//            arrXt[2]=5;
+//        }
+//        if (arrXt[2]<-5){
+//            arrXt[2]=-5;
+//        }
+//        if (arrXt[3]>5){
+//            arrXt[3]=5;
+//        }
+//        if (arrXt[3]<-5){
+//            arrXt[3]=-5;
+//        }
 
-        while (Math.abs(arrXt[2]) > 0.1 || Math.abs(arrXt[3]) > 0.1) {
+        while (Math.abs(arrXt[2]) > 0.001 || Math.abs(arrXt[3]) > 0.001) {
             uk = read.muk;
             us = read.mus;
             if ((arrXt[0] >= read.sandPitXMin && arrXt[0] <= read.sandPitXMin)
@@ -78,24 +78,24 @@ public class RK2New {
             arrXt[2] += calculatedXVel;
             arrXt[3] += calculatedYVel;
 
-//            if (function.terrain(arrXt[0], arrXt[1]) < 0) {
-//                arrXt[0] = initialX;
-//                arrXt[1] = initialY;
-//                System.arraycopy(arrXt, 0, arrXt, 0, arrXt.length);
-//
-//                //System.out.println("HELP ME im unda tha wata ");
-//                return arrXt;
-//            }
+            if (function.terrain(arrXt[0], arrXt[1]) < 0) {
+                arrXt[0] = initialX;
+                arrXt[1] = initialY;
+                System.arraycopy(arrXt, 0, arrXt, 0, arrXt.length);
+
+                System.out.println("HELP ME im unda tha wata ");
+                return arrXt;
+            }
 //            if (arrXt[0]>20 || arrXt[0]<-20 || arrXt[1]>20 || arrXt[1]<-20) {
 //                arrXt[0] = initialX;
 //                arrXt[1] = initialY;
 //                System.arraycopy(arrXt, 0, arrXt, 0, arrXt.length);
 //
-//                //System.out.println("BALL OUT OF BOUNDS");
+//                System.out.println("BALL OUT OF BOUNDS");
 //                return arrXt;
 //            }
 
-            if ((Math.abs(arrXt[2]) <= 0.1 && Math.abs(arrXt[3]) <= 0.1) && (Math.abs(partialx) > 0.1 || Math.abs(partialy) > 0.1)) {
+            if ((Math.abs(arrXt[2]) <= 0.001 && Math.abs(arrXt[3]) <= 0.001) && (Math.abs(partialx) > 0.001 || Math.abs(partialy) > 0.001)) {
                 double sqrt = Math.sqrt(partialx * partialx + partialy * partialy);
                 if (us > sqrt) {
                     break;
@@ -108,8 +108,8 @@ public class RK2New {
 
         }
 
-        System.out.println("X: " + arrXt[0]);
-        System.out.println("Y: " + arrXt[1]);
+//        System.out.println("X: " + arrXt[0]);
+//        System.out.println("Y: " + arrXt[1]);
         return arrXt;
     }
 

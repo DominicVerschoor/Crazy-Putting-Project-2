@@ -5,14 +5,12 @@ public class PhyscsTestFile {
         Euler eulerTest = new Euler();
         RK2 rk2Test = new RK2();
         RK4 rk4Test = new RK4();
-
-        double time1;
-        double time2;
+        FileReader read = new FileReader();
 
         double[] testArray = new double[4];
 
-        double x0 = -1;
-        double y0 = -0.5;
+        double x0 = 0;
+        double y0 = -1;
         double vx0 = 1;
         double vy0 = 0;
 
@@ -21,31 +19,34 @@ public class PhyscsTestFile {
         testArray[1] = y0;
         testArray[2] = vx0;
         testArray[3] = vy0;
-        time1=System.currentTimeMillis();
-        eulerTest.Euler(testArray);
-        time2 = System.currentTimeMillis();
-        System.out.println("Computation Time: "+ Math.abs(time1 - time2));
-        System.out.println();
+
+        testArray=eulerTest.Euler(testArray);
+        System.out.println(testArray[0]);
+        System.out.println(testArray[1]);
+        System.out.println("");
+
 
         System.out.println("RK2");
         testArray[0] = x0;
         testArray[1] = y0;
         testArray[2] = vx0;
         testArray[3] = vy0;
-        time1=System.currentTimeMillis();
-        rk2Test.BetterEstimationRK2(testArray);
-        time2 = System.currentTimeMillis();
-        System.out.println("Computation Time: "+ Math.abs(time1 - time2));
-        System.out.println();
+
+        testArray=rk2Test.BetterEstimationRK2(testArray);
+        System.out.println(testArray[0]);
+        System.out.println(testArray[1]);
+        System.out.println("");
+
 
         System.out.println("RK4");
         testArray[0] = x0;
         testArray[1] = y0;
         testArray[2] = vx0;
         testArray[3] = vy0;
-        time1 = System.currentTimeMillis();
-        rk4Test.newRK4(testArray);
-        time2 = System.currentTimeMillis();
-        System.out.println("Computation Time: "+ Math.abs(time1 - time2));
+
+        testArray=rk4Test.newRK4(testArray);
+        System.out.println(testArray[0]);
+        System.out.println(testArray[1]);
+        System.out.println("");
     }
 }

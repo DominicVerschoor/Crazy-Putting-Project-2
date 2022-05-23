@@ -33,7 +33,7 @@ public class RK4 {
             arrXt[3]=-5;
         }
 
-        while (Math.abs(arrXt[2]) > 0.001 || Math.abs(arrXt[3]) > 0.001) {
+        while (Math.abs(arrXt[2]) > 0.00001 || Math.abs(arrXt[3]) > 0.00001) {
             uk = read.muk;
             us = read.mus;
             if ((arrXt[0] >= read.sandPitXMin && arrXt[0] <= read.sandPitXMin)
@@ -116,7 +116,7 @@ public class RK4 {
                 return arrXt;
             }
 
-            if ((Math.abs(arrXt[2]) <= 0.001 && Math.abs(arrXt[3]) <= 0.001) && (Math.abs(partialx) > 0.001 || Math.abs(partialy) > 0.001)) {
+            if ((Math.abs(arrXt[2]) <= 0.00001 && Math.abs(arrXt[3]) <= 0.00001) && (Math.abs(partialx) > 0.00001 || Math.abs(partialy) > 0.00001)) {
                 double sqrt = Math.sqrt(partialx * partialx + partialy * partialy);
                 if (us > sqrt) {
                     break;
@@ -128,10 +128,9 @@ public class RK4 {
             }
 
         }
-        System.out.println(arrXt[2]);
-        System.out.println(arrXt[3]);
-//        System.out.println("X: " + arrXt[0]);
-//        System.out.println("Y: " + arrXt[1]);
+
+        System.out.println("X: " + arrXt[0]);
+        System.out.println("Y: " + arrXt[1]);
         return arrXt;
     }
 
