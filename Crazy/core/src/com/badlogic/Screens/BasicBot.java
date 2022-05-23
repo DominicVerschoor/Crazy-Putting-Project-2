@@ -28,10 +28,10 @@ public class BasicBot {
                 && (yvel <= 5 || (xvel <= 5))) {
 
             if (xvel <= 5) {
-                xvel += Math.abs(xpos - holeX) / 10;
+                xvel += Math.max(Math.abs(xpos - holeX) / 10, 0.1);
             }
             if (yvel <= 5) {
-                yvel += Math.abs(ypos - holeY) / 10;
+                yvel += Math.max(Math.abs(ypos - holeY) / 10, 0.1);
             }
 
             arrXt[0] = xpos;
