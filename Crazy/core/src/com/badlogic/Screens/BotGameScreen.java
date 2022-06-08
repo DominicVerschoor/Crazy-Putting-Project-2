@@ -9,12 +9,10 @@ import com.badlogic.gdx.graphics.g3d.*;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.mygame.App;
 
 import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class BotGameScreen implements Screen{
 
@@ -53,6 +51,7 @@ public class BotGameScreen implements Screen{
     float sandPitXMin = fileReader.sandPitXMin;
     float sandPitYMax = fileReader.sandPitYMax;
     float sandPitYMin = fileReader.sandPitYMin;
+    double error = 0.001;
 
 
     public BotGameScreen(App game){
@@ -268,14 +267,14 @@ public class BotGameScreen implements Screen{
     }
     RK2New rk2 = new RK2New();
     RK4 rk4 = new RK4();
-    BasicBot basicBot = new BasicBot();
-    HillClibing climb = new HillClibing();
+    BruteForceBot bruteForceBot = new BruteForceBot();
+    HillClimbing climb = new HillClimbing();
     public void shoot(){
 
         if (options.shoot==true){
             if (OptionsGameScreen.basicBot==true) {
-                System.out.println("Basic Bot");
-                newArrXt = basicBot.basicShooting(BallX, BallY);
+                System.out.println("Brute Force Bot");
+                newArrXt = bruteForceBot.basicShooting(BallX + error, BallY + error);
                 BallX = (float) newArrXt[0];
                 BallY = (float) newArrXt[1];
                 options.update(newArrXt[0],newArrXt[1]);
@@ -285,11 +284,9 @@ public class BotGameScreen implements Screen{
             if (OptionsGameScreen.smartBot==true) {
                 //TODO
                 System.out.println("Advanced Bot");
-//                double[] ballPos = new double[]{BallX, BallY};
-//                double [] holePos = new double[]{fileReader.xt, fileReader.yt};
-//                AdvancedBot advancedBot = new AdvancedBot(ballPos, holePos);
-//                AdvancedBot result = advancedBot.HillClimbingMethod(ballPos, holePos);
-                newArrXt = climb.hillClibing(BallX,BallY);
+                newArrXt = climb.hillClibing(BallX + error, BallY + error);
+                newArrXt[2] = newArrXt[2] + error;
+                newArrXt[3] = newArrXt[3] + error;
                 newArrXt = rk4.newRK4(newArrXt);
                 BallX = newArrXt[0];
                 BallY = newArrXt[1];

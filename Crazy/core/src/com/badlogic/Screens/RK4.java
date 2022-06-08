@@ -7,6 +7,8 @@ public class RK4 {
     double h = 0.00001;
     private double uk = read.muk;     // kinetic friction coefficient of grass
     private double us = read.mus;
+    private boolean drowned = false;
+    private boolean outOfBounds = false;
     Terrain function = new Terrain();
 
     public double accelerationEquationXx(double VelX, double VelY, double derivative) {
@@ -104,6 +106,7 @@ public class RK4 {
                 arrXt[1] = initialY;
                 System.arraycopy(arrXt, 0, arrXt, 0, arrXt.length);
 
+                drowned = true;
                 //System.out.println("HELP ME im unda tha wata ");
                 return arrXt;
             }
@@ -112,6 +115,7 @@ public class RK4 {
                 arrXt[1] = initialY;
                 System.arraycopy(arrXt, 0, arrXt, 0, arrXt.length);
 
+                outOfBounds = true;
                 //System.out.println("BALL OUT OF BOUNDS");
                 return arrXt;
             }
@@ -129,10 +133,17 @@ public class RK4 {
 
         }
 
-        System.out.println("X: " + arrXt[0]);
-        System.out.println("Y: " + arrXt[1]);
+        //System.out.println("X: " + arrXt[0]);
+        //System.out.println("Y: " + arrXt[1]);
         return arrXt;
     }
 
 
+    public boolean getDrowned(){
+        return drowned;
+    }
+
+    public boolean getOutOfBounds(){
+        return outOfBounds;
+    }
 }
