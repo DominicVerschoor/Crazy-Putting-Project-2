@@ -1,18 +1,18 @@
 package com.badlogic.Screens;
 
-public class RK4 {
-    PartialDerivative derive = new PartialDerivative();
-    FileReader read = new FileReader();
-    private final double g = 9.81;
-    private final double m = 0.0459;
-    double h = 0.00001;
-    private double uk = read.muk;     // kinetic friction coefficient of grass
-    private double us = read.mus;
-    private boolean drowned = false;
-    private boolean outOfBounds = false;
-    Terrain function = new Terrain();
+public class DebugRk4 {
+    static PartialDerivative derive = new PartialDerivative();
+    static FileReader read = new FileReader();
+    private static final double g = 9.81;
+    private static double m = 0.0459;
+    static double h = 0.00001;
+    private static double uk = read.muk;     // kinetic friction coefficient of grass
+    private static double us = read.mus;
+    private static boolean drowned = false;
+    private static boolean outOfBounds = false;
+    static Terrain function = new Terrain();
 
-    public double accelerationEquationXx(double velX, double velY, double derivativeX, double derivativeY) {
+    public static double accelerationEquationXx(double velX, double velY, double derivativeX, double derivativeY) {
         double power = 1 + Math.pow(derivativeX, 2) + Math.pow(derivativeY, 2);
         double p1 = -((m*g*derivativeX) / (power));
         double p2 = -((uk*m*g) / (Math.sqrt(power)));
@@ -21,7 +21,7 @@ public class RK4 {
         return p1 + p2 * p3;
     }
 
-    public double accelerationEquationYy(double velX, double velY, double derivativeX, double derivativeY) {
+    public static double accelerationEquationYy(double velX, double velY, double derivativeX, double derivativeY) {
         double power = 1 + Math.pow(derivativeX, 2) + Math.pow(derivativeY, 2);
         double p1 = -((m*g*derivativeY) / (power));
         double p2 = -((uk*m*g) / (Math.sqrt(power)));
@@ -30,7 +30,7 @@ public class RK4 {
         return p1 + p2 * p3;
     }
 
-    public double[] newRK4(double[] arrXt) {
+    public static double[] newRK4(double[] arrXt) {
         double initialX=arrXt[0];
         double initialY=arrXt[1];
         if (arrXt[2]>5){
@@ -68,8 +68,8 @@ public class RK4 {
             double k1VelY = newerArrXt[3];
             partialx = derive.partialX(k1posX, k1posY);
             partialy = derive.partialY(k1posX, k1posY);
-            double k1AccelerationX = accelerationEquationXx(k1VelX, k1VelY, partialx, partialy)/m;
-            double k1AccelerationY = accelerationEquationYy(k1VelX, k1VelY, partialx, partialy)/m;
+            double k1AccelerationX = (accelerationEquationXx(k1VelX, k1VelY, partialx, partialy)/m);
+            double k1AccelerationY = (accelerationEquationXx(k1VelX, k1VelY, partialx, partialy)/m);
 
             double k2posX = k1posX + (h * k1VelX) * (1.0 / 2);
             double k2posY = k1posY + (h * k1VelY) * (1.0 / 2);
@@ -118,18 +118,18 @@ public class RK4 {
                 System.arraycopy(arrXt, 0, arrXt, 0, arrXt.length);
 
                 drowned = true;
-                //System.out.println("HELP ME im unda tha wata ");
+                System.out.println("HELP ME im unda tha wata ");
                 return arrXt;
             }
-            if (arrXt[0]>20 || arrXt[0]<-20 || arrXt[1]>20 || arrXt[1]<-20) {
-                arrXt[0] = initialX;
-                arrXt[1] = initialY;
-                System.arraycopy(arrXt, 0, arrXt, 0, arrXt.length);
-
-                outOfBounds = true;
-                //System.out.println("BALL OUT OF BOUNDS");
-                return arrXt;
-            }
+//            if (arrXt[0]>20 || arrXt[0]<-20 || arrXt[1]>20 || arrXt[1]<-20) {
+//                arrXt[0] = initialX;
+//                arrXt[1] = initialY;
+//                System.arraycopy(arrXt, 0, arrXt, 0, arrXt.length);
+//
+//                outOfBounds = true;
+//                System.out.println("BALL OUT OF BOUNDS");
+//                return arrXt;
+//            }
 
             if ((Math.abs(arrXt[2]) <= 0.00001 && Math.abs(arrXt[3]) <= 0.00001) && (Math.abs(partialx) > 0.00001 || Math.abs(partialy) > 0.00001)) {
                 double sqrt = Math.sqrt(partialx * partialx + partialy * partialy);
@@ -144,8 +144,8 @@ public class RK4 {
 
         }
 
-        //System.out.println("X: " + arrXt[0]);
-        //System.out.println("Y: " + arrXt[1]);
+//        System.out.println("X: " + arrXt[0]);
+//        System.out.println("Y: " + arrXt[1]);
         return arrXt;
     }
 
@@ -156,5 +156,17 @@ public class RK4 {
 
     public boolean getOutOfBounds(){
         return outOfBounds;
+    }
+
+
+    public static void main(String[] args) {
+        double[] test = new double[4];
+        test[0] = read.x0;
+        test[1] = read.y0;
+        test[2] = 1;
+        test[3] = 1;
+        newRK4(test);
+        System.out.println("X: "+ test[0]);
+        System.out.println("Y: "+test[1]);
     }
 }

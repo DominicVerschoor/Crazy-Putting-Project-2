@@ -1,5 +1,5 @@
-x0 = 3
-y0 = 9
+x0 = 4.35
+y0 = 4.35
 xt = -6
 yt = 4
 r = 0.15
@@ -9,7 +9,7 @@ sandPitXMin =1
 sandPitXMax =1
 sandPitYMin =1
 sandPitYMax =1
-h(x,y) = 0
+h(x,y) = Math.exp(-Math.pow(Math.pow(x-4,2)+Math.pow(y-4,2),2)/1000)+Math.exp(-Math.pow(Math.pow(x+4,2)+Math.pow(y+4,2),2)/1000)+Math.exp(-Math.pow(Math.pow(x+4,2)+Math.pow(y+4,2),2))+Math.exp(-Math.pow(Math.pow(x-4,2)+Math.pow(y-4,2),2))
 mukk = 0.1
 muss = 0.2
 
