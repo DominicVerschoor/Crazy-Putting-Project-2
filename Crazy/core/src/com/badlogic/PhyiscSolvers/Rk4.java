@@ -8,7 +8,7 @@ public class Rk4 implements Solver {
     PartialDerivative derive = new PartialDerivative();
     FileReader read = new FileReader();
     TerrainInput function = new TerrainInput();
-    Acceleration acceleration = new Acceleration();
+    Acceleration acceleration;
     private final double g = 9.81;
     double h = 0.00001;
     private double uk = read.muk;     // kinetic friction coefficient of grass
@@ -56,13 +56,13 @@ public class Rk4 implements Solver {
                 drowned = true;
                 return ballVector;
             }
-            if (ballVector[0] > 20 || ballVector[0] < -20 || ballVector[1] > 20 || ballVector[1] < -20) {
-                ballVector[0] = initialX;
-                ballVector[1] = initialY;
-                System.out.println("BALL OUT OF BOUNDS");
-                outOfBounds = true;
-                return ballVector;
-            }
+//            if (ballVector[0] > 20 || ballVector[0] < -20 || ballVector[1] > 20 || ballVector[1] < -20) {
+//                ballVector[0] = initialX;
+//                ballVector[1] = initialY;
+//                System.out.println("BALL OUT OF BOUNDS");
+//                outOfBounds = true;
+//                return ballVector;
+//            }
 
             if ((Math.abs(ballVector[2]) <= 0.00001 && Math.abs(ballVector[3]) <= 0.00001) && (Math.abs(partialx) > 0.00001 || Math.abs(partialy) > 0.00001)) {
                 double sqrt = Math.sqrt(partialx * partialx + partialy * partialy);
@@ -98,6 +98,14 @@ public class Rk4 implements Solver {
         return ballVector;
     }
 
+    public void accelerationType(boolean buttonInput){
+        if (buttonInput){
+            acceleration = new BasicAcceleration();
+        }else{
+            acceleration = new SteepAcceleration();
+        }
+    }
+
     private double[] k1Calculations(double[] ballVector) {
         double[] k1Final = new double[6];
         k1Final[0] = ballVector[0];
@@ -106,8 +114,8 @@ public class Rk4 implements Solver {
         k1Final[3] = ballVector[3];
         double partialx = derive.partialX(k1Final[0], k1Final[1]);
         double partialy = derive.partialY(k1Final[0], k1Final[1]);
-        k1Final[4] = acceleration.accelerationEquationX(k1Final[2], k1Final[3], partialx);
-        k1Final[5] = acceleration.accelerationEquationY(k1Final[2], k1Final[3], partialy);
+        k1Final[4] = acceleration.accelerationEquationX(k1Final[2], k1Final[3], partialx, partialy);
+        k1Final[5] = acceleration.accelerationEquationY(k1Final[2], k1Final[3], partialx, partialy);
         return k1Final;
     }
 
@@ -119,8 +127,8 @@ public class Rk4 implements Solver {
         k2Final[3] = k1[3] + (h * k1[5]) * (1.0 / 2);
         double partialx = derive.partialX(k2Final[0], k2Final[1]);
         double partialy = derive.partialY(k2Final[0], k2Final[1]);
-        k2Final[4] = acceleration.accelerationEquationX(k2Final[2], k2Final[3], partialx);
-        k2Final[5] = acceleration.accelerationEquationY(k2Final[2], k2Final[3], partialy);
+        k2Final[4] = acceleration.accelerationEquationX(k2Final[2], k2Final[3], partialx, partialy);
+        k2Final[5] = acceleration.accelerationEquationY(k2Final[2], k2Final[3], partialx, partialy);
         return k2Final;
     }
 
@@ -132,8 +140,8 @@ public class Rk4 implements Solver {
         k3Final[3] = k1[3] + (h * k2[5]) * (1.0 / 2);
         double partialx = derive.partialX(k3Final[0], k3Final[1]);
         double partialy = derive.partialY(k3Final[0], k3Final[1]);
-        k3Final[4] = acceleration.accelerationEquationX(k3Final[2], k3Final[3], partialx);
-        k3Final[5] = acceleration.accelerationEquationY(k3Final[2], k3Final[3], partialy);
+        k3Final[4] = acceleration.accelerationEquationX(k3Final[2], k3Final[3], partialx, partialy);
+        k3Final[5] = acceleration.accelerationEquationY(k3Final[2], k3Final[3], partialx, partialy);
         return k3Final;
     }
 
@@ -145,8 +153,8 @@ public class Rk4 implements Solver {
         k4Final[3] = k1[3] + (h * k3[5]) * (1.0 / 2);
         double partialx = derive.partialX(k4Final[0], k4Final[1]);
         double partialy = derive.partialY(k4Final[0], k4Final[1]);
-        k4Final[4] = acceleration.accelerationEquationX(k4Final[2], k4Final[3], partialx);
-        k4Final[5] = acceleration.accelerationEquationY(k4Final[2], k4Final[3], partialy);
+        k4Final[4] = acceleration.accelerationEquationX(k4Final[2], k4Final[3], partialx, partialy);
+        k4Final[5] = acceleration.accelerationEquationY(k4Final[2], k4Final[3], partialx, partialy);
         return k4Final;
     }
 

@@ -5,11 +5,11 @@ yt = 4
 r = 0.15
 muk = 0.08
 mus = 0.2
-sandPitXMin =1
-sandPitXMax =1
-sandPitYMin =1
-sandPitYMax =1
-h(x,y) = 4*Math.exp(-Math.pow(Math.pow(x-19,2)+Math.pow(y-19,2),2)/1000)+0.3*Math.exp(-Math.pow(Math.pow(x-19,2)+Math.pow(y-19,2),2))
+sandPitXMin =1000
+sandPitXMax =1000
+sandPitYMin =1000
+sandPitYMax =1000
+h(x,y) = 0*Math.exp(-Math.pow(Math.pow(x-19,2)+Math.pow(y-19,2),2)/1000)
 mukk = 0.1
 muss = 0.2
 

@@ -5,65 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0251d20a-eded-4767-9e0a-c1b9f43dc18d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Crazy-Putting-Project-7.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Bots/AdvancedBruteForce.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Bots/AdvancedHillClibing.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Bots/BasicBruteForce.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Bots/RuleBasedBot.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/FileHandling/FileReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/FileHandling/FileWriter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/Shoot.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/ShootAI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/ShootUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/TerrainInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/Win.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameScreens/GameField.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/ModelInstances/CameraBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/ModelInstances/GolfBall.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/ModelInstances/Hole.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/ModelInstances/Map.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Euler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/PartialDerivative.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Rk2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Rk4.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Solver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/SteepAcceleration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Crazy.iml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/BasicAcceleration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/MathParser_org_mXparser_v_4_4_0_jdk13.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/javafx_swt.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Screens/Acceleration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Acceleration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Screens/AdvancedBot.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Screens/BasicBot.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Screens/BotGameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameScreens/BotGameScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Screens/BotPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameScreens/AIGameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Screens/Euler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Screens/FileReader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Screens/FileWriter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Screens/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameScreens/UserGameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Screens/HillClibing.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Screens/MainGameScreen.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Screens/MainMenuScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameScreens/MainMenuScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Screens/OptionsGameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameScreens/OptionsGameScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Screens/PartialDerivative.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Screens/PhyscsTestFile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Screens/RK2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Screens/RK2New.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Screens/RK4.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Screens/Terrain.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/mygame/Animations.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Base/Animations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/mygame/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Base/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/ShootUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/ShootUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/TerrainInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/TerrainInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameScreens/GameField.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameScreens/GameField.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameScreens/OptionsGameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameScreens/OptionsGameScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Acceleration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Acceleration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Euler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Euler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Rk2.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Rk2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Rk4.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Rk4.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Solver.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Solver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/SteepAcceleration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/SteepAcceleration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Crazy/desktop/build/resources/main/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/desktop/build/resources/main/input.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/desktop/src/com/badlogic/mygame/DesktopLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/desktop/src/com/badlogic/Base/DesktopLauncher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/html/src/com/badlogic/mygame/GdxDefinition.gwt.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/html/src/com/badlogic/Base/GdxDefinition.gwt.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/html/src/com/badlogic/mygame/GdxDefinitionSuperdev.gwt.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/html/src/com/badlogic/Base/GdxDefinitionSuperdev.gwt.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/html/src/com/badlogic/mygame/client/HtmlLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/html/src/com/badlogic/Base/client/HtmlLauncher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/ios/src/com/badlogic/mygame/IOSLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/ios/src/com/badlogic/Base/IOSLauncher.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +49,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -112,10 +68,11 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Crazy/desktop/build/resources/main" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Period 5/SoftwareEngineer-Assignment2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\DELL\OneDrive\Desktop\School\Crazy-Putting-Project-2\Crazy\desktop\build\resources\main" />
       <recent name="C:\Users\DELL\OneDrive\Desktop\School\Crazy-Putting-Project-7\Crazy\desktop\build\resources\main" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -163,6 +120,17 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/ShootUser.java</url>
+          <line>52</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Crazy_Putting_Project_7$DesktopLauncher.ic" NAME="DesktopLauncher Coverage Results" MODIFIED="1654809782490" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

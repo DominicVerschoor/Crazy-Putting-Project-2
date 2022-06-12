@@ -18,9 +18,11 @@ public class ShootUser implements Shoot {
     @Override
     public void shoot() {
         if (UserGameController.shoot){
-            System.out.println("im in shoot");
+            boolean accelerationButton = false;
             if (OptionsGameScreen.Euler) {
                 System.out.println("Euler");
+                //TODO: e.accelerationType(accelerationButton);
+                e.accelerationType(accelerationButton);
                 velPosArray[2] = UserGameController.xVel;
                 velPosArray[3] = UserGameController.yVel;
                 velPosArray = e.solve(velPosArray);
@@ -34,6 +36,8 @@ public class ShootUser implements Shoot {
             }
             if (OptionsGameScreen.RK2) {
                 System.out.println("RK2");
+                //TODO: rk2.accelerationType(accelerationButton);
+                rk2.accelerationType(accelerationButton);
                 velPosArray[2] = UserGameController.xVel;
                 velPosArray[3] = UserGameController.yVel;
                 velPosArray = rk2.solve(velPosArray);
@@ -47,6 +51,8 @@ public class ShootUser implements Shoot {
             }
             if (OptionsGameScreen.RK4) {
                 System.out.println("RK4");
+                //TODO: rk4.accelerationType(accelerationButton);
+                rk4.accelerationType(accelerationButton);
                 velPosArray[2] = UserGameController.xVel;
                 velPosArray[3] = UserGameController.yVel;
                 velPosArray = rk4.solve(velPosArray);

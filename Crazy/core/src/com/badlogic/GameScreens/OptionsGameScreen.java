@@ -19,8 +19,8 @@ public class OptionsGameScreen implements Screen {
     public static Music gameMusic = Gdx.audio.newMusic(Gdx.files.internal("Melody.wav"));
     float elapsed;
     public static boolean RK2 =false;
-    public static boolean RK4 =false;
-    public static boolean Euler =true;
+    public static boolean RK4 =true;
+    public static boolean Euler =false;
     public static boolean randomBot = false;
     public static boolean basicBot = true;
     public static boolean smartBot = false;

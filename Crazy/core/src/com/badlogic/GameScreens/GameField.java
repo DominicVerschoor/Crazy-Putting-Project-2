@@ -25,8 +25,6 @@ public class GameField implements Screen{
     public static float ballCoordinatesX;
     public static float ballCoordinatesY;
 
-
-
     public GameField(App game){
         this.game = game;
         mapBuilder.getMapCoordinates();
