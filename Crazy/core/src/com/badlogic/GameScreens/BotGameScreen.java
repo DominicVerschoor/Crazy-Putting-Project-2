@@ -96,6 +96,7 @@ public class BotGameScreen implements Screen{
                 AIGameController.positionX=fileReader.x0;
                 AIGameController.positionY=fileReader.y0;
                 AIGameController.positionZ= function.terrain(fileReader.x0, fileReader.y0);
+                visible=false;
             }
             game.setScreen(new MainMenuScreen(game));
         }

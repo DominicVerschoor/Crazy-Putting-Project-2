@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 
 public class UserGameController implements ActionListener {
-    public static JFrame frame;
+    public  JFrame frame;
     private JButton go;
     private JTextField xVelText;
     private JTextField yVelText;

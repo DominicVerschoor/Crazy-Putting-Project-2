@@ -1,5 +1,6 @@
 package com.badlogic.PhyiscSolvers;
 
+import com.badlogic.Bots.AdvancedHillClibing;
 import com.badlogic.FileHandling.FileReader;
 import com.badlogic.GameLogistics.TerrainInput;
 
@@ -51,7 +52,7 @@ public class Rk2 implements Solver {
                 System.out.println("HELP ME im unda tha wata ");
                 return ballVector;
             }
-            if (ballVector[0] > 20 || ballVector[0] < -20 || ballVector[1] > 20 || ballVector[1] < -20) {
+            if ((ballVector[0] > 21 || ballVector[0] < -21 || ballVector[1] > 21 || ballVector[1] < -21)&&!AdvancedHillClibing.inAdvancedBot) {
                 ballVector[0] = initialX;
                 ballVector[1] = initialY;
                 System.out.println("BALL OUT OF BOUNDS");
