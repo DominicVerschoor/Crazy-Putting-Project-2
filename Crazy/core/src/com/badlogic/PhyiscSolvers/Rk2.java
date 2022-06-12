@@ -7,7 +7,7 @@ import com.badlogic.GameLogistics.TerrainInput;
 public class Rk2 implements Solver {
     PartialDerivative derive = new PartialDerivative();
     FileReader read = new FileReader();
-    Acceleration acceleration = new Acceleration();
+    Acceleration acceleration;
     private final double g = 9.81;
     double h = 0.001;
     private double uk = read.muk;     // kinetic friction coefficient of grass
@@ -94,6 +94,14 @@ public class Rk2 implements Solver {
         return ballVector;
     }
 
+    public void accelerationType(boolean buttonInput){
+        if (buttonInput){
+            acceleration = new BasicAcceleration();
+        }else{
+            acceleration = new SteepAcceleration();
+        }
+    }
+
     private double[] k1Calculations(double[] ballVector) {
         double[] k1Final = new double[6];
         k1Final[0] = ballVector[0];
@@ -102,8 +110,8 @@ public class Rk2 implements Solver {
         k1Final[3] = ballVector[3];
         double partialx = derive.partialX(k1Final[0], k1Final[1]);
         double partialy = derive.partialY(k1Final[0], k1Final[1]);
-        k1Final[4] = acceleration.accelerationEquationX(k1Final[2], k1Final[3], partialx);
-        k1Final[5] = acceleration.accelerationEquationY(k1Final[2], k1Final[3], partialy);
+        k1Final[4] = acceleration.accelerationEquationX(k1Final[2], k1Final[3], partialx, partialy);
+        k1Final[5] = acceleration.accelerationEquationY(k1Final[2], k1Final[3], partialx, partialy);
         return k1Final;
     }
 
@@ -115,8 +123,8 @@ public class Rk2 implements Solver {
         k2Final[3] = k1[3] + (h * k1[5]) * (2.0 / 3);
         double partialx = derive.partialX(k2Final[0], k2Final[1]);
         double partialy = derive.partialY(k2Final[0], k2Final[1]);
-        k2Final[4] = acceleration.accelerationEquationX(k2Final[2], k2Final[3], partialx);
-        k2Final[5] = acceleration.accelerationEquationY(k2Final[2], k2Final[3], partialy);
+        k2Final[4] = acceleration.accelerationEquationX(k2Final[2], k2Final[3], partialx, partialy);
+        k2Final[5] = acceleration.accelerationEquationY(k2Final[2], k2Final[3], partialx,partialy);
         return k2Final;
     }
 

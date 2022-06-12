@@ -10,7 +10,7 @@ public class Euler implements Solver {
     FileReader read = new FileReader();
     PartialDerivative Derive = new PartialDerivative();
     TerrainInput function = new TerrainInput();
-    Acceleration acceleration = new Acceleration();
+    Acceleration acceleration;
 
     private final double g = 9.81;
     private double uk = read.muk;
@@ -44,8 +44,8 @@ public class Euler implements Solver {
             double partialX = Derive.partialX(tempBallVector[0], tempBallVector[1]);
             double partialY = Derive.partialY(tempBallVector[0], tempBallVector[1]);
 
-            double accX = acceleration.accelerationEquationX(ballVector[2], ballVector[3], partialX);
-            double accY = acceleration.accelerationEquationY(ballVector[2], ballVector[3], partialY);
+            double accX = acceleration.accelerationEquationX(ballVector[2], ballVector[3], partialX, partialY);
+            double accY = acceleration.accelerationEquationY(ballVector[2], ballVector[3], partialX, partialY);
 
             tempBallVector[2] = ballVector[2] + h * accX;
             tempBallVector[3] = ballVector[3] + h * accY;
@@ -98,5 +98,13 @@ public class Euler implements Solver {
             ballVector[3] = -5;
         }
         return ballVector;
+    }
+
+    public void accelerationType(boolean buttonInput){
+        if (buttonInput){
+            acceleration = new BasicAcceleration();
+        }else{
+            acceleration = new SteepAcceleration();
+        }
     }
 }
