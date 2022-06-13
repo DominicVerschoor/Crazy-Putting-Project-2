@@ -35,6 +35,7 @@ public class GameField implements Screen{
         ShootUser.velPosArray[0]=ballCoordinatesX;
         ShootUser.velPosArray[1]=ballCoordinatesY;
         if (!visible){
+            System.out.println("i am open");
             options.startFrame();
             options.frame.setVisible(true);
             visible=true;
@@ -89,12 +90,14 @@ public class GameField implements Screen{
         if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
             this.dispose();
             if (visible){
+                System.out.println("i am closed");
                 options.frame.setVisible(false);
                 UserGameController.score=0;
                 MainMenuScreen.userPlaying=false;
                 UserGameController.positionX=fileReader.x0;
                 UserGameController.positionY=fileReader.y0;
                 UserGameController.positionZ= function.terrain(fileReader.x0, fileReader.y0);
+                visible=false;
             }
             game.setScreen(new MainMenuScreen(game));
         }

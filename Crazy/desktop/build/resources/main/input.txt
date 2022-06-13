@@ -1,15 +1,15 @@
-x0 = 19
-y0 = 19
-xt = -6
-yt = 4
-r = 0.15
-muk = 0.08
+x0 = 0
+y0 = 0
+xt = 19
+yt = 19
+r = 0.5
+muk = 0.05
 mus = 0.2
-sandPitXMin =1000
-sandPitXMax =1000
-sandPitYMin =1000
-sandPitYMax =1000
-h(x,y) = 0*Math.exp(-Math.pow(Math.pow(x-19,2)+Math.pow(y-19,2),2)/1000)
+sandPitXMin =100
+sandPitXMax =100
+sandPitYMin =100
+sandPitYMax =100
+h(x,y) = 1
 mukk = 0.1
 muss = 0.2
 
