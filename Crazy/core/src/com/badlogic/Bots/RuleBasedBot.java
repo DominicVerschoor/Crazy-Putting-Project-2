@@ -13,9 +13,8 @@ public class RuleBasedBot {
         double holeY = r.yt;
 
         double[] arrXt = new double[4];
-        double xvel = (holeX - xpos) / 3;
-        double yvel = (holeY - ypos) / 3;
-        boolean switchARoo = true;
+        double xvel = holeX - xpos;
+        double yvel = holeY - ypos;
 
         arrXt[0] = xpos;
         arrXt[1] = ypos;
@@ -23,21 +22,11 @@ public class RuleBasedBot {
         arrXt[3] = yvel;
 
         while (isDrowned(arrXt)) {
-            if (switchARoo) {
-                xvel++;
-                yvel++;
-            } else {
-                xvel--;
-                yvel--;
-            }
-            System.out.println("drowned lol");
-            switchARoo = !switchARoo;
+
         }
 
         while (isOutOfBounds(arrXt)) {
-            xvel = xvel / 2;
-            yvel = yvel / 2;
-            System.out.println("out of bounds lol");
+
         }
 
         arrXt = rk4.solve(arrXt);

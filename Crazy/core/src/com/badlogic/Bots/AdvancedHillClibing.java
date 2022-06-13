@@ -26,8 +26,8 @@ public class AdvancedHillClibing{
 
 
     public double[]hillClibing(double x, double y){
-        double vx = random.nextDouble()*5;
-        double vy= Math.sqrt(Math.pow(5, 2) - Math.pow(vx, 2));
+        double vx = (read.xt - x) / 3;
+        double vy = (read.yt - y) / 3;
         currentVec = new Vectors(vx,vy);
         double arrxt[] = {x,y,currentVec.velx,currentVec.vely};
         double result[] = rk2.solve(arrxt);
@@ -36,7 +36,7 @@ public class AdvancedHillClibing{
         int currentItr = 0;
         while (currentItr < MAX_ITER) {
 
-            Vectors[] tmp = new Vectors[8];
+            Vectors[] tmp = new Vectors[7];
 
             for (int i = 0; i < 4; i++) {
 
