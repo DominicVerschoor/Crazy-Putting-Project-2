@@ -18,7 +18,7 @@ public class ShootUser implements Shoot {
     @Override
     public void shoot() {
         if (UserGameController.shoot){
-            boolean accelerationButton = false;
+            boolean accelerationButton = true;
             if (OptionsGameScreen.Euler) {
                 System.out.println("Euler");
                 //TODO: e.accelerationType(accelerationButton);

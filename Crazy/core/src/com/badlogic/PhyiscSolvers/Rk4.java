@@ -50,19 +50,23 @@ public class Rk4 implements Solver {
             double partialy = derive.partialX(ballVector[0], ballVector[1]);
 
             if (function.terrain(ballVector[0], ballVector[1]) < 0) {
+//                System.out.println("x "+ballVector[0]);
+//                System.out.println("y "+ballVector[1]);
                 ballVector[0] = initialX;
                 ballVector[1] = initialY;
                 System.out.println("HELP ME im unda tha wata ");
                 drowned = true;
                 return ballVector;
             }
-//            if (ballVector[0] > 20 || ballVector[0] < -20 || ballVector[1] > 20 || ballVector[1] < -20) {
-//                ballVector[0] = initialX;
-//                ballVector[1] = initialY;
-//                System.out.println("BALL OUT OF BOUNDS");
-//                outOfBounds = true;
-//                return ballVector;
-//            }
+            if (ballVector[0] > 20 || ballVector[0] < -20 || ballVector[1] > 20 || ballVector[1] < -20) {
+//                System.out.println("x "+ballVector[0]);
+//                System.out.println("y "+ballVector[1]);
+                ballVector[0] = initialX;
+                ballVector[1] = initialY;
+                System.out.println("BALL OUT OF BOUNDS");
+                outOfBounds = true;
+                return ballVector;
+            }
 
             if ((Math.abs(ballVector[2]) <= 0.00001 && Math.abs(ballVector[3]) <= 0.00001) && (Math.abs(partialx) > 0.00001 || Math.abs(partialy) > 0.00001)) {
                 double sqrt = Math.sqrt(partialx * partialx + partialy * partialy);
@@ -76,8 +80,8 @@ public class Rk4 implements Solver {
             }
         }
 
-        System.out.println("X: " + ballVector[0]);
-        System.out.println("Y: " + ballVector[1]);
+//        System.out.println("X: " + ballVector[0]);
+//        System.out.println("Y: " + ballVector[1]);
         return ballVector;
     }
 

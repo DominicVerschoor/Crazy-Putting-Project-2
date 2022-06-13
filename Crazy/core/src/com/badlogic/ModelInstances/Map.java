@@ -35,8 +35,8 @@ public class Map {
     private ModelInstance modelInstanceCourse,modelInstanceSand;
 
     public void getMapCoordinates(){
-        for (float X = -20; X < 20; X+=0.5f) {
-            for (float Y = -20; Y < 20; Y += 0.5f) {
+        for (float X = -20; X <= 20; X+=0.5f) {
+            for (float Y = -20; Y <= 20; Y += 0.5f) {
                 xCoordinatesArray.add(X);
                 yCoordinatesArray.add(Y);
                 zCoordinatesArray.add((float) function.terrain(X,Y));
@@ -60,6 +60,7 @@ public class Map {
         }
         return Color.BLACK;
     }
+
     public void  combineField(){
         modelBatchCourse = new ModelBatch();
         modelBuilderCourse = new ModelBuilder();
