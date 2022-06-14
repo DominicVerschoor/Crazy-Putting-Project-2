@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0251d20a-eded-4767-9e0a-c1b9f43dc18d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/ModelInstances/Tree.java" afterDir="false" />
+    <list default="true" id="0251d20a-eded-4767-9e0a-c1b9f43dc18d" name="Changes" comment="trees :)">
+      <change afterPath="$PROJECT_DIR$/hs_err_pid13608.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hs_err_pid7408.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/FileHandling/FileReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/FileHandling/FileReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/ModelInstances/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/ModelInstances/Map.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Bots/RuleBasedBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Bots/RuleBasedBot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/ShootAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/ShootAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Euler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Euler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Rk2.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Rk2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Rk4.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Rk4.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Crazy/desktop/build/resources/main/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/desktop/build/resources/main/input.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,11 +67,15 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2AMAx9v5AEHmbGjFArLzmoyMLup" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -138,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655111346245</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="trees :)">
+      <created>1655208954317</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1655208954317</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -153,16 +168,33 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="big sadness" />
-    <option name="LAST_COMMIT_MESSAGE" value="big sadness" />
+    <MESSAGE value="trees :)" />
+    <option name="LAST_COMMIT_MESSAGE" value="trees :)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Crazy/core/src/com/badlogic/Bots/RuleBasedBot.java</url>
-          <line>115</line>
-          <option name="timeStamp" value="2" />
+          <line>50</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Crazy/core/src/com/badlogic/Bots/RuleBasedBot.java</url>
+          <line>77</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Crazy/core/src/com/badlogic/Bots/RuleBasedBot.java</url>
+          <line>117</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/ShootAI.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

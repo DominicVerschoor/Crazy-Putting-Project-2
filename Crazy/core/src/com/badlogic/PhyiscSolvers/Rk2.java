@@ -19,45 +19,74 @@ public class Rk2 implements Solver {
      * @return a ballVector representing the resting point of the ball
      */
     public double[] solve(double[] ballVector) {
-        double initialX = ballVector[0];
-        double initialY = ballVector[1];
+        double initialX=ballVector[0];
+        double initialY=ballVector[1];
         ballVector = speedLimit(ballVector);
 
         while (Math.abs(ballVector[2]) > 0.001 || Math.abs(ballVector[3]) > 0.001) {
             uk = read.muk;
             us = read.mus;
             if ((ballVector[0] >= read.sandPitXMin && ballVector[0] <= read.sandPitXMin)
-                    && (ballVector[1] >= read.sandPitXMin && ballVector[1] <= read.sandPitXMin)) {
+                    && (ballVector[1] >= read.sandPitXMin && ballVector[1] <= read.sandPitXMin)){
                 uk = read.muks;
                 us = read.muss;
                 System.out.println("ew sand");
             }
 
-
-            double[] k1 = k1Calculations(ballVector);
-            double[] k2 = k2Calculations(k1);
-            double[] finalCalc = finalCalculations(k1, k2);
-
-            ballVector[0] += finalCalc[0];
-            ballVector[1] += finalCalc[1];
-            ballVector[2] += finalCalc[2];
-            ballVector[3] += finalCalc[3];
-
             double partialx = derive.partialX(ballVector[0], ballVector[1]);
-            double partialy = derive.partialX(ballVector[0], ballVector[1]);
+            double partialy = derive.partialY(ballVector[0], ballVector[1]);
+
+            double tempBallVector[] = new double[4];
+            System.arraycopy(ballVector, 0, tempBallVector, 0, ballVector.length);
+
+            double k1posX = tempBallVector[0];
+            double k1posY = tempBallVector[1];
+            double k1VelX = tempBallVector[2];
+            double k1VelY = tempBallVector[3];
+            partialx = derive.partialX(k1posX, k1posY);
+            partialy = derive.partialY(k1posX, k1posY);
+            double k1AccelerationX = acceleration.accelerationEquationX(k1VelX, k1VelY, partialx, partialy);
+            double k1AccelerationY = acceleration.accelerationEquationY(k1VelX, k1VelY, partialx,partialy);
+
+            double k2posX = k1posX + (h * k1VelX) * (2.0 / 3);
+            double k2posY = k1posY + (h * k1VelY) * (2.0 / 3);
+            double k2VelX = k1VelX + (h * k1AccelerationX) * (2.0 / 3);
+            double k2VelY = k1VelY + (h * k1AccelerationY) * (2.0 / 3);
+            partialx = derive.partialX(k2posX, k2posY);
+            partialy = derive.partialY(k2posX, k2posY);
+            double k2AccelerationX = acceleration.accelerationEquationX(k2VelX, k2VelY, partialx, partialy);
+            double k2AccelerationY = acceleration.accelerationEquationY(k2VelX, k2VelY, partialx, partialy);
+
+
+            double calculatedXPos = ((k1VelX*h*(1/4.0))+(3/4.0)* (k2VelX*h));
+            double calculatedYPos = ((k1VelY*h*(1/4.0))+(3/4.0)* (k2VelY*h));
+            double calculatedXVel = ((k1AccelerationX*h*(1/4.0))+(3/4.0)* (k2AccelerationX*h));
+            double calculatedYVel = ((k1AccelerationY*h*(1/4.0))+(3/4.0)* (k2AccelerationY*h));
+
+            ballVector[0] += calculatedXPos;
+            ballVector[1] += calculatedYPos;
+            ballVector[2] += calculatedXVel;
+            ballVector[3] += calculatedYVel;
+
+            partialx = derive.partialX(ballVector[0], ballVector[1]);
+            partialy = derive.partialY(ballVector[0], ballVector[1]);
 
             if (function.terrain(ballVector[0], ballVector[1]) < 0) {
                 ballVector[0] = initialX;
                 ballVector[1] = initialY;
+                System.arraycopy(ballVector, 0, ballVector, 0, ballVector.length);
+
                 System.out.println("HELP ME im unda tha wata ");
                 return ballVector;
             }
-            if ((ballVector[0] > 21 || ballVector[0] < -21 || ballVector[1] > 21 || ballVector[1] < -21)&&!AdvancedHillClibing.inAdvancedBot) {
-                ballVector[0] = initialX;
-                ballVector[1] = initialY;
-                System.out.println("BALL OUT OF BOUNDS");
-                return ballVector;
-            }
+//            if (ballVector[0]>20 || ballVector[0]<-20 || ballVector[1]>20 || ballVector[1]<-20) {
+//                ballVector[0] = initialX;
+//                ballVector[1] = initialY;
+//                System.arraycopy(ballVector, 0, ballVector, 0, ballVector.length);
+//
+//                System.out.println("BALL OUT OF BOUNDS");
+//                return ballVector;
+//            }
 
             if ((Math.abs(ballVector[2]) <= 0.001 && Math.abs(ballVector[3]) <= 0.001) && (Math.abs(partialx) > 0.001 || Math.abs(partialy) > 0.001)) {
                 double sqrt = Math.sqrt(partialx * partialx + partialy * partialy);
@@ -72,8 +101,8 @@ public class Rk2 implements Solver {
 
         }
 
-        System.out.println("X: " + ballVector[0]);
-        System.out.println("Y: " + ballVector[1]);
+//        System.out.println("X: " + ballVector[0]);
+//        System.out.println("Y: " + ballVector[1]);
         return ballVector;
     }
 

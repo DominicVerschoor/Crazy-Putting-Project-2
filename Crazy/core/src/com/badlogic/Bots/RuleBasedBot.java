@@ -5,14 +5,14 @@ import com.badlogic.PhyiscSolvers.Rk4;
 
 public class RuleBasedBot {
 
-    private static FileReader r = new FileReader();
-    private static final Rk4 rk4 = new Rk4();
-    private static final double holeX = r.xt;
-    private static final double holeY = r.yt;
-    private static final double pi = 3.14159265359;
+    private FileReader r = new FileReader();
+    private final Rk4 rk4 = new Rk4();
+    private final double holeX = r.xt;
+    private final double holeY = r.yt;
+    private final double pi = 3.14159265359;
 
-
-    public static double[] shoot(double xpos, double ypos) {
+    public double[] shoot(double xpos, double ypos) {
+        rk4.accelerationType(true);
 
         double[] arrXt = new double[4];
         double xVel = holeX - xpos;
@@ -24,98 +24,111 @@ public class RuleBasedBot {
         arrXt[3] = yVel;
 
         if (isDrowned(arrXt)){
+            System.out.println("Drown");
             return rk4.solve(waterScenario(arrXt));
         }
 
         if (overshoot(arrXt)){
+            System.out.println("Overshoot");
             return rk4.solve(overshootScenario(arrXt));
         }
 
-        arrXt = rk4.solve(arrXt);
-        return arrXt;
-    }
-
-    private static double[] waterScenario(double[] arrXt){
-        double xVel = holeX - arrXt[0];
-        double yVel = holeY - arrXt[1];
-
-        while (isDrowned(arrXt)) {
-            arrXt[2] = xVel * Math.cos(5*(pi/180) * arrXt[0])
-                    - yVel * Math.sin(5*(pi/180) * arrXt[1]);
-
-            arrXt[3] = xVel * Math.sin(5*(pi/180) * arrXt[0])
-                    + yVel * Math.cos(5*(pi/180) * arrXt[1]);
-
-            xVel = arrXt[2];
-            yVel = arrXt[3];
-            System.out.println("x "+xVel);
-            System.out.println("y "+yVel);
-            System.out.println();
-        }
-
-//        while (isOutOfBounds(arrXt)) {
-//            arrXt[2] = xVel * 0.9;
-//            arrXt[3] = yVel * 0.9;
-//            xVel = arrXt[2];
-//            yVel = arrXt[3];
-//        }
-
-        return arrXt;
-    }
-
-    private static double[] overshootScenario(double[] arrXt){
-        double xVel = holeX - arrXt[0];
-        double yVel = holeY - arrXt[1];
-
-        while (overshoot(arrXt)){
+        while (isOutOfBounds(arrXt)) {
             arrXt[2] = xVel * 0.9;
             arrXt[3] = yVel * 0.9;
             xVel = arrXt[2];
             yVel = arrXt[3];
         }
 
-//        while (isOutOfBounds(arrXt)) {
-//            arrXt[2] = xVel * 0.9;
-//            arrXt[3] = yVel * 0.9;
-//            xVel = arrXt[2];
-//            yVel = arrXt[3];
-//        }
+        System.out.println("Neither");
+        return rk4.solve(arrXt);
+    }
 
+    private double[] waterScenario(double[] arrXt){
+        double xVel = holeX - arrXt[0];
+        double yVel = holeY - arrXt[1];
+
+        while (isDrowned(arrXt) && notInHole(arrXt)) {
+            arrXt[2] = xVel * Math.cos(15*(pi/180) * arrXt[0])
+                    - yVel * Math.sin(15*(pi/180) * arrXt[1]);
+
+            arrXt[3] = xVel * Math.sin(15*(pi/180) * arrXt[0])
+                    + yVel * Math.cos(15*(pi/180) * arrXt[1]);
+
+            xVel = arrXt[2];
+            yVel = arrXt[3];
+        }
+
+        while (isOutOfBounds(arrXt)) {
+            arrXt[2] = xVel * 0.9;
+            arrXt[3] = yVel * 0.9;
+            xVel = arrXt[2];
+            yVel = arrXt[3];
+        }
+
+        System.out.println("xv "+xVel);
+        System.out.println("yv "+yVel);
         return arrXt;
     }
 
-    private static boolean overshoot(double[] arrXt){
-        double oldXVel = arrXt[2];
-        double oldYVel = arrXt[3];
+    private double[] overshootScenario(double[] arrXt){
+        double xVel = holeX - arrXt[0];
+        double yVel = holeY - arrXt[1];
 
-        arrXt = rk4.solve(arrXt);
-
-        if ((oldXVel < 0)? (holeX - arrXt[2] > 0): (holeX - arrXt[2] < 0) &&
-                (oldYVel < 0)? (holeY - arrXt[3] > 0): (holeY - arrXt[3] < 0)){
-            return true;
+        while (overshoot(arrXt) && notInHole(arrXt)){
+            arrXt[2] = xVel * 0.9;
+            arrXt[3] = yVel * 0.9;
+            xVel = arrXt[2];
+            yVel = arrXt[3];
         }
 
-        else return (oldXVel == 0 && (oldYVel < 0) ? (holeY - arrXt[3] > 0) : (holeY - arrXt[3] < 0))
-                || (oldYVel == 0 && (oldXVel < 0) ? (holeX - arrXt[2] > 0) : (holeX - arrXt[2] < 0));
+        while (isOutOfBounds(arrXt)) {
+            arrXt[2] = xVel * 0.9;
+            arrXt[3] = yVel * 0.9;
+            xVel = arrXt[2];
+            yVel = arrXt[3];
+        }
+
+        System.out.println("xv "+xVel);
+        System.out.println("yv "+yVel);
+        return arrXt;
     }
 
-    private static boolean isOutOfBounds(double[] arrXt) {
-        rk4.solve(arrXt);
+    private boolean overshoot(double[] arrXt){
+        double oldXVel = arrXt[2];
+        double oldYVel = arrXt[3];
+        double[] temp = simulate(arrXt);
+
+        return !((oldXVel >= 0 && holeX - temp[0] >= 0 || oldXVel < 0 && holeX - temp[0] < 0)
+                && (oldYVel >= 0 && holeY - temp[1] >= 0 || oldYVel < 0 && holeY - temp[1] < 0));
+    }
+
+    private boolean isOutOfBounds(double[] arrXt) {
+        simulate(arrXt);
         return rk4.getOutOfBounds();
     }
 
-    private static boolean isDrowned(double[] arrXt) {
-        rk4.solve(arrXt);
+    private boolean isDrowned(double[] arrXt) {
+        simulate(arrXt);
         return rk4.getDrowned();
     }
 
-    public static void main(String[] args) {
-        double[] arrXt;
+    private boolean notInHole(double[] arrXt){
+        double[] temp = simulate(arrXt);
+        return !(r.r >= distance(temp[0], temp[1]));
+    }
 
-        rk4.accelerationType(true);
-        arrXt = shoot(1,1);
+    private double distance(double xpos, double ypos) {
+        return Math.sqrt(Math.pow((xpos - holeX), 2) + Math.pow((ypos - holeY), 2));
+    }
 
-        System.out.println("xp: " + arrXt[0]);
-        System.out.println("yp: " + arrXt[1]);
+    private double[] simulate(double[] arrXt){
+        double[] temp = new double[4];
+        temp[0] = arrXt[0];
+        temp[1] = arrXt[1];
+        temp[2] = arrXt[2];
+        temp[3] = arrXt[3];
+        rk4.solve(temp);
+        return temp;
     }
 }

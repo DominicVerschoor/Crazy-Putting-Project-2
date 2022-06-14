@@ -12,5 +12,5 @@ sandPitYMax =100
 h(x,y) = 0.1+(-Math.exp(-(Math.pow(x,2)*3+Math.pow(y,2)*3)))
 mukk = 0.1
 muss = 0.2
-treeX = 1
-treeY = 1
+treeX = 19
+treeY = -19

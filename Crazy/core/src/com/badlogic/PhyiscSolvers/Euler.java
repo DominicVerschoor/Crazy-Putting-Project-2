@@ -25,15 +25,15 @@ public class Euler implements Solver {
     @Override
     public double[] solve(double[] ballVector) {
 
-        double initialX = ballVector[0];
-        double initialY = ballVector[1];
+        double initialX=ballVector[0];
+        double initialY=ballVector[1];
         ballVector = speedLimit(ballVector);
 
         while (Math.abs(ballVector[2]) > 0.00001 || Math.abs(ballVector[3]) > 0.00001) {
             uk = read.muk;
             us = read.mus;
             if ((ballVector[0] >= read.sandPitXMin && ballVector[0] <= read.sandPitXMin)
-                    && (ballVector[1] >= read.sandPitXMin && ballVector[1] <= read.sandPitXMin)) {
+                    && (ballVector[1] >= read.sandPitXMin && ballVector[1] <= read.sandPitXMin)){
                 uk = read.muks;
                 us = read.muss;
             }
@@ -44,24 +44,26 @@ public class Euler implements Solver {
             double partialX = Derive.partialX(tempBallVector[0], tempBallVector[1]);
             double partialY = Derive.partialY(tempBallVector[0], tempBallVector[1]);
 
-            double accX = acceleration.accelerationEquationX(ballVector[2], ballVector[3], partialX, partialY);
-            double accY = acceleration.accelerationEquationY(ballVector[2], ballVector[3], partialX, partialY);
+            double accX = acceleration.accelerationEquationX(ballVector[2],ballVector[3],partialX, partialY);
+            double accY = acceleration.accelerationEquationY(ballVector[2],ballVector[3],partialX, partialY);
+
 
             tempBallVector[2] = ballVector[2] + h * accX;
             tempBallVector[3] = ballVector[3] + h * accY;
+
             if (function.terrain(tempBallVector[0], tempBallVector[1]) < 0) {
                 tempBallVector[0] = initialX;
                 tempBallVector[1] = initialY;
                 System.arraycopy(tempBallVector, 0, ballVector, 0, ballVector.length);
 
-                JOptionPane.showMessageDialog(new JFrame(), "Ball under water");
+                JOptionPane.showMessageDialog(new JFrame(),"Ball under water");
                 return tempBallVector;
             }
-            if (tempBallVector[0] > 20 || tempBallVector[0] < -20 || tempBallVector[1] > 20 || tempBallVector[1] < -20) {
+            if (tempBallVector[0]>20 || tempBallVector[0]<-20 || tempBallVector[1]>20 || tempBallVector[1]<-20) {
                 tempBallVector[0] = initialX;
                 tempBallVector[1] = initialY;
                 System.arraycopy(tempBallVector, 0, ballVector, 0, ballVector.length);
-                JOptionPane.showMessageDialog(new JFrame(), "Ball out of bounds");
+                JOptionPane.showMessageDialog(new JFrame(),"Ball out of bounds");
                 return tempBallVector;
             }
 
