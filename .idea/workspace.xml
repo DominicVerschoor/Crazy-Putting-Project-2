@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0251d20a-eded-4767-9e0a-c1b9f43dc18d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/ModelInstances/Tree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Bots/RuleBasedBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Bots/RuleBasedBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/ShootUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/ShootUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/TerrainInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/TerrainInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/FileHandling/FileReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/FileHandling/FileReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/ModelInstances/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/ModelInstances/Map.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Rk4.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Rk4.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Crazy/desktop/build/resources/main/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/desktop/build/resources/main/input.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,7 +71,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Crazy/desktop/build/resources/main" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Test" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -86,7 +84,7 @@
       <recent name="com.badlogic.Bots" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.RuleBasedBot">
+  <component name="RunManager" selected="Application.DesktopLauncher">
     <configuration name="DesktopLauncher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.badlogic.Base.DesktopLauncher" />
       <module name="Crazy.desktop.main" />

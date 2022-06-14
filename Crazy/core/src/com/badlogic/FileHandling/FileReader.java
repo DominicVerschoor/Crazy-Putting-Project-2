@@ -19,6 +19,8 @@ public class FileReader {
      @param sandPitXMax x-range of a sand pit
      @param sandPitYMin y-range of a sand pit
      @param sandPitYMax y-range of a sand pit
+     @param treeX x-coordinate of the tree position    //tree
+     @param treeY y-coordinate of the tree position    //tree
      */
 
     public float x0;
@@ -33,8 +35,10 @@ public class FileReader {
     public float sandPitYMin;
     public float sandPitYMax;
     public float muks;
-    public float muss; //
+    public float muss;
     public String function;
+    public float treeX;
+    public float treeY;
 
     public FileReader(){
         readFile();
@@ -76,6 +80,8 @@ public class FileReader {
             this.sandPitYMax=addLines.get(10);
             this.muks=addLines.get(11);
             this.muss=addLines.get(12);
+            this.treeX=addLines.get(13);
+            this.treeY=addLines.get(14);
         }catch (Exception ex){
             ex.printStackTrace();
         }

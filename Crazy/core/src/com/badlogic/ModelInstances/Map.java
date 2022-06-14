@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class Map {
     private TerrainInput function = new TerrainInput();
     private Hole hole = new Hole();
+    private Tree tree = new Tree();
     private CameraBuilder camera = new CameraBuilder();
     private FileReader fileReader = new FileReader();
     private ArrayList<Float> xCoordinatesArray = new ArrayList<Float>();
@@ -35,8 +36,8 @@ public class Map {
     private ModelInstance modelInstanceCourse,modelInstanceSand;
 
     public void getMapCoordinates(){
-        for (float X = -20; X <= 20; X+=0.5f) {
-            for (float Y = -20; Y <= 20; Y += 0.5f) {
+        for (float X = -20; X < 20; X+=0.5f) {
+            for (float Y = -20; Y < 20; Y += 0.5f) {
                 xCoordinatesArray.add(X);
                 yCoordinatesArray.add(Y);
                 zCoordinatesArray.add((float) function.terrain(X,Y));
@@ -60,7 +61,6 @@ public class Map {
         }
         return Color.BLACK;
     }
-
     public void  combineField(){
         modelBatchCourse = new ModelBatch();
         modelBuilderCourse = new ModelBuilder();
@@ -105,8 +105,10 @@ public class Map {
         camera.cameraPerspective();
         ball.createGolfBall();
         hole.createHole();
+        tree.createTree();
         modelBatchCourse.render(ball.modelInstanceBall, environment);
         modelBatchCourse.render(hole.modelInstanceHole, environment);
+        modelBatchCourse.render(tree.modelInstanceTree, environment);
         createField();
         modelBatchCourse.end();
     }
