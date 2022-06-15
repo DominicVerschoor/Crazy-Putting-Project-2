@@ -1,7 +1,6 @@
 package com.badlogic.ModelInstances;
 
-import com.badlogic.GameScreens.BotGameScreen;
-import com.badlogic.GameScreens.GameField;
+import com.badlogic.GameScreens.GameScreen;
 import com.badlogic.GameLogistics.TerrainInput;
 import com.badlogic.GameScreens.MainMenuScreen;
 import com.badlogic.gdx.graphics.Color;
@@ -25,12 +24,12 @@ public class GolfBall {
                 new Material(ColorAttribute.createDiffuse(Color.WHITE)),
                 (VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal));
         if (MainMenuScreen.userPlaying) {
-            modelInstanceBall = new ModelInstance(modelBall, GameField.ballCoordinatesX, (float) function.terrain(GameField.ballCoordinatesX, GameField.ballCoordinatesY) + 0.75f, GameField.ballCoordinatesY);
-            modelInstanceBall.transform.setTranslation(GameField.ballCoordinatesX, (float) function.terrain(GameField.ballCoordinatesX, GameField.ballCoordinatesY) + 0.75f, GameField.ballCoordinatesY);
+            modelInstanceBall = new ModelInstance(modelBall, GameScreen.ballCoordinatesX, (float) function.terrain(GameScreen.ballCoordinatesX, GameScreen.ballCoordinatesY) + 0.75f, GameScreen.ballCoordinatesY);
+            modelInstanceBall.transform.setTranslation(GameScreen.ballCoordinatesX, (float) function.terrain(GameScreen.ballCoordinatesX, GameScreen.ballCoordinatesY) + 0.75f, GameScreen.ballCoordinatesY);
         }
         if (MainMenuScreen.botPlaying){
-            modelInstanceBall = new ModelInstance(modelBall, BotGameScreen.ballCoordinatesX, (float) function.terrain(BotGameScreen.ballCoordinatesX, BotGameScreen.ballCoordinatesY) + 0.75f, BotGameScreen.ballCoordinatesY);
-            modelInstanceBall.transform.setTranslation(BotGameScreen.ballCoordinatesX, (float) function.terrain(BotGameScreen.ballCoordinatesX, BotGameScreen.ballCoordinatesY) + 0.75f, BotGameScreen.ballCoordinatesY);
+            modelInstanceBall = new ModelInstance(modelBall, GameScreen.ballCoordinatesX, (float) function.terrain(GameScreen.ballCoordinatesX, GameScreen.ballCoordinatesY) + 0.75f, GameScreen.ballCoordinatesY);
+            modelInstanceBall.transform.setTranslation(GameScreen.ballCoordinatesX, (float) function.terrain(GameScreen.ballCoordinatesX, GameScreen.ballCoordinatesY) + 0.75f, GameScreen.ballCoordinatesY);
         }
     }
 }

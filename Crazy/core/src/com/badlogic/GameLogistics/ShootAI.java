@@ -15,31 +15,33 @@ public class ShootAI implements Shoot {
     Rk4 rk4 = new Rk4();
     Win win = new Win();
     static public double[] velPosArray = new double[4];
+
     @Override
     public void shoot() {
         rk4.accelerationType(true);
-        if (AIGameController.shoot){
+        win.setShooter(this);
+        if (Controller.shoot){
             System.out.printf("im in shoot");
             if (OptionsGameScreen.basicBot) {
                 System.out.println("Basic Bot");
                 //velPosArray = bruteForceRule.basicShooting(BotGameScreen.ballCoordinatesX, BotGameScreen.ballCoordinatesY);
-                System.out.println("x "+BotGameScreen.ballCoordinatesX + "y "+BotGameScreen.ballCoordinatesY);
-                velPosArray = ruleBasedBot.shoot(BotGameScreen.ballCoordinatesX, BotGameScreen.ballCoordinatesY);
-                BotGameScreen.ballCoordinatesX = (float) velPosArray[0];
-                BotGameScreen.ballCoordinatesY = (float) velPosArray[1];
-                AIGameController.update(velPosArray[0],velPosArray[1]);
-                AIGameController.shoot = false;
+                System.out.println("x "+ GameScreen.ballCoordinatesX + "y "+ GameScreen.ballCoordinatesY);
+                velPosArray = ruleBasedBot.shoot(GameScreen.ballCoordinatesX, GameScreen.ballCoordinatesY);
+                GameScreen.ballCoordinatesX = (float) velPosArray[0];
+                GameScreen.ballCoordinatesY = (float) velPosArray[1];
+                Controller.update(velPosArray[0],velPosArray[1]);
+                Controller.shoot = false;
                 win.winCondition();
             }
             if (OptionsGameScreen.smartBot) {
                 //TODO
                 System.out.println("Advanced Bot");
-                velPosArray = advancedHillClibing.hillClibing(BotGameScreen.ballCoordinatesX,BotGameScreen.ballCoordinatesY);
+                velPosArray = advancedHillClibing.hillClibing(GameScreen.ballCoordinatesX, GameScreen.ballCoordinatesY);
                 velPosArray = rk4.solve(velPosArray);
-                BotGameScreen.ballCoordinatesX =(float) velPosArray[0];
-                BotGameScreen.ballCoordinatesY =(float) velPosArray[1];
-                AIGameController.update(velPosArray[0],velPosArray[1]);
-                AIGameController.shoot = false;
+                GameScreen.ballCoordinatesX =(float) velPosArray[0];
+                GameScreen.ballCoordinatesY =(float) velPosArray[1];
+                Controller.update(velPosArray[0],velPosArray[1]);
+                Controller.shoot = false;
                 win.winCondition();
             }
             if (OptionsGameScreen.randomBot) {
@@ -48,12 +50,22 @@ public class ShootAI implements Shoot {
                 velPosArray[2] = (Math.random()*(10))-5;
                 velPosArray[3] = (Math.random()*(10))-5;
                 velPosArray = rk2.solve(velPosArray);
-                BotGameScreen.ballCoordinatesX = (float) velPosArray[0];
-                BotGameScreen.ballCoordinatesY = (float) velPosArray[1];
-                AIGameController.update(velPosArray[0],velPosArray[1]);
-                AIGameController.shoot = false;
+                GameScreen.ballCoordinatesX = (float) velPosArray[0];
+                GameScreen.ballCoordinatesY = (float) velPosArray[1];
+                Controller.update(velPosArray[0],velPosArray[1]);
+                Controller.shoot = false;
                 win.winCondition();
             }
         }
+    }
+
+    @Override
+    public double[] getBall() {
+        return velPosArray;
+    }
+
+    @Override
+    public boolean isBot() {
+        return true;
     }
 }

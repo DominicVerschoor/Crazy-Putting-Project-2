@@ -17,6 +17,8 @@ public class Euler implements Solver {
     private double us = read.mus;
     private double h = 0.00001;
     static private double[] tempBallVector = new double[4];
+    private boolean drowned = false;
+    private boolean outOfBounds = false;
 
     /**
      * @param ballVector an array that contains x and y positions of the ball and x and y input velocities
@@ -30,6 +32,8 @@ public class Euler implements Solver {
         ballVector = speedLimit(ballVector);
 
         while (Math.abs(ballVector[2]) > 0.00001 || Math.abs(ballVector[3]) > 0.00001) {
+            drowned = false;
+            outOfBounds = false;
             uk = read.muk;
             us = read.mus;
             if ((ballVector[0] >= read.sandPitXMin && ballVector[0] <= read.sandPitXMin)
@@ -55,15 +59,16 @@ public class Euler implements Solver {
                 tempBallVector[0] = initialX;
                 tempBallVector[1] = initialY;
                 System.arraycopy(tempBallVector, 0, ballVector, 0, ballVector.length);
-
-                JOptionPane.showMessageDialog(new JFrame(),"Ball under water");
+                drowned = true;
+                //JOptionPane.showMessageDialog(new JFrame(),"Ball under water");
                 return tempBallVector;
             }
             if (tempBallVector[0]>20 || tempBallVector[0]<-20 || tempBallVector[1]>20 || tempBallVector[1]<-20) {
                 tempBallVector[0] = initialX;
                 tempBallVector[1] = initialY;
                 System.arraycopy(tempBallVector, 0, ballVector, 0, ballVector.length);
-                JOptionPane.showMessageDialog(new JFrame(),"Ball out of bounds");
+                outOfBounds = true;
+                //JOptionPane.showMessageDialog(new JFrame(),"Ball out of bounds");
                 return tempBallVector;
             }
 
@@ -80,8 +85,8 @@ public class Euler implements Solver {
                 }
             }
         }
-        System.out.println(ballVector[0]);
-        System.out.println(ballVector[1]);
+//        System.out.println(ballVector[0]);
+//        System.out.println(ballVector[1]);
         return tempBallVector;
     }
 
@@ -108,5 +113,13 @@ public class Euler implements Solver {
         }else{
             acceleration = new SteepAcceleration();
         }
+    }
+
+    public boolean getDrowned() {
+        return drowned;
+    }
+
+    public boolean getOutOfBounds() {
+        return outOfBounds;
     }
 }

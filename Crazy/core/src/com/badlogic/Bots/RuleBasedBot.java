@@ -1,12 +1,15 @@
 package com.badlogic.Bots;
 
 import com.badlogic.FileHandling.FileReader;
+import com.badlogic.PhyiscSolvers.Euler;
 import com.badlogic.PhyiscSolvers.Rk4;
+
+import java.util.Arrays;
 
 public class RuleBasedBot {
 
     private FileReader r = new FileReader();
-    private final Rk4 rk4 = new Rk4();
+    private final Euler rk4 = new Euler();
     private final double holeX = r.xt;
     private final double holeY = r.yt;
     private final double pi = 3.14159265359;
@@ -25,15 +28,16 @@ public class RuleBasedBot {
 
         if (isDrowned(arrXt)){
             System.out.println("Drown");
-            return rk4.solve(waterScenario(arrXt));
+            waterScenario(arrXt);
         }
 
         if (overshoot(arrXt)){
             System.out.println("Overshoot");
-            return rk4.solve(overshootScenario(arrXt));
+            overshootScenario(arrXt);
         }
 
         while (isOutOfBounds(arrXt)) {
+            System.out.println("OOB");
             arrXt[2] = xVel * 0.9;
             arrXt[3] = yVel * 0.9;
             xVel = arrXt[2];
@@ -41,19 +45,22 @@ public class RuleBasedBot {
         }
 
         System.out.println("Neither");
-        return rk4.solve(arrXt);
+        rk4.solve(arrXt);
+        System.out.println("xp "+arrXt[0]);
+        System.out.println("yp "+arrXt[1]);
+        return arrXt;
     }
 
-    private double[] waterScenario(double[] arrXt){
-        double xVel = holeX - arrXt[0];
-        double yVel = holeY - arrXt[1];
+    private void waterScenario(double[] arrXt){
+        double xVel = arrXt[2];
+        double yVel = arrXt[3];
 
         while (isDrowned(arrXt) && notInHole(arrXt)) {
-            arrXt[2] = xVel * Math.cos(15*(pi/180) * arrXt[0])
-                    - yVel * Math.sin(15*(pi/180) * arrXt[1]);
+            arrXt[2] = xVel * Math.cos(5*(pi/180) * arrXt[0])
+                    - yVel * Math.sin(5*(pi/180) * arrXt[1]);
 
-            arrXt[3] = xVel * Math.sin(15*(pi/180) * arrXt[0])
-                    + yVel * Math.cos(15*(pi/180) * arrXt[1]);
+            arrXt[3] = xVel * Math.sin(5*(pi/180) * arrXt[0])
+                    + yVel * Math.cos(5*(pi/180) * arrXt[1]);
 
             xVel = arrXt[2];
             yVel = arrXt[3];
@@ -68,18 +75,26 @@ public class RuleBasedBot {
 
         System.out.println("xv "+xVel);
         System.out.println("yv "+yVel);
-        return arrXt;
     }
 
-    private double[] overshootScenario(double[] arrXt){
-        double xVel = holeX - arrXt[0];
-        double yVel = holeY - arrXt[1];
+    private void overshootScenario(double[] arrXt){
+        double xVel = arrXt[2];
+        double yVel = arrXt[3];
+        double[] testDrowning = new double[4];
 
         while (overshoot(arrXt) && notInHole(arrXt)){
-            arrXt[2] = xVel * 0.9;
-            arrXt[3] = yVel * 0.9;
-            xVel = arrXt[2];
-            yVel = arrXt[3];
+            System.arraycopy(arrXt, 0, testDrowning, 0, arrXt.length);
+            testDrowning[2] = xVel * 0.9;
+            testDrowning[3] = yVel * 0.9;
+            if (!isDrowned(testDrowning)) {
+                arrXt[2] = xVel * 0.9;
+                arrXt[3] = yVel * 0.9;
+                xVel = arrXt[2];
+                yVel = arrXt[3];
+            }
+            else {
+                break;
+            }
         }
 
         while (isOutOfBounds(arrXt)) {
@@ -91,7 +106,6 @@ public class RuleBasedBot {
 
         System.out.println("xv "+xVel);
         System.out.println("yv "+yVel);
-        return arrXt;
     }
 
     private boolean overshoot(double[] arrXt){
@@ -100,7 +114,8 @@ public class RuleBasedBot {
         double[] temp = simulate(arrXt);
 
         return !((oldXVel >= 0 && holeX - temp[0] >= 0 || oldXVel < 0 && holeX - temp[0] < 0)
-                && (oldYVel >= 0 && holeY - temp[1] >= 0 || oldYVel < 0 && holeY - temp[1] < 0));
+                && (oldYVel >= 0 && holeY - temp[1] >= 0 || oldYVel < 0 && holeY - temp[1] < 0))
+                && !isDrowned(temp);
     }
 
     private boolean isOutOfBounds(double[] arrXt) {
@@ -124,10 +139,7 @@ public class RuleBasedBot {
 
     private double[] simulate(double[] arrXt){
         double[] temp = new double[4];
-        temp[0] = arrXt[0];
-        temp[1] = arrXt[1];
-        temp[2] = arrXt[2];
-        temp[3] = arrXt[3];
+        System.arraycopy(arrXt, 0, temp, 0, arrXt.length);
         rk4.solve(temp);
         return temp;
     }

@@ -21,7 +21,7 @@ public class Tree {
 
     public void createTree() {
         modelBuilderTree = new ModelBuilder();
-        modelTree = modelBuilderTree.createCone((treeRadius*2),5f,1f,4,
+        modelTree = modelBuilderTree.createCone((treeRadius*2),5f,3f,5,
                 new Material(ColorAttribute.createDiffuse(Color.FOREST)),
                 (VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal));
 

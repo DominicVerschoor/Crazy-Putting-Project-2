@@ -1,5 +1,7 @@
 package com.badlogic.GameScreens;
 
+import com.badlogic.GameLogistics.ShootAI;
+import com.badlogic.GameLogistics.ShootUser;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Cursor;
@@ -92,7 +94,9 @@ public class MainMenuScreen implements Screen {
             if(Gdx.input.isTouched()){
                 this.dispose();
                 userPlaying =true;
-                game.setScreen(new GameField(game));
+                GameScreen gameScreen = new GameScreen(game, new ShootUser());
+                gameScreen.setShooter(new ShootUser());
+                game.setScreen(gameScreen);
             };
         }
         //OPTIONS BUTTON
@@ -108,7 +112,9 @@ public class MainMenuScreen implements Screen {
             Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
             if(Gdx.input.isTouched()){
                 botPlaying=true;
-                game.setScreen(new BotGameScreen(game));
+                GameScreen gameScreen = new GameScreen(game, new ShootAI());
+                gameScreen.setShooter(new ShootAI());
+                game.setScreen(gameScreen);
             };
         }
         //EXIT BUTTON

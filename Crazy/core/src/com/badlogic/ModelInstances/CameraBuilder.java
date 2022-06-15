@@ -1,6 +1,7 @@
 package com.badlogic.ModelInstances;
 
-import com.badlogic.GameScreens.GameField;
+import com.badlogic.GameScreens.GameScreen;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Camera;
@@ -21,7 +22,7 @@ public class CameraBuilder {
     public void cameraPerspective(){
         cameraPerspective=new PerspectiveCamera(zoom, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         cameraPerspective.position.set(cameraX,cameraZ,cameraY);
-        cameraPerspective.lookAt(GameField.ballCoordinatesX,0, GameField.ballCoordinatesY);
+        cameraPerspective.lookAt(GameScreen.ballCoordinatesX,0, GameScreen.ballCoordinatesY);
         cameraPerspective.near = 0.1f;
         cameraPerspective.far = 300f;
     }
