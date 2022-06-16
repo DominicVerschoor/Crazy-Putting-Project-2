@@ -131,7 +131,7 @@ public class Rk2 implements Solver {
         }
     }
 
-    private double[] k1Calculations(double[] ballVector) {
+    double[] k1Calculations(double[] ballVector) {
         double[] k1Final = new double[6];
         k1Final[0] = ballVector[0];
         k1Final[1] = ballVector[1];
@@ -144,7 +144,7 @@ public class Rk2 implements Solver {
         return k1Final;
     }
 
-    private double[] k2Calculations(double[] k1) {
+    double[] k2Calculations(double[] k1) {
         double[] k2Final = new double[6];
         k2Final[0] = k1[0] + (h * k1[2]) * (2.0 / 3);
         k2Final[1] = k1[1] + (h * k1[3]) * (2.0 / 3);
@@ -157,7 +157,7 @@ public class Rk2 implements Solver {
         return k2Final;
     }
 
-    private double[] finalCalculations(double[] k1, double[] k2) {
+    double[] finalCalculations(double[] k1, double[] k2) {
         double[] finalCalc = new double[4];
         finalCalc[0] = (k1[2] * h * (1 / 4.0)) + (3 / 4.0) * (k2[2] * h);
         finalCalc[1] = (k1[3] * h * (1 / 4.0)) + (3 / 4.0) * (k2[3] * h);
