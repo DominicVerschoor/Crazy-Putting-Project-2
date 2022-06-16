@@ -7,7 +7,7 @@ import com.badlogic.PhyiscSolvers.Rk2;
 
 import java.util.Random;
 
-public class AdvancedHillClibing{
+public class AdvancedHillClimbing {
     int MAX_ITER = 2000;
 
     Rk2 rk2 = new Rk2();
@@ -25,7 +25,7 @@ public class AdvancedHillClibing{
     }
 
 
-    public double[]hillClibing(double x, double y){
+    public double[] hillClimbing(double x, double y){
         double vx = random.nextDouble()*5;
         double vy= Math.sqrt(Math.pow(5, 2) - Math.pow(vx, 2));
         currentVec = new Vectors(vx,vy);
@@ -37,9 +37,9 @@ public class AdvancedHillClibing{
         int currentItr = 0;
         while (currentItr < MAX_ITER) {
 
-            Vectors[] tmp = new Vectors[7];
+            Vectors[] tmp = new Vectors[8];
 
-            for (int i = 0; i < 7; i++) {
+            for (int i = 0; i < 8; i++) {
 
                 switch (i) {
                     case 0:

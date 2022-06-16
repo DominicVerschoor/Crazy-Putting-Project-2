@@ -4,25 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0251d20a-eded-4767-9e0a-c1b9f43dc18d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/hs_err_pid14944.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hs_err_pid16532.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hs_err_pid20620.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hs_err_pid23904.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hs_err_pid24364.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hs_err_pid8292.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hs_err_pid8392.log" afterDir="false" />
+    <list default="true" id="0251d20a-eded-4767-9e0a-c1b9f43dc18d" name="Changes" comment="trees :)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Bots/AdvancedHillClibing.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Bots/AdvancedHillClibing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Bots/RuleBasedBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Bots/RuleBasedBot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Bots/AdvancedHillClibing.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Bots/AdvancedHillClimbing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/ShootAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/ShootAI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/TerrainInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/TerrainInput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/ModelInstances/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/ModelInstances/Tree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Euler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Euler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Rk2.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Rk2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Rk4.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Rk4.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Solver.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Solver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Crazy/desktop/build/resources/main/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/desktop/build/resources/main/input.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid10828.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid12460.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid1260.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid1284.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid13608.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid14944.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid15996.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid16532.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid17448.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid19372.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid2040.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid20536.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid20620.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid21088.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid21964.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid22300.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid23904.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid24340.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid24364.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid7172.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid7408.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid8292.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid8392.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid8948.log" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,29 +180,19 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Crazy/core/src/com/badlogic/Bots/RuleBasedBot.java</url>
-          <line>57</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Crazy/core/src/com/badlogic/Bots/RuleBasedBot.java</url>
-          <line>84</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/ShootAI.java</url>
-          <line>28</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/ShootAI.java</url>
           <line>50</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Crazy/core/src/com/badlogic/Bots/AdvancedHillClibing.java</url>
+          <url>file://$PROJECT_DIR$/Crazy/core/src/com/badlogic/Bots/AdvancedHillClimbing.java</url>
           <line>37</line>
           <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/ShootAI.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

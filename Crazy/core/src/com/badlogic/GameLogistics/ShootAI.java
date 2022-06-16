@@ -1,6 +1,6 @@
 package com.badlogic.GameLogistics;
 
-import com.badlogic.Bots.AdvancedHillClibing;
+import com.badlogic.Bots.AdvancedHillClimbing;
 import com.badlogic.Bots.BasicBruteForce;
 import com.badlogic.Bots.RuleBasedBot;
 import com.badlogic.GameScreens.*;
@@ -8,13 +8,13 @@ import com.badlogic.PhyiscSolvers.Rk2;
 import com.badlogic.PhyiscSolvers.Rk4;
 
 public class ShootAI implements Shoot {
-    AdvancedHillClibing advancedHillClibing = new AdvancedHillClibing();
+    AdvancedHillClimbing advancedHillClimbing = new AdvancedHillClimbing();
     BasicBruteForce bruteForceRule = new BasicBruteForce();
     RuleBasedBot ruleBasedBot = new RuleBasedBot();
     Rk2 rk2 = new Rk2();
     Rk4 rk4 = new Rk4();
     Win win = new Win();
-    private final double errorRate = 0.01;
+    private final double errorRate = -0.02;
     static public double[] velPosArray = new double[4];
 
     @Override
@@ -48,7 +48,7 @@ public class ShootAI implements Shoot {
             if (OptionsGameScreen.hillClimbing) {
                 //TODO
                 System.out.println("Hill Climbing Bot");
-                velPosArray = advancedHillClibing.hillClibing(GameScreen.ballCoordinatesX, GameScreen.ballCoordinatesY);
+                velPosArray = advancedHillClimbing.hillClimbing(GameScreen.ballCoordinatesX, GameScreen.ballCoordinatesY);
                 //addError(velPosArray);
                 velPosArray = rk4.solve(velPosArray);
                 GameScreen.ballCoordinatesX =(float) velPosArray[0];
