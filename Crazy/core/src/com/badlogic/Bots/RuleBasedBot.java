@@ -2,24 +2,27 @@ package com.badlogic.Bots;
 
 import com.badlogic.FileHandling.FileReader;
 import com.badlogic.PhyiscSolvers.Euler;
-import com.badlogic.PhyiscSolvers.Rk4;
-
-import java.util.Arrays;
 
 public class RuleBasedBot {
 
-    private FileReader r = new FileReader();
-    private final Euler rk4 = new Euler();
+    private final FileReader r = new FileReader();
+    private final Euler euler = new Euler();
+    private final double reductionRate = 0.95;
     private final double holeX = r.xt;
     private final double holeY = r.yt;
     private final double pi = 3.14159265359;
 
     public double[] shoot(double xpos, double ypos) {
-        rk4.accelerationType(true);
+        euler.accelerationType(true);
 
         double[] arrXt = new double[4];
         double xVel = holeX - xpos;
         double yVel = holeY - ypos;
+
+        while (Math.abs(xVel) > 5 || Math.abs(yVel) > 5 ){
+            xVel = xVel * reductionRate;
+            yVel = yVel * reductionRate;
+        }
 
         arrXt[0] = xpos;
         arrXt[1] = ypos;
@@ -38,16 +41,12 @@ public class RuleBasedBot {
 
         while (isOutOfBounds(arrXt)) {
             System.out.println("OOB");
-            arrXt[2] = xVel * 0.9;
-            arrXt[3] = yVel * 0.9;
+            arrXt[2] = xVel * reductionRate;
+            arrXt[3] = yVel * reductionRate;
             xVel = arrXt[2];
             yVel = arrXt[3];
         }
 
-        System.out.println("Neither");
-        rk4.solve(arrXt);
-        System.out.println("xp "+arrXt[0]);
-        System.out.println("yp "+arrXt[1]);
         return arrXt;
     }
 
@@ -67,8 +66,8 @@ public class RuleBasedBot {
         }
 
         while (isOutOfBounds(arrXt)) {
-            arrXt[2] = xVel * 0.9;
-            arrXt[3] = yVel * 0.9;
+            arrXt[2] = xVel * reductionRate;
+            arrXt[3] = yVel * reductionRate;
             xVel = arrXt[2];
             yVel = arrXt[3];
         }
@@ -84,11 +83,11 @@ public class RuleBasedBot {
 
         while (overshoot(arrXt) && notInHole(arrXt)){
             System.arraycopy(arrXt, 0, testDrowning, 0, arrXt.length);
-            testDrowning[2] = xVel * 0.9;
-            testDrowning[3] = yVel * 0.9;
+            testDrowning[2] = xVel * reductionRate;
+            testDrowning[3] = yVel * reductionRate;
             if (!isDrowned(testDrowning)) {
-                arrXt[2] = xVel * 0.9;
-                arrXt[3] = yVel * 0.9;
+                arrXt[2] = xVel * reductionRate;
+                arrXt[3] = yVel * reductionRate;
                 xVel = arrXt[2];
                 yVel = arrXt[3];
             }
@@ -98,8 +97,8 @@ public class RuleBasedBot {
         }
 
         while (isOutOfBounds(arrXt)) {
-            arrXt[2] = xVel * 0.9;
-            arrXt[3] = yVel * 0.9;
+            arrXt[2] = xVel * reductionRate;
+            arrXt[3] = yVel * reductionRate;
             xVel = arrXt[2];
             yVel = arrXt[3];
         }
@@ -115,17 +114,17 @@ public class RuleBasedBot {
 
         return !((oldXVel >= 0 && holeX - temp[0] >= 0 || oldXVel < 0 && holeX - temp[0] < 0)
                 && (oldYVel >= 0 && holeY - temp[1] >= 0 || oldYVel < 0 && holeY - temp[1] < 0))
-                && !isDrowned(temp);
+                && !isDrowned(temp) || isOutOfBounds(arrXt);
     }
 
     private boolean isOutOfBounds(double[] arrXt) {
         simulate(arrXt);
-        return rk4.getOutOfBounds();
+        return euler.getOutOfBounds();
     }
 
     private boolean isDrowned(double[] arrXt) {
         simulate(arrXt);
-        return rk4.getDrowned();
+        return euler.getDrowned();
     }
 
     private boolean notInHole(double[] arrXt){
@@ -140,7 +139,7 @@ public class RuleBasedBot {
     private double[] simulate(double[] arrXt){
         double[] temp = new double[4];
         System.arraycopy(arrXt, 0, temp, 0, arrXt.length);
-        rk4.solve(temp);
+        euler.solve(temp);
         return temp;
     }
 }

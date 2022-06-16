@@ -14,6 +14,7 @@ public class ShootAI implements Shoot {
     Rk2 rk2 = new Rk2();
     Rk4 rk4 = new Rk4();
     Win win = new Win();
+    private final double errorRate = 0.01;
     static public double[] velPosArray = new double[4];
 
     @Override
@@ -21,22 +22,34 @@ public class ShootAI implements Shoot {
         rk4.accelerationType(true);
         win.setShooter(this);
         if (Controller.shoot){
-            System.out.printf("im in shoot");
-            if (OptionsGameScreen.basicBot) {
-                System.out.println("Basic Bot");
-                //velPosArray = bruteForceRule.basicShooting(BotGameScreen.ballCoordinatesX, BotGameScreen.ballCoordinatesY);
-                System.out.println("x "+ GameScreen.ballCoordinatesX + "y "+ GameScreen.ballCoordinatesY);
+            System.out.print("im in shoot");
+            if (OptionsGameScreen.ruleBasedBot) {
+                System.out.println("Rule Based Bot");
+                System.out.println("x "+ GameScreen.ballCoordinatesX + " y "+ GameScreen.ballCoordinatesY);
                 velPosArray = ruleBasedBot.shoot(GameScreen.ballCoordinatesX, GameScreen.ballCoordinatesY);
+                addError(velPosArray);
+                velPosArray = rk4.solve(velPosArray);
                 GameScreen.ballCoordinatesX = (float) velPosArray[0];
                 GameScreen.ballCoordinatesY = (float) velPosArray[1];
                 Controller.update(velPosArray[0],velPosArray[1]);
                 Controller.shoot = false;
                 win.winCondition();
             }
-            if (OptionsGameScreen.smartBot) {
+            if (OptionsGameScreen.bruteForceBot) {
+                System.out.println("Brute Force Bot");
+                System.out.println("x "+ GameScreen.ballCoordinatesX + " y "+ GameScreen.ballCoordinatesY);
+                velPosArray = bruteForceRule.basicShooting(GameScreen.ballCoordinatesX, GameScreen.ballCoordinatesY);
+                GameScreen.ballCoordinatesX = (float) velPosArray[0];
+                GameScreen.ballCoordinatesY = (float) velPosArray[1];
+                Controller.update(velPosArray[0],velPosArray[1]);
+                Controller.shoot = false;
+                win.winCondition();
+            }
+            if (OptionsGameScreen.hillClimbing) {
                 //TODO
-                System.out.println("Advanced Bot");
+                System.out.println("Hill Climbing Bot");
                 velPosArray = advancedHillClibing.hillClibing(GameScreen.ballCoordinatesX, GameScreen.ballCoordinatesY);
+                addError(velPosArray);
                 velPosArray = rk4.solve(velPosArray);
                 GameScreen.ballCoordinatesX =(float) velPosArray[0];
                 GameScreen.ballCoordinatesY =(float) velPosArray[1];
@@ -67,5 +80,11 @@ public class ShootAI implements Shoot {
     @Override
     public boolean isBot() {
         return true;
+    }
+
+    public void addError(double[] ball){
+        for (int i = 0; i < ball.length; i++) {
+            ball[i] = ball[i] + errorRate;
+        }
     }
 }

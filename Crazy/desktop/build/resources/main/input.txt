@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 x0 = 0
 y0 = 0
 xt = -1
 yt = -1
+=======
+x0 = 5
+y0 = 5
+xt = -5
+yt = -5
+>>>>>>> 6a7bf598f66c65adb39770e3f85eb18a9f29ddf1
 r = 0.5
 muk = 0.05
 mus = 0.2
@@ -9,7 +16,11 @@ sandPitXMin =100
 sandPitXMax =100
 sandPitYMin =100
 sandPitYMax =100
+<<<<<<< HEAD
 h(x,y) = 0.1*x+1
+=======
+h(x,y) = 0.4*(0.9-Math.exp(-(Math.pow(x,2)+Math.pow(y,2))/8))
+>>>>>>> 6a7bf598f66c65adb39770e3f85eb18a9f29ddf1
 mukk = 0.1
 muss = 0.2
 treeX = 19
