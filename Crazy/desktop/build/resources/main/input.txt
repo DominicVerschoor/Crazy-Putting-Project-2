@@ -1,9 +1,9 @@
-x0 = -5
-y0 = -5
-xt = 5
-yt = 5
-r = 0.5
-muk = 0.1
+x0 = -3
+y0 = 0
+xt = 4
+yt = 1
+r = 0.15
+muk = 0.08
 mus = 0.2
 sandPitXMin =100
 sandPitXMax =100

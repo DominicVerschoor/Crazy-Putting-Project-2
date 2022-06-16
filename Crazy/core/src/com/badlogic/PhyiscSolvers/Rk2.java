@@ -62,7 +62,7 @@ public class Rk2 implements Solver {
                 outOfBounds = true;
                 return resetLocation(ballVector, initialX, initialY);
             }
-            if (isHittingTree(ballVector[0], (double)treeX, ballVector[1], (double)treeY, (double)treeRadius)) {
+            if (isHittingTree(ballVector[0], (double) treeX, ballVector[1], (double) treeY, (double) treeRadius)) {
                 reverseVelocity(ballVector);
                 System.out.println("Boing");
             }
@@ -106,10 +106,10 @@ public class Rk2 implements Solver {
     }
 
     @Override
-    public void accelerationType(boolean buttonInput){
-        if (buttonInput){
+    public void accelerationType(boolean buttonInput) {
+        if (buttonInput) {
             acceleration = new BasicAcceleration();
-        }else{
+        } else {
             acceleration = new SteepAcceleration();
         }
     }
@@ -126,7 +126,7 @@ public class Rk2 implements Solver {
 
     @Override
     public boolean isHittingTree(double x1, double x2, double y1, double y2, double radius) {
-        return Math.sqrt((x1 - x2)*(x1 - x2) + (y1 - y2)*(y1 - y2)) <= radius;
+        return Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)) <= radius;
     }
 
     @Override
@@ -170,7 +170,7 @@ public class Rk2 implements Solver {
         return k1Final;
     }
 
-    private double[] k2Calculations(double[] k1) {
+    double[] k2Calculations(double[] k1) {
         double[] k2Final = new double[6];
         k2Final[0] = k1[0] + (h * k1[2]) * (2.0 / 3);
         k2Final[1] = k1[1] + (h * k1[3]) * (2.0 / 3);
@@ -183,7 +183,7 @@ public class Rk2 implements Solver {
         return k2Final;
     }
 
-    private double[] finalCalculations(double[] k1, double[] k2) {
+    double[] finalCalculations(double[] k1, double[] k2) {
         double[] finalCalc = new double[4];
         finalCalc[0] = (k1[2] * h * (1 / 4.0)) + (3 / 4.0) * (k2[2] * h);
         finalCalc[1] = (k1[3] * h * (1 / 4.0)) + (3 / 4.0) * (k2[3] * h);
@@ -200,4 +200,5 @@ public class Rk2 implements Solver {
     public boolean getOutOfBounds() {
         return outOfBounds;
     }
+
 }
