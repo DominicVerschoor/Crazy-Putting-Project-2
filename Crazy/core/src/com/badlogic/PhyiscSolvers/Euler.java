@@ -27,17 +27,15 @@ public class Euler implements Solver {
     @Override
     public double[] solve(double[] ballVector) {
 
-        double initialX=ballVector[0];
-        double initialY=ballVector[1];
+        double initialX = ballVector[0];
+        double initialY = ballVector[1];
         ballVector = speedLimit(ballVector);
 
         while (Math.abs(ballVector[2]) > 0.00001 || Math.abs(ballVector[3]) > 0.00001) {
-            drowned = false;
-            outOfBounds = false;
             uk = read.muk;
             us = read.mus;
             if ((ballVector[0] >= read.sandPitXMin && ballVector[0] <= read.sandPitXMin)
-                    && (ballVector[1] >= read.sandPitXMin && ballVector[1] <= read.sandPitXMin)){
+                    && (ballVector[1] >= read.sandPitXMin && ballVector[1] <= read.sandPitXMin)) {
                 uk = read.muks;
                 us = read.muss;
             }
@@ -48,27 +46,24 @@ public class Euler implements Solver {
             double partialX = Derive.partialX(tempBallVector[0], tempBallVector[1]);
             double partialY = Derive.partialY(tempBallVector[0], tempBallVector[1]);
 
-            double accX = acceleration.accelerationEquationX(ballVector[2],ballVector[3],partialX, partialY);
-            double accY = acceleration.accelerationEquationY(ballVector[2],ballVector[3],partialX, partialY);
-
+            double accX = acceleration.accelerationEquationX(ballVector[2], ballVector[3], partialX, partialY);
+            double accY = acceleration.accelerationEquationY(ballVector[2], ballVector[3], partialX, partialY);
 
             tempBallVector[2] = ballVector[2] + h * accX;
             tempBallVector[3] = ballVector[3] + h * accY;
-
             if (function.terrain(tempBallVector[0], tempBallVector[1]) < 0) {
                 tempBallVector[0] = initialX;
                 tempBallVector[1] = initialY;
                 System.arraycopy(tempBallVector, 0, ballVector, 0, ballVector.length);
-                drowned = true;
-                //JOptionPane.showMessageDialog(new JFrame(),"Ball under water");
+
+                JOptionPane.showMessageDialog(new JFrame(), "Ball under water");
                 return tempBallVector;
             }
-            if (tempBallVector[0]>20 || tempBallVector[0]<-20 || tempBallVector[1]>20 || tempBallVector[1]<-20) {
+            if (tempBallVector[0] > 20 || tempBallVector[0] < -20 || tempBallVector[1] > 20 || tempBallVector[1] < -20) {
                 tempBallVector[0] = initialX;
                 tempBallVector[1] = initialY;
                 System.arraycopy(tempBallVector, 0, ballVector, 0, ballVector.length);
-                outOfBounds = true;
-                //JOptionPane.showMessageDialog(new JFrame(),"Ball out of bounds");
+                JOptionPane.showMessageDialog(new JFrame(), "Ball out of bounds");
                 return tempBallVector;
             }
 
@@ -85,8 +80,8 @@ public class Euler implements Solver {
                 }
             }
         }
-//        System.out.println(ballVector[0]);
-//        System.out.println(ballVector[1]);
+        System.out.println(ballVector[0]);
+        System.out.println(ballVector[1]);
         return tempBallVector;
     }
 
@@ -107,6 +102,7 @@ public class Euler implements Solver {
         return ballVector;
     }
 
+    @Override
     public void accelerationType(boolean buttonInput){
         if (buttonInput){
             acceleration = new BasicAcceleration();
@@ -114,6 +110,7 @@ public class Euler implements Solver {
             acceleration = new SteepAcceleration();
         }
     }
+
 
     public boolean getDrowned() {
         return drowned;

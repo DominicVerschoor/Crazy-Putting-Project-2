@@ -3,7 +3,6 @@ package com.badlogic.Bots;
 import com.badlogic.FileHandling.FileReader;
 import com.badlogic.PhyiscSolvers.Rk4;
 
-
 public class BasicBruteForce {
 
     private static FileReader r = new FileReader();
@@ -46,10 +45,7 @@ public class BasicBruteForce {
             arrXt = rk4.solve(arrXt);
 
             if (distance(save[0], save[1], holeX, holeY) > distance(arrXt[0], arrXt[1], holeX, holeY)) {
-                save[0] = arrXt[0];
-                save[1] = arrXt[1];
-                save[2] = arrXt[2];
-                save[3] = arrXt[3];
+                System.arraycopy(arrXt, 0, save, 0, arrXt.length);
             }
         }
 
@@ -67,10 +63,7 @@ public class BasicBruteForce {
             arrXt = rk4.solve(arrXt);
 
             if (distance(save[0], save[1], holeX, holeY) > distance(arrXt[0], arrXt[1], holeX, holeY)) {
-                save[0] = arrXt[0];
-                save[1] = arrXt[1];
-                save[2] = arrXt[2];
-                save[3] = arrXt[3];
+                System.arraycopy(arrXt, 0, save, 0, arrXt.length);
             }
         }
 
@@ -88,10 +81,7 @@ public class BasicBruteForce {
             arrXt = rk4.solve(arrXt);
 
             if (distance(save[0], save[1], holeX, holeY) > distance(arrXt[0], arrXt[1], holeX, holeY)) {
-                save[0] = arrXt[0];
-                save[1] = arrXt[1];
-                save[2] = arrXt[2];
-                save[3] = arrXt[3];
+                System.arraycopy(arrXt, 0, save, 0, arrXt.length);
             }
         }
 
@@ -102,7 +92,6 @@ public class BasicBruteForce {
         System.out.println("EndX: " + xpos + " EndY: " + ypos);
         System.out.println("EndXV: " + xvel + " EndYV: " + yvel);
         System.out.println();
-
         return save;
     }
 

@@ -22,8 +22,9 @@ public class OptionsGameScreen implements Screen {
     public static boolean RK4 =true;
     public static boolean Euler =false;
     public static boolean randomBot = false;
-    public static boolean basicBot = true;
-    public static boolean smartBot = false;
+    public static boolean bruteForceBot = false;
+    public static boolean ruleBasedBot = true;
+    public static boolean hillClimbing = false;
 
     public OptionsGameScreen(App game) {
         this.game=game;
@@ -179,8 +180,8 @@ public class OptionsGameScreen implements Screen {
             else if (Gdx.input.getX() < 500 && Gdx.input.getX() > 390 && Gdx.input.getY() > 500 && Gdx.input.getY() < 537) {
                 Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
                 if (Gdx.input.isTouched()) {
-                    basicBot = true;
-                    smartBot = false;
+                    ruleBasedBot = true;
+                    hillClimbing = false;
                     randomBot = false;
                 }
             }
@@ -188,8 +189,8 @@ public class OptionsGameScreen implements Screen {
             else if (Gdx.input.getX() < 425 && Gdx.input.getX() > 295 && Gdx.input.getY() > 535 && Gdx.input.getY() < 567) {
                 Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
                 if (Gdx.input.isTouched()) {
-                    basicBot = false;
-                    smartBot = false;
+                    ruleBasedBot = false;
+                    hillClimbing = false;
                     randomBot = true;
                 }
             }
@@ -197,8 +198,8 @@ public class OptionsGameScreen implements Screen {
             else if (Gdx.input.getX() < 376 && Gdx.input.getX() > 227 && Gdx.input.getY() > 500 && Gdx.input.getY() < 537) {
                 Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
                 if (Gdx.input.isTouched()) {
-                    basicBot = false;
-                    smartBot = true;
+                    ruleBasedBot = false;
+                    hillClimbing = true;
                     randomBot = false;
                 }
             }
