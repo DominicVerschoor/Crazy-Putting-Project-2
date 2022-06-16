@@ -12,6 +12,12 @@ public class Rk2 implements Solver {
     private double uk = read.muk;     // kinetic friction coefficient of grass
     private double us = read.mus;
     TerrainInput function = new TerrainInput();
+    private boolean drowned = false;
+    private boolean outOfBounds = false;
+
+    private float treeX = read.treeX;
+    private float treeY = read.treeY;
+    private float treeRadius = 2f;
 
     /**
      * @param ballVector an array that contains x and y positions of the ball and x and y input velocities
@@ -25,13 +31,14 @@ public class Rk2 implements Solver {
         while (Math.abs(ballVector[2]) > 0.001 || Math.abs(ballVector[3]) > 0.001) {
             uk = read.muk;
             us = read.mus;
+            drowned = false;
+            outOfBounds = false;
             if ((ballVector[0] >= read.sandPitXMin && ballVector[0] <= read.sandPitXMin)
                     && (ballVector[1] >= read.sandPitXMin && ballVector[1] <= read.sandPitXMin)) {
                 uk = read.muks;
                 us = read.muss;
                 System.out.println("ew sand");
             }
-
 
             double[] k1 = k1Calculations(ballVector);
             double[] k2 = k2Calculations(k1);
@@ -45,17 +52,22 @@ public class Rk2 implements Solver {
             double partialx = derive.partialX(ballVector[0], ballVector[1]);
             double partialy = derive.partialX(ballVector[0], ballVector[1]);
 
-            if (function.terrain(ballVector[0], ballVector[1]) < 0) {
-                ballVector[0] = initialX;
-                ballVector[1] = initialY;
+            if (isUnderWater(ballVector)) {
                 System.out.println("HELP ME im unda tha wata ");
-                return ballVector;
+                drowned = true;
+                return resetLocation(ballVector, initialX, initialY);
             }
-            if (ballVector[0] > 20 || ballVector[0] < -20 || ballVector[1] > 20 || ballVector[1] < -20) {
-                ballVector[0] = initialX;
-                ballVector[1] = initialY;
+            if (isOutOfBounds(ballVector)) {
                 System.out.println("BALL OUT OF BOUNDS");
-                return ballVector;
+                outOfBounds = true;
+                return resetLocation(ballVector, initialX, initialY);
+            }
+            if (isHittingTree(ballVector[0], (double)treeX, ballVector[1], (double)treeY, (double)treeRadius)) {
+                reverseVelocity(ballVector);
+                System.out.println("Boing");
+            }
+            if (isRollingDown(ballVector, partialx, partialy)) {
+                rollDown(ballVector, partialx, partialy);
             }
 
             if ((Math.abs(ballVector[2]) <= 0.001 && Math.abs(ballVector[3]) <= 0.001) && (Math.abs(partialx) > 0.001 || Math.abs(partialy) > 0.001)) {
@@ -102,6 +114,49 @@ public class Rk2 implements Solver {
         }
     }
 
+    @Override
+    public boolean isUnderWater(double[] ballVector) {
+        return function.terrain(ballVector[0], ballVector[1]) < 0;
+    }
+
+    @Override
+    public boolean isOutOfBounds(double[] ballVector) {
+        return Math.abs(ballVector[0]) > 20 || Math.abs(ballVector[1]) > 20;
+    }
+
+    @Override
+    public boolean isHittingTree(double x1, double x2, double y1, double y2, double radius) {
+        return Math.sqrt((x1 - x2)*(x1 - x2) + (y1 - y2)*(y1 - y2)) <= radius;
+    }
+
+    @Override
+    public boolean isRollingDown(double[] ballVector, double partialX, double partialY) {
+        return (Math.abs(ballVector[2]) <= 0.00001 && Math.abs(ballVector[3]) <= 0.00001)
+                && (Math.abs(partialX) > 0.00001 || Math.abs(partialY) > 0.00001);
+    }
+
+    @Override
+    public double[] resetLocation(double[] ballVector, double initialX, double initialY) {
+        ballVector[0] = initialX;
+        ballVector[1] = initialY;
+        return ballVector;
+    }
+
+    @Override
+    public void rollDown(double[] ballVector, double partialx, double partialy) {
+        double sqrt = Math.sqrt(partialx * partialx + partialy * partialy);
+        if (!(us > sqrt)) {
+            ballVector[2] = h * -g * partialx + uk * g * partialx / sqrt;
+            ballVector[3] = h * -g * partialy + uk * g * partialy / sqrt;
+        }
+    }
+
+    @Override
+    public void reverseVelocity(double[] ballVector) {
+        ballVector[2] = -ballVector[2];
+        ballVector[3] = -ballVector[3];
+    }
+
     private double[] k1Calculations(double[] ballVector) {
         double[] k1Final = new double[6];
         k1Final[0] = ballVector[0];
@@ -136,5 +191,13 @@ public class Rk2 implements Solver {
         finalCalc[3] = (k1[5] * h * (1 / 4.0)) + (3 / 4.0) * (k2[5] * h);
 
         return finalCalc;
+    }
+
+    public boolean getDrowned() {
+        return drowned;
+    }
+
+    public boolean getOutOfBounds() {
+        return outOfBounds;
     }
 }

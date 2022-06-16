@@ -1,19 +1,19 @@
 package com.badlogic.Bots;
 
 import com.badlogic.FileHandling.FileReader;
-import com.badlogic.PhyiscSolvers.Euler;
+import com.badlogic.PhyiscSolvers.Rk2;
 
 public class RuleBasedBot {
 
     private final FileReader r = new FileReader();
-    private final Euler euler = new Euler();
+    private final Rk2 rk2 = new Rk2();
     private final double reductionRate = 0.95;
     private final double holeX = r.xt;
     private final double holeY = r.yt;
     private final double pi = 3.14159265359;
 
     public double[] shoot(double xpos, double ypos) {
-        euler.accelerationType(true);
+        rk2.accelerationType(true);
 
         double[] arrXt = new double[4];
         double xVel = holeX - xpos;
@@ -46,6 +46,7 @@ public class RuleBasedBot {
             xVel = arrXt[2];
             yVel = arrXt[3];
         }
+
 
         return arrXt;
     }
@@ -119,12 +120,12 @@ public class RuleBasedBot {
 
     private boolean isOutOfBounds(double[] arrXt) {
         simulate(arrXt);
-        return euler.getOutOfBounds();
+        return rk2.getOutOfBounds();
     }
 
     private boolean isDrowned(double[] arrXt) {
         simulate(arrXt);
-        return euler.getDrowned();
+        return rk2.getDrowned();
     }
 
     private boolean notInHole(double[] arrXt){
@@ -139,7 +140,7 @@ public class RuleBasedBot {
     private double[] simulate(double[] arrXt){
         double[] temp = new double[4];
         System.arraycopy(arrXt, 0, temp, 0, arrXt.length);
-        euler.solve(temp);
+        rk2.solve(temp);
         return temp;
     }
 }

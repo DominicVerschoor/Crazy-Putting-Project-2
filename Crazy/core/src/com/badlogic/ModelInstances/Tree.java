@@ -1,4 +1,5 @@
 package com.badlogic.ModelInstances;
+
 import com.badlogic.FileHandling.FileReader;
 import com.badlogic.GameLogistics.TerrainInput;
 import com.badlogic.gdx.graphics.Color;
@@ -17,16 +18,17 @@ public class Tree {
     private TerrainInput function = new TerrainInput();
     private float TargetX = fileReader.treeX;
     private float TargetY = fileReader.treeY;
-    private float treeRadius =1f;
+    private float treeRadius = 2f;
 
     public void createTree() {
         modelBuilderTree = new ModelBuilder();
-        modelTree = modelBuilderTree.createCone((treeRadius*2),5f,3f,5,
+        modelTree = modelBuilderTree.createCone((treeRadius * 2), 5f, (treeRadius * 2), 10,
                 new Material(ColorAttribute.createDiffuse(Color.FOREST)),
                 (VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal));
 
-        modelInstanceTree = new ModelInstance(modelTree,TargetX,(float) function.terrain(TargetX,TargetY)+0.65f ,TargetY);
+        modelInstanceTree = new ModelInstance(modelTree, TargetX, (float) function.terrain(TargetX, TargetY) + 0.65f, TargetY);
 
-        modelInstanceTree.transform.setTranslation(TargetX,(float)function.terrain(TargetX,TargetY)+0.65f, TargetY);
+
+        modelInstanceTree.transform.setTranslation(TargetX, (float) function.terrain(TargetX, TargetY) + 0.65f, TargetY);
     }
 }

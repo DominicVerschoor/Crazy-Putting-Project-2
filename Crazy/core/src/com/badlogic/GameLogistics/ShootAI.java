@@ -49,7 +49,7 @@ public class ShootAI implements Shoot {
                 //TODO
                 System.out.println("Hill Climbing Bot");
                 velPosArray = advancedHillClibing.hillClibing(GameScreen.ballCoordinatesX, GameScreen.ballCoordinatesY);
-                addError(velPosArray);
+                //addError(velPosArray);
                 velPosArray = rk4.solve(velPosArray);
                 GameScreen.ballCoordinatesX =(float) velPosArray[0];
                 GameScreen.ballCoordinatesY =(float) velPosArray[1];
