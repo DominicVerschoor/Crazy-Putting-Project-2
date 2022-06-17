@@ -17,7 +17,7 @@ public class ShootAI implements Shoot {
     public void shoot() {
         if (AIGameController.shoot){
             System.out.printf("im in shoot");
-            if (OptionsGameScreen.basicBot) {
+            if (OptionsGameScreen.ruleBasedBot) {
                 System.out.println("Basic Bot");
                 velPosArray = bruteForceRule.basicShooting(GameField.ballCoordinatesX, GameField.ballCoordinatesY);
                 BotGameScreen.ballCoordinatesX = (float) velPosArray[0];
@@ -26,7 +26,7 @@ public class ShootAI implements Shoot {
                 AIGameController.shoot = false;
                 win.winCondition();
             }
-            if (OptionsGameScreen.smartBot) {
+            if (OptionsGameScreen.hillClimbingBot) {
                 //TODO
                 System.out.println("Advanced Bot");
                 velPosArray = advancedHillClibing.hillClibing(GameField.ballCoordinatesX,GameField.ballCoordinatesY);
