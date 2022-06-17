@@ -18,10 +18,6 @@ public class Euler implements Solver {
     private double h = 0.00001;
     static private double[] tempBallVector = new double[4];
 
-    private float treeX = read.treeX;
-    private float treeY = read.treeY;
-    private float treeRadius = 2f;
-
     /**
      * @param ballVector an array that contains x and y positions of the ball and x and y input velocities
      * @return a ballVector representing the resting point of the ball
@@ -53,23 +49,33 @@ public class Euler implements Solver {
 
             tempBallVector[2] = ballVector[2] + h * accX;
             tempBallVector[3] = ballVector[3] + h * accY;
-            if (isUnderWater(ballVector)) {
-                System.out.println("HELP ME im unda tha wata ");
-                return resetLocation(ballVector, initialX, initialY);
+            if (function.terrain(tempBallVector[0], tempBallVector[1]) < 0) {
+                tempBallVector[0] = initialX;
+                tempBallVector[1] = initialY;
+                System.arraycopy(tempBallVector, 0, ballVector, 0, ballVector.length);
+
+                JOptionPane.showMessageDialog(new JFrame(), "Ball under water");
+                return tempBallVector;
             }
-            if (isOutOfBounds(ballVector)) {
-                System.out.println("BALL OUT OF BOUNDS");
-                return resetLocation(ballVector, initialX, initialY);
-            }
-            if (isHittingTree(ballVector[0], (double)treeX, ballVector[1], (double)treeY, (double)treeRadius)) {
-                reverseVelocity(ballVector);
-                System.out.println("Boing");
+            if (tempBallVector[0] > 20 || tempBallVector[0] < -20 || tempBallVector[1] > 20 || tempBallVector[1] < -20) {
+                tempBallVector[0] = initialX;
+                tempBallVector[1] = initialY;
+                System.arraycopy(tempBallVector, 0, ballVector, 0, ballVector.length);
+                JOptionPane.showMessageDialog(new JFrame(), "Ball out of bounds");
+                return tempBallVector;
             }
 
             System.arraycopy(tempBallVector, 0, ballVector, 0, ballVector.length);
 
-            if (isRollingDown(ballVector, partialX, partialY)) {
-                rollDown(ballVector, partialX, partialY);
+            if ((Math.abs(ballVector[2]) <= 0.00001 && Math.abs(ballVector[3]) <= 0.00001) && (Math.abs(partialX) > 0.00001 || Math.abs(partialY) > 0.00001)) {
+                double sqrt = Math.sqrt(partialX * partialX + partialY * partialY);
+                if (us > sqrt) {
+                    break;
+                } else {
+                    ballVector[2] = h * -g * partialX + uk * g * partialX / sqrt;
+                    ballVector[3] = h * -g * partialY + uk * g * partialY / sqrt;
+
+                }
             }
         }
         System.out.println(ballVector[0]);
@@ -94,55 +100,11 @@ public class Euler implements Solver {
         return ballVector;
     }
 
-    @Override
     public void accelerationType(boolean buttonInput){
         if (buttonInput){
             acceleration = new BasicAcceleration();
         }else{
             acceleration = new SteepAcceleration();
         }
-    }
-
-    @Override
-    public boolean isUnderWater(double[] ballVector) {
-        return function.terrain(ballVector[0], ballVector[1]) < 0;
-    }
-
-    @Override
-    public boolean isOutOfBounds(double[] ballVector) {
-        return Math.abs(ballVector[0]) > 20 || Math.abs(ballVector[1]) > 20;
-    }
-
-    @Override
-    public boolean isHittingTree(double x1, double x2, double y1, double y2, double radius) {
-        return Math.sqrt((x1 - x2)*(x1 - x2) + (y1 - y2)*(y1 - y2)) <= radius;
-    }
-
-    @Override
-    public boolean isRollingDown(double[] ballVector, double partialX, double partialY) {
-        return (Math.abs(ballVector[2]) <= 0.00001 && Math.abs(ballVector[3]) <= 0.00001)
-                && (Math.abs(partialX) > 0.00001 || Math.abs(partialY) > 0.00001);
-    }
-
-    @Override
-    public double[] resetLocation(double[] ballVector, double initialX, double initialY) {
-        ballVector[0] = initialX;
-        ballVector[1] = initialY;
-        return ballVector;
-    }
-
-    @Override
-    public void rollDown(double[] ballVector, double partialx, double partialy) {
-        double sqrt = Math.sqrt(partialx * partialx + partialy * partialy);
-        if (!(us > sqrt)) {
-            ballVector[2] = h * -g * partialx + uk * g * partialx / sqrt;
-            ballVector[3] = h * -g * partialy + uk * g * partialy / sqrt;
-        }
-    }
-
-    @Override
-    public void reverseVelocity(double[] ballVector) {
-        ballVector[2] = -ballVector[2];
-        ballVector[3] = -ballVector[3];
     }
 }

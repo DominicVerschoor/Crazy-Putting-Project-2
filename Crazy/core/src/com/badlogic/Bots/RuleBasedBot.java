@@ -1,56 +1,52 @@
 package com.badlogic.Bots;
 
 import com.badlogic.FileHandling.FileReader;
-import com.badlogic.PhyiscSolvers.Rk2;
+import com.badlogic.PhyiscSolvers.Rk4;
 
 public class RuleBasedBot {
 
-    private final FileReader r = new FileReader();
-    private final Rk2 rk2 = new Rk2();
-    private final double reductionRate = 0.95;
-    private final double holeX = r.xt;
-    private final double holeY = r.yt;
-    private final double pi = 3.14159265359;
+    private static FileReader r = new FileReader();
+    private static final Rk4 rk4 = new Rk4();
 
     public double[] shoot(double xpos, double ypos) {
-        rk2.accelerationType(true);
+        double holeX = r.xt;
+        double holeY = r.yt;
 
         double[] arrXt = new double[4];
-        double xVel = holeX - xpos;
-        double yVel = holeY - ypos;
-
-        while (Math.abs(xVel) > 5 || Math.abs(yVel) > 5 ){
-            xVel = xVel * reductionRate;
-            yVel = yVel * reductionRate;
-        }
+        double xvel = (holeX - xpos) / 3;
+        double yvel = (holeY - ypos) / 3;
+        boolean switchARoo = true;
 
         arrXt[0] = xpos;
         arrXt[1] = ypos;
-        arrXt[2] = xVel;
-        arrXt[3] = yVel;
+        arrXt[2] = xvel;
+        arrXt[3] = yvel;
 
-        if (isDrowned(arrXt)){
-            System.out.println("Drown");
-            waterScenario(arrXt);
-        }
-
-        if (overshoot(arrXt)){
-            System.out.println("Overshoot");
-            overshootScenario(arrXt);
+        while (isDrowned(arrXt)) {
+            if (switchARoo) {
+                xvel++;
+                yvel++;
+            } else {
+                xvel--;
+                yvel--;
+            }
+            System.out.println("drowned lol");
+            switchARoo = !switchARoo;
         }
 
         while (isOutOfBounds(arrXt)) {
-            System.out.println("OOB");
-            arrXt[2] = xVel * reductionRate;
-            arrXt[3] = yVel * reductionRate;
-            xVel = arrXt[2];
-            yVel = arrXt[3];
+            xvel = xvel / 2;
+            yvel = yvel / 2;
+            System.out.println("out of bounds lol");
         }
 
-
+        arrXt = rk4.solve(arrXt);
+        System.out.println("xp: " + arrXt[0]);
+        System.out.println("yp: " + arrXt[1]);
         return arrXt;
     }
 
+<<<<<<< HEAD
     private void waterScenario(double[] arrXt){
         double xVel = arrXt[2];
         double yVel = arrXt[3];
@@ -118,29 +114,15 @@ public class RuleBasedBot {
                 && !isDrowned(temp) || isOutOfBounds(arrXt);
     }
 
+=======
+>>>>>>> f31c30cbdda80c7f4da942cbd9d38cc5be5a2a9b
     private boolean isOutOfBounds(double[] arrXt) {
-        simulate(arrXt);
-        return rk2.getOutOfBounds();
+        rk4.solve(arrXt);
+        return rk4.getOutOfBounds();
     }
 
     private boolean isDrowned(double[] arrXt) {
-        simulate(arrXt);
-        return rk2.getDrowned();
-    }
-
-    private boolean notInHole(double[] arrXt){
-        double[] temp = simulate(arrXt);
-        return !(r.r >= distance(temp[0], temp[1]));
-    }
-
-    private double distance(double xpos, double ypos) {
-        return Math.sqrt(Math.pow((xpos - holeX), 2) + Math.pow((ypos - holeY), 2));
-    }
-
-    private double[] simulate(double[] arrXt){
-        double[] temp = new double[4];
-        System.arraycopy(arrXt, 0, temp, 0, arrXt.length);
-        rk2.solve(temp);
-        return temp;
+        rk4.solve(arrXt);
+        return rk4.getDrowned();
     }
 }

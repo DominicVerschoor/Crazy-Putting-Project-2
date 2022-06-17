@@ -14,21 +14,36 @@ import com.badlogic.Base.App;
 public class OptionsGameScreen implements Screen {
     Animation<TextureRegion> animation;
     Texture musicLogo,exitButton,onButton,offButton,mathSolverButton,RK2Button,RK4Button,EulerButton,
-            advancedBotButton,basicBotButton,botsLogo,randomBotButton;
+            advancedBotButton,basicBotButton,botsLogo,randomBotButton,bruteForceButton,accelerationLogo,
+            basicAccelerationButton,steepAccelerationButton,adamButton;
     App game;
     public Music gameMusic = Gdx.audio.newMusic(Gdx.files.internal("Melody.wav"));
     float elapsed;
     public static boolean RK2 =false;
     public static boolean RK4 =true;
     public static boolean Euler =false;
+    public static boolean adamSolvers = false;
     public static boolean randomBot = false;
+<<<<<<< HEAD
     public static boolean bruteForceBot = false;
     public static boolean ruleBasedBot = false;
     public static boolean hillClimbing = true;
+=======
+    public static boolean ruleBasedBot = true;
+    public static boolean hillClimbingBot = false;
+    public static boolean bruteForceBot = false;
+    public static boolean basicAcceleration = true;
+    public static boolean steepAcceleration = false;
+>>>>>>> f31c30cbdda80c7f4da942cbd9d38cc5be5a2a9b
 
     public OptionsGameScreen(App game) {
         this.game=game;
         //TEXTURES
+        steepAccelerationButton = new Texture("SteepAcceleration.png");
+        basicAccelerationButton = new Texture("BasicAcceleration.png");
+        adamButton = new Texture("Adam.png");
+        accelerationLogo = new Texture("Acceleration.png");
+        bruteForceButton = new Texture("BruteForce.png");
         musicLogo = new Texture("Music.png");
         onButton = new Texture("ON.png");
         offButton = new Texture("Off.png");
@@ -73,13 +88,18 @@ public class OptionsGameScreen implements Screen {
         game.batch.draw(onButton,300,350);
         game.batch.draw(offButton,350,350);
         game.batch.draw(mathSolverButton,275,300,170,55);
-        game.batch.draw(EulerButton,240,255,100,50);
-        game.batch.draw(RK2Button,320,255,100,50);
-        game.batch.draw(RK4Button,385,255,100,50);
+        game.batch.draw(EulerButton,170,255,100,50);
+        game.batch.draw(RK2Button,240,255,100,50);
+        game.batch.draw(RK4Button,300,255,100,50);
+        game.batch.draw(adamButton,385,255,230,50);
         game.batch.draw(botsLogo,270,205,190,55);
         game.batch.draw(advancedBotButton,228,160,150,50);
         game.batch.draw(basicBotButton,370,160,150,50);
-        game.batch.draw(randomBotButton,290,120,150,50);
+        game.batch.draw(randomBotButton,210,120,150,50);
+        game.batch.draw(bruteForceButton,365,120,160,50);
+        game.batch.draw(accelerationLogo,275,80,180,55);
+        game.batch.draw(basicAccelerationButton,270,40,95,50);
+        game.batch.draw(steepAccelerationButton,360,40,95,50);
 
         keyboardHandler();
 
@@ -147,31 +167,45 @@ public class OptionsGameScreen implements Screen {
 
         }
         //EULER BUTTON EVENT HANDLING
-        else if (Gdx.input.getX() < 324 && Gdx.input.getX() > 258 && Gdx.input.getY() > 400 && Gdx.input.getY() < 437) {
+        else if (Gdx.input.getX() < 254 && Gdx.input.getX() > 185 && Gdx.input.getY() > 400 && Gdx.input.getY() < 437) {
 
             Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
             if (Gdx.input.isTouched()) {
                 Euler = true;
                 RK4 = false;
                 RK2 = false;
+                adamSolvers = false;
             }
         }
         //RK2 BUTTON EVENT HANDLING
-        else if (Gdx.input.getX() < 396 && Gdx.input.getX() > 342 && Gdx.input.getY() > 400 && Gdx.input.getY() < 437) {
+        else if (Gdx.input.getX() < 315 && Gdx.input.getX() > 266 && Gdx.input.getY() > 400 && Gdx.input.getY() < 437) {
             Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
             if (Gdx.input.isTouched()) {
                 Euler = false;
                 RK4 = false;
                 RK2 = true;
+                adamSolvers = false;
             }
         }
         //RK4 BUTTON EVENT HANDLING
-        else if (Gdx.input.getX() < 460 && Gdx.input.getX() > 412 && Gdx.input.getY() > 400 && Gdx.input.getY() < 437) {
+        else if (Gdx.input.getX() < 374 && Gdx.input.getX() > 326 && Gdx.input.getY() > 400 && Gdx.input.getY() < 437) {
             Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
             if (Gdx.input.isTouched()) {
                 Euler = false;
                 RK4 = true;
                 RK2 = false;
+                adamSolvers = false;
+            }
+        }
+        //ADAM BUTTON EVENT HANDLING
+        else if (Gdx.input.getX() < 607 && Gdx.input.getX() > 385 && Gdx.input.getY() > 400 && Gdx.input.getY() < 437) {
+            Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
+            if (Gdx.input.isTouched()) {
+                Euler = false;
+                RK4 = false;
+                RK2 = false;
+                adamSolvers = true;
+                bruteForceBot = false;
             }
         }
             //Basic Bot Button
@@ -179,17 +213,29 @@ public class OptionsGameScreen implements Screen {
                 Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
                 if (Gdx.input.isTouched()) {
                     ruleBasedBot = true;
-                    hillClimbing = false;
+                    hillClimbingBot = false;
                     randomBot = false;
+                    bruteForceBot = false;
                 }
             }
             //Random Bot Button
-            else if (Gdx.input.getX() < 425 && Gdx.input.getX() > 295 && Gdx.input.getY() > 535 && Gdx.input.getY() < 567) {
+            else if (Gdx.input.getX() < 342 && Gdx.input.getX() > 220 && Gdx.input.getY() > 535 && Gdx.input.getY() < 567) {
                 Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
                 if (Gdx.input.isTouched()) {
                     ruleBasedBot = false;
-                    hillClimbing = false;
+                    hillClimbingBot = false;
                     randomBot = true;
+                    bruteForceBot = false;
+                }
+            }
+            //Brute Force Bot Button
+            else if (Gdx.input.getX() < 525 && Gdx.input.getX() > 361 && Gdx.input.getY() > 535 && Gdx.input.getY() < 567) {
+                Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
+                if (Gdx.input.isTouched()) {
+                    ruleBasedBot = false;
+                    hillClimbingBot = false;
+                    randomBot = false;
+                    bruteForceBot = true;
                 }
             }
             //Advanced Bot Button
@@ -197,8 +243,25 @@ public class OptionsGameScreen implements Screen {
                 Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
                 if (Gdx.input.isTouched()) {
                     ruleBasedBot = false;
-                    hillClimbing = true;
+                    hillClimbingBot = true;
                     randomBot = false;
+                    bruteForceBot = false;
+                }
+            }
+            //Basic Acceleration Button
+            else if (Gdx.input.getX() < 353 && Gdx.input.getX() > 277 && Gdx.input.getY() > 615 && Gdx.input.getY() < 653) {
+                Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
+                if (Gdx.input.isTouched()) {
+                    basicAcceleration = true;
+                    steepAcceleration = false;
+                }
+            }
+            //Steep Acceleration Button
+            else if (Gdx.input.getX() < 443 && Gdx.input.getX() > 367 && Gdx.input.getY() > 615 && Gdx.input.getY() < 653) {
+                Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
+                if (Gdx.input.isTouched()) {
+                    basicAcceleration = false;
+                    steepAcceleration = true;
                 }
             }
 

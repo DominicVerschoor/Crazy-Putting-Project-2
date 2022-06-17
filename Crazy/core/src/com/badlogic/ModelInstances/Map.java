@@ -12,7 +12,6 @@ import java.util.ArrayList;
 public class Map {
     private TerrainInput function = new TerrainInput();
     private Hole hole = new Hole();
-    private Tree tree = new Tree();
     private CameraBuilder camera = new CameraBuilder();
     private FileReader fileReader = new FileReader();
     private ArrayList<Float> xCoordinatesArray = new ArrayList<Float>();
@@ -105,10 +104,8 @@ public class Map {
         camera.cameraPerspective();
         ball.createGolfBall();
         hole.createHole();
-        tree.createTree();
         modelBatchCourse.render(ball.modelInstanceBall, environment);
         modelBatchCourse.render(hole.modelInstanceHole, environment);
-        modelBatchCourse.render(tree.modelInstanceTree, environment);
         createField();
         modelBatchCourse.end();
     }
