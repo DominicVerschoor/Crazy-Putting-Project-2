@@ -56,11 +56,11 @@ public class RuleBasedBot {
         double yVel = arrXt[3];
 
         while (isDrowned(arrXt) && notInHole(arrXt)) {
-            arrXt[2] = xVel * Math.cos(5*(pi/180) * arrXt[0])
-                    - yVel * Math.sin(5*(pi/180) * arrXt[1]);
+            arrXt[2] = xVel * Math.cos(5*(pi/180))
+                    - yVel * Math.sin(5*(pi/180));
 
-            arrXt[3] = xVel * Math.sin(5*(pi/180) * arrXt[0])
-                    + yVel * Math.cos(5*(pi/180) * arrXt[1]);
+            arrXt[3] = xVel * Math.sin(5*(pi/180))
+                    + yVel * Math.cos(5*(pi/180));
 
             xVel = arrXt[2];
             yVel = arrXt[3];

@@ -2,13 +2,14 @@ package com.badlogic.PhyiscSolvers;
 
 import com.badlogic.FileHandling.FileReader;
 import com.badlogic.GameLogistics.TerrainInput;
+import com.badlogic.GameScreens.OptionsGameScreen;
 
 public class Rk2 implements Solver {
     PartialDerivative derive = new PartialDerivative();
     FileReader read = new FileReader();
     Acceleration acceleration;
     private final double g = 9.81;
-    double h = 0.001;
+    double h = 0.0001;
     private double uk = read.muk;     // kinetic friction coefficient of grass
     private double us = read.mus;
     TerrainInput function = new TerrainInput();
@@ -26,7 +27,9 @@ public class Rk2 implements Solver {
     public double[] solve(double[] ballVector) {
         double initialX = ballVector[0];
         double initialY = ballVector[1];
-        ballVector = speedLimit(ballVector);
+        if (!OptionsGameScreen.hillClimbing){
+            ballVector = speedLimit(ballVector);
+        }
 
         while (Math.abs(ballVector[2]) > 0.001 || Math.abs(ballVector[3]) > 0.001) {
             uk = read.muk;
@@ -57,7 +60,7 @@ public class Rk2 implements Solver {
                 drowned = true;
                 return resetLocation(ballVector, initialX, initialY);
             }
-            if (isOutOfBounds(ballVector)) {
+            if (!OptionsGameScreen.hillClimbing && isOutOfBounds(ballVector)) {
                 System.out.println("BALL OUT OF BOUNDS");
                 outOfBounds = true;
                 return resetLocation(ballVector, initialX, initialY);
@@ -69,18 +72,6 @@ public class Rk2 implements Solver {
             if (isRollingDown(ballVector, partialx, partialy)) {
                 rollDown(ballVector, partialx, partialy);
             }
-
-            if ((Math.abs(ballVector[2]) <= 0.001 && Math.abs(ballVector[3]) <= 0.001) && (Math.abs(partialx) > 0.001 || Math.abs(partialy) > 0.001)) {
-                double sqrt = Math.sqrt(partialx * partialx + partialy * partialy);
-                if (us > sqrt) {
-                    break;
-                } else {
-                    ballVector[2] = h * -g * partialx + uk * g * partialx / sqrt;
-                    ballVector[3] = h * -g * partialy + uk * g * partialy / sqrt;
-
-                }
-            }
-
         }
 
         System.out.println("X: " + ballVector[0]);
@@ -121,7 +112,7 @@ public class Rk2 implements Solver {
 
     @Override
     public boolean isOutOfBounds(double[] ballVector) {
-        return Math.abs(ballVector[0]) > 20 || Math.abs(ballVector[1]) > 20;
+        return ballVector[0] > 20 || ballVector[0] < -20 || ballVector[1] > 20 || ballVector[1] < -20;
     }
 
     @Override
@@ -200,5 +191,4 @@ public class Rk2 implements Solver {
     public boolean getOutOfBounds() {
         return outOfBounds;
     }
-
 }

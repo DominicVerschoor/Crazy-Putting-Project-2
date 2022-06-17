@@ -1,19 +1,16 @@
 package com.badlogic.Bots;
 
-
 import com.badlogic.FileHandling.FileReader;
 import com.badlogic.PhyiscSolvers.Rk2;
 
-
-import java.util.Random;
-
 public class AdvancedHillClimbing {
-    int MAX_ITER = 2000;
+    int MAX_ITER = 1000;
 
     Rk2 rk2 = new Rk2();
-    Random random = new Random();
     FileReader read = new FileReader();
     Vectors currentVec;
+    final double bounds = 30;
+    private final double pi = 3.14159265359;
 
     public class Vectors {
         double velx;
@@ -26,22 +23,21 @@ public class AdvancedHillClimbing {
         }
     }
 
-
     public double[] hillClimbing(double x, double y) {
-        double vx = random.nextDouble() * 5;
-        double vy = Math.sqrt(Math.pow(5, 2) - Math.pow(vx, 2));
-        currentVec = new Vectors(vx, vy);
-        rk2.accelerationType(true);
-        double arrxt[] = {x, y, currentVec.velx, currentVec.vely};
-        double result[] = rk2.solve(arrxt);
+        double[] result = startingVel(x,y);
+        while (rk2.getDrowned()){
+            result = startingVel(x, y);
+        }
+
         currentVec.distance = distance(result);
         double scale = 0.1;
         int currentItr = 0;
+
         while (currentItr < MAX_ITER) {
 
-            Vectors[] tmp = new Vectors[8];
+            Vectors[] tmp = new Vectors[4];
 
-            for (int i = 0; i < 8; i++) {
+            for (int i = 0; i < 4; i++) {
 
                 switch (i) {
                     case 0:
@@ -96,13 +92,34 @@ public class AdvancedHillClimbing {
         newArrXt[1] = y;
         newArrXt[2] = currentVec.velx;
         newArrXt[3] = currentVec.vely;
-//        System.out.println(currentVec.velx);
-//        System.out.println(currentVec.vely);
-//
-//        System.out.println(currentItr);
-        System.out.println("xv: "+vx);
-        System.out.println("yv: "+vy);
+        System.out.println(currentVec.velx);
+        System.out.println(currentVec.vely);
+
+        System.out.println(currentItr);
         return newArrXt;
+    }
+
+    public double[] startingVel(double x, double y){
+        double randomAngle = ((Math.random() * (-bounds -  bounds) + bounds));
+        double xVel = read.xt - x;
+        double yVel = read.yt - y;
+
+        while (Math.abs(xVel) > 5 || Math.abs(yVel) > 5) {
+            xVel = xVel * 0.99;
+            yVel = yVel * 0.99;
+        }
+
+        xVel = (xVel * Math.cos(randomAngle * (pi / 180))
+                - yVel * Math.sin(randomAngle * (pi / 180)));
+
+
+        yVel = (xVel * Math.sin(randomAngle * (pi / 180))
+                + yVel * Math.cos(randomAngle * (pi / 180)));
+
+        currentVec = new Vectors(xVel, yVel);
+        double arrxt[] = {x, y, currentVec.velx, currentVec.vely};
+        rk2.accelerationType(true);
+        return rk2.solve(arrxt);
     }
 
     public void simulate(Vectors vector, double x, double y){

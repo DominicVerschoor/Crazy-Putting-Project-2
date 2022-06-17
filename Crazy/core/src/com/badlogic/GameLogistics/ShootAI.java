@@ -14,7 +14,7 @@ public class ShootAI implements Shoot {
     Rk2 rk2 = new Rk2();
     Rk4 rk4 = new Rk4();
     Win win = new Win();
-    private final double errorRate = 0;
+    private final double errorRate = 0.0;
     static public double[] velPosArray = new double[4];
 
     @Override

@@ -16,15 +16,15 @@ public class OptionsGameScreen implements Screen {
     Texture musicLogo,exitButton,onButton,offButton,mathSolverButton,RK2Button,RK4Button,EulerButton,
             advancedBotButton,basicBotButton,botsLogo,randomBotButton;
     App game;
-    public static Music gameMusic = Gdx.audio.newMusic(Gdx.files.internal("Melody.wav"));
+    public Music gameMusic = Gdx.audio.newMusic(Gdx.files.internal("Melody.wav"));
     float elapsed;
     public static boolean RK2 =false;
     public static boolean RK4 =true;
     public static boolean Euler =false;
     public static boolean randomBot = false;
     public static boolean bruteForceBot = false;
-    public static boolean ruleBasedBot = true;
-    public static boolean hillClimbing = false;
+    public static boolean ruleBasedBot = false;
+    public static boolean hillClimbing = true;
 
     public OptionsGameScreen(App game) {
         this.game=game;
