@@ -128,9 +128,7 @@ public class OptionsGameScreen implements Screen {
         } else if (Gdx.input.getX() < 340 && Gdx.input.getX() > 300 && Gdx.input.getY() > 310 && Gdx.input.getY() < 346) {
             Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
             if (Gdx.input.isTouched()) {
-                System.out.println("im over");
                 if (!gameMusic.isPlaying()) {
-                    System.out.println("im in");
                     gameMusic.setLooping(true);
                     gameMusic.setVolume(0.05f);
                     gameMusic.play();

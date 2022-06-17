@@ -157,7 +157,7 @@ public class Rk2 implements Solver {
         ballVector[3] = -ballVector[3];
     }
 
-    private double[] k1Calculations(double[] ballVector) {
+    double[] k1Calculations(double[] ballVector) {
         double[] k1Final = new double[6];
         k1Final[0] = ballVector[0];
         k1Final[1] = ballVector[1];

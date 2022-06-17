@@ -14,7 +14,7 @@ public class ShootAI implements Shoot {
     Rk2 rk2 = new Rk2();
     Rk4 rk4 = new Rk4();
     Win win = new Win();
-    private final double errorRate = -0.02;
+    private final double errorRate = 0;
     static public double[] velPosArray = new double[4];
 
     @Override
@@ -49,7 +49,7 @@ public class ShootAI implements Shoot {
                 //TODO
                 System.out.println("Hill Climbing Bot");
                 velPosArray = advancedHillClimbing.hillClimbing(GameScreen.ballCoordinatesX, GameScreen.ballCoordinatesY);
-                //addError(velPosArray);
+                addError(velPosArray);
                 velPosArray = rk4.solve(velPosArray);
                 GameScreen.ballCoordinatesX =(float) velPosArray[0];
                 GameScreen.ballCoordinatesY =(float) velPosArray[1];
