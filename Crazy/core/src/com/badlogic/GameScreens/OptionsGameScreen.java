@@ -24,8 +24,8 @@ public class OptionsGameScreen implements Screen {
     public static boolean Euler =false;
     public static boolean adamSolvers = false;
     public static boolean randomBot = false;
-    public static boolean basicBot = true;
-    public static boolean smartBot = false;
+    public static boolean ruleBasedBot = true;
+    public static boolean hillClimbingBot = false;
     public static boolean bruteForceBot = false;
     public static boolean basicAcceleration = true;
     public static boolean steepAcceleration = false;
@@ -142,9 +142,7 @@ public class OptionsGameScreen implements Screen {
         } else if (Gdx.input.getX() < 340 && Gdx.input.getX() > 300 && Gdx.input.getY() > 310 && Gdx.input.getY() < 346) {
             Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
             if (Gdx.input.isTouched()) {
-                System.out.println("im over");
                 if (!gameMusic.isPlaying()) {
-                    System.out.println("im in");
                     gameMusic.setLooping(true);
                     gameMusic.setVolume(0.05f);
                     gameMusic.play();
@@ -208,8 +206,8 @@ public class OptionsGameScreen implements Screen {
             else if (Gdx.input.getX() < 500 && Gdx.input.getX() > 390 && Gdx.input.getY() > 500 && Gdx.input.getY() < 537) {
                 Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
                 if (Gdx.input.isTouched()) {
-                    basicBot = true;
-                    smartBot = false;
+                    ruleBasedBot = true;
+                    hillClimbingBot = false;
                     randomBot = false;
                     bruteForceBot = false;
                 }
@@ -218,8 +216,8 @@ public class OptionsGameScreen implements Screen {
             else if (Gdx.input.getX() < 342 && Gdx.input.getX() > 220 && Gdx.input.getY() > 535 && Gdx.input.getY() < 567) {
                 Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
                 if (Gdx.input.isTouched()) {
-                    basicBot = false;
-                    smartBot = false;
+                    ruleBasedBot = false;
+                    hillClimbingBot = false;
                     randomBot = true;
                     bruteForceBot = false;
                 }
@@ -228,8 +226,8 @@ public class OptionsGameScreen implements Screen {
             else if (Gdx.input.getX() < 525 && Gdx.input.getX() > 361 && Gdx.input.getY() > 535 && Gdx.input.getY() < 567) {
                 Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
                 if (Gdx.input.isTouched()) {
-                    basicBot = false;
-                    smartBot = false;
+                    ruleBasedBot = false;
+                    hillClimbingBot = false;
                     randomBot = false;
                     bruteForceBot = true;
                 }
@@ -238,8 +236,8 @@ public class OptionsGameScreen implements Screen {
             else if (Gdx.input.getX() < 376 && Gdx.input.getX() > 227 && Gdx.input.getY() > 500 && Gdx.input.getY() < 537) {
                 Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
                 if (Gdx.input.isTouched()) {
-                    basicBot = false;
-                    smartBot = true;
+                    ruleBasedBot = false;
+                    hillClimbingBot = true;
                     randomBot = false;
                     bruteForceBot = false;
                 }
