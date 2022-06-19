@@ -13,12 +13,17 @@ public class ShootAI implements Shoot {
     Rk4 rk4 = new Rk4();
     Win win = new Win();
     static public double[] velPosArray = new double[4];
+    static public boolean accelerationButton = false;
     @Override
     public void shoot() {
         if (AIGameController.shoot){
             System.out.printf("im in shoot");
             if (OptionsGameScreen.ruleBasedBot) {
                 System.out.println("Basic Bot");
+                if (OptionsGameScreen.basicAcceleration){
+                    accelerationButton=true;
+                }
+                rk2.accelerationType(accelerationButton);
                 velPosArray = bruteForceRule.basicShooting(GameField.ballCoordinatesX, GameField.ballCoordinatesY);
                 BotGameScreen.ballCoordinatesX = (float) velPosArray[0];
                 BotGameScreen.ballCoordinatesY = (float) velPosArray[1];
@@ -29,6 +34,10 @@ public class ShootAI implements Shoot {
             if (OptionsGameScreen.hillClimbingBot) {
                 //TODO
                 System.out.println("Advanced Bot");
+                if (OptionsGameScreen.basicAcceleration){
+                    accelerationButton=true;
+                }
+                rk4.accelerationType(accelerationButton);
                 velPosArray = advancedHillClibing.hillClibing(GameField.ballCoordinatesX,GameField.ballCoordinatesY);
                 velPosArray = rk4.solve(velPosArray);
                 BotGameScreen.ballCoordinatesX =(float) velPosArray[0];
@@ -40,6 +49,10 @@ public class ShootAI implements Shoot {
             if (OptionsGameScreen.randomBot) {
                 //TODO
                 System.out.println("Random Bot");
+                if (OptionsGameScreen.basicAcceleration){
+                    accelerationButton=true;
+                }
+                rk2.accelerationType(accelerationButton);
                 velPosArray[2] = (Math.random()*(10))-5;
                 velPosArray[3] = (Math.random()*(10))-5;
                 velPosArray = rk2.solve(velPosArray);

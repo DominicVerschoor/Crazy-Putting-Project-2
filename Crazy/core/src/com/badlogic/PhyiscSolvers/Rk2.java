@@ -5,11 +5,11 @@ import com.badlogic.FileHandling.FileReader;
 import com.badlogic.GameLogistics.TerrainInput;
 
 public class Rk2 implements Solver {
-    PartialDerivative derive = new PartialDerivative();
-    FileReader read = new FileReader();
-    Acceleration acceleration;
+    static PartialDerivative derive = new PartialDerivative();
+    static FileReader read = new FileReader();
+    private static Acceleration acceleration;
     private final double g = 9.81;
-    double h = 0.001;
+    static double h = 0.000001;
     private double uk = read.muk;     // kinetic friction coefficient of grass
     private double us = read.mus;
     TerrainInput function = new TerrainInput();
@@ -23,7 +23,7 @@ public class Rk2 implements Solver {
         double initialY = ballVector[1];
         ballVector = speedLimit(ballVector);
 
-        while (Math.abs(ballVector[2]) > 0.001 || Math.abs(ballVector[3]) > 0.001) {
+        while (Math.abs(ballVector[2]) > 0.000001 || Math.abs(ballVector[3]) > 0.000001) {
             uk = read.muk;
             us = read.mus;
             if ((ballVector[0] >= read.sandPitXMin && ballVector[0] <= read.sandPitXMin)
@@ -59,7 +59,7 @@ public class Rk2 implements Solver {
                 return ballVector;
             }
 
-            if ((Math.abs(ballVector[2]) <= 0.001 && Math.abs(ballVector[3]) <= 0.001) && (Math.abs(partialx) > 0.001 || Math.abs(partialy) > 0.001)) {
+            if ((Math.abs(ballVector[2]) <= 0.000001 && Math.abs(ballVector[3]) <= 0.000001) && (Math.abs(partialx) > 0.000001 || Math.abs(partialy) > 0.000001)) {
                 double sqrt = Math.sqrt(partialx * partialx + partialy * partialy);
                 if (us > sqrt) {
                     break;
@@ -102,7 +102,7 @@ public class Rk2 implements Solver {
         }
     }
 
-    private double[] k1Calculations(double[] ballVector) {
+    public static double[] k1Calculations(double[] ballVector) {
         double[] k1Final = new double[6];
         k1Final[0] = ballVector[0];
         k1Final[1] = ballVector[1];
@@ -115,7 +115,7 @@ public class Rk2 implements Solver {
         return k1Final;
     }
 
-    private double[] k2Calculations(double[] k1) {
+    public static double[] k2Calculations(double[] k1) {
         double[] k2Final = new double[6];
         k2Final[0] = k1[0] + (h * k1[2]) * (2.0 / 3);
         k2Final[1] = k1[1] + (h * k1[3]) * (2.0 / 3);
@@ -128,7 +128,7 @@ public class Rk2 implements Solver {
         return k2Final;
     }
 
-    private double[] finalCalculations(double[] k1, double[] k2) {
+    public  double[] finalCalculations(double[] k1, double[] k2) {
         double[] finalCalc = new double[4];
         finalCalc[0] = (k1[2] * h * (1 / 4.0)) + (3 / 4.0) * (k2[2] * h);
         finalCalc[1] = (k1[3] * h * (1 / 4.0)) + (3 / 4.0) * (k2[3] * h);
@@ -137,4 +137,5 @@ public class Rk2 implements Solver {
 
         return finalCalc;
     }
+
 }

@@ -2,6 +2,7 @@ package com.badlogic.ModelInstances;
 
 import com.badlogic.FileHandling.FileReader;
 import com.badlogic.GameLogistics.TerrainInput;
+import com.badlogic.GameScreens.CustomMap;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.VertexAttributes;
 import com.badlogic.gdx.graphics.g3d.*;
@@ -14,29 +15,27 @@ public class Map {
     private Hole hole = new Hole();
     private CameraBuilder camera = new CameraBuilder();
     private FileReader fileReader = new FileReader();
-    private ArrayList<Float> xCoordinatesArray = new ArrayList<Float>();
-    private ArrayList<Float> yCoordinatesArray = new ArrayList<Float>();
-    private ArrayList<Float> zCoordinatesArray = new ArrayList<Float>();
-    private ArrayList<Color> heightColorArray = new ArrayList<Color>();
+    private Tree tree = new Tree();
+    public ArrayList<Float> xCoordinatesArray = new ArrayList<Float>();
+    public ArrayList<Float> yCoordinatesArray = new ArrayList<Float>();
+    public ArrayList<Float> zCoordinatesArray = new ArrayList<Float>();
+    public ArrayList<Color> heightColorArray = new ArrayList<Color>();
     private ArrayList<ModelInstance> mapModelInstancesArray = new ArrayList<ModelInstance>();
     private GolfBall ball = new GolfBall();
+    private Sand sand = new Sand();
     private float xCoordinate;
     private float yCoordinate;
     private float zCoordinate;
     private Color colorMap;
-    private final float sandPitXMax = fileReader.sandPitXMax;
-    private final float sandPitXMin = fileReader.sandPitXMin;
-    private final float sandPitYMax = fileReader.sandPitYMax;
-    private final float sandPitYMin = fileReader.sandPitYMin;
     private Environment environment;
-    private ModelBuilder modelBuilderCourse,modelBuilderSand;
+    private ModelBuilder modelBuilderCourse;
     private ModelBatch modelBatchCourse;
-    private Model modelCourse,modelSand;
-    private ModelInstance modelInstanceCourse,modelInstanceSand;
+    private Model modelCourse;
+    private ModelInstance modelInstanceCourse;
 
     public void getMapCoordinates(){
-        for (float X = -20; X < 20; X+=0.5f) {
-            for (float Y = -20; Y < 20; Y += 0.5f) {
+        for (float X = -20; X <= 20; X+=0.5f) {
+            for (float Y = -20; Y <= 20; Y += 0.5f) {
                 xCoordinatesArray.add(X);
                 yCoordinatesArray.add(Y);
                 zCoordinatesArray.add((float) function.terrain(X,Y));
@@ -63,7 +62,6 @@ public class Map {
     public void  combineField(){
         modelBatchCourse = new ModelBatch();
         modelBuilderCourse = new ModelBuilder();
-        modelBuilderSand= new ModelBuilder();
 
         for (int i = 0; i< xCoordinatesArray.size(); i++) {
             xCoordinate = xCoordinatesArray.get(i);
@@ -77,16 +75,7 @@ public class Map {
 
 
             modelInstanceCourse = new ModelInstance(modelCourse, xCoordinate, zCoordinate, yCoordinate);
-            //SAND PITS ACCORDING TO COORDS
-            if ((xCoordinate >= sandPitXMin && xCoordinate <= sandPitXMax) && (yCoordinate >= sandPitYMin && yCoordinate <= sandPitYMax)) {
-                modelSand = modelBuilderSand.createBox(1f, 1f, 1f,
-                        new Material(ColorAttribute.createDiffuse(Color.YELLOW)),
-                        (VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal));
 
-                modelInstanceSand = new ModelInstance(modelSand, xCoordinate, zCoordinate + 0.1f,yCoordinate);
-                modelBatchCourse.render(modelInstanceSand, environment);
-                mapModelInstancesArray.add(modelInstanceSand);
-            }
             mapModelInstancesArray.add(modelInstanceCourse);
 
         }
@@ -94,6 +83,16 @@ public class Map {
     public void createField(){
         for (int i = 0; i< mapModelInstancesArray.size(); i++){
             modelBatchCourse.render(mapModelInstancesArray.get(i), environment);
+        }
+        if (CustomMap.treeCoordinateX.size()>0){
+            for (int k=0; k< tree.arrayModelInstancesTree.size();k++) {
+                modelBatchCourse.render(tree.arrayModelInstancesTree.get(k), environment);
+            }
+        }
+        if (CustomMap.sandCoordinateX.size()>0){
+            for (int j=0; j< sand.arrayModelInstancesSand.size();j++) {
+                modelBatchCourse.render(sand.arrayModelInstancesSand.get(j), environment);
+            }
         }
         environment = new Environment();
         environment.set(new ColorAttribute(ColorAttribute.AmbientLight,0.8f,0.8f,0.8f,1f));
@@ -104,6 +103,8 @@ public class Map {
         camera.cameraPerspective();
         ball.createGolfBall();
         hole.createHole();
+        sand.createSand();
+        tree.createTree();
         modelBatchCourse.render(ball.modelInstanceBall, environment);
         modelBatchCourse.render(hole.modelInstanceHole, environment);
         createField();

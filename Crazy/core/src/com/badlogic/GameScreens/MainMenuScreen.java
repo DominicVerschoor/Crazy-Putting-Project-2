@@ -15,7 +15,7 @@ public class MainMenuScreen implements Screen {
     //INITIALIZING VARIABLES
     Animation<TextureRegion> animation;
     float elapsed;
-    Texture playButton,optionsButton,exitButton,newBotGameButton,animat;
+    Texture playButton,optionsButton,exitButton,newBotGameButton,animat,customGameButton;
     public static boolean userPlaying=false;
     public static boolean botPlaying=false;
     App game;
@@ -28,6 +28,7 @@ public class MainMenuScreen implements Screen {
         newBotGameButton = new Texture("NewGameBot.png");
         animation = Animations.loadGIFAnimation(Animation.PlayMode.LOOP, Gdx.files.internal("menu.gif").read());
         animat = new Texture("menu.gif");
+        customGameButton = new Texture("CustomMap.png");
     }
 
     @Override
@@ -50,7 +51,7 @@ public class MainMenuScreen implements Screen {
         game.batch.draw(optionsButton,110,270,150,65);
         game.batch.draw(exitButton,810,0,70,70);
         game.batch.draw(newBotGameButton,110,395,160,60);
-
+        game.batch.draw(customGameButton,110,220,160,60);
          keyboardHandler();
 
         game.batch.end();
@@ -101,6 +102,14 @@ public class MainMenuScreen implements Screen {
             if(Gdx.input.isTouched()){
                 this.dispose();
                 game.setScreen(new OptionsGameScreen(game));
+            };
+        }
+        //CUSTOM MAP BUTTON
+        else if (Gdx.input.getX() <258 && Gdx.input.getX()>120 && Gdx.input.getY()>432 && Gdx.input.getY()<473) {
+            Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
+            if(Gdx.input.isTouched()){
+                this.dispose();
+                game.setScreen(new CustomMap(game));
             };
         }
         //BOT GAME BUTTON

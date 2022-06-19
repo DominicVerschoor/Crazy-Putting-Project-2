@@ -10,7 +10,7 @@ public class Rk4 implements Solver {
     TerrainInput function = new TerrainInput();
     Acceleration acceleration;
     private final double g = 9.81;
-    double h = 0.00001;
+    double h = 0.000001;
     private double uk = read.muk;     // kinetic friction coefficient of grass
     private double us = read.mus;
     private boolean drowned = false;
@@ -25,7 +25,7 @@ public class Rk4 implements Solver {
         double initialY = ballVector[1];
         ballVector = speedLimit(ballVector);
 
-        while (Math.abs(ballVector[2]) > 0.00001 || Math.abs(ballVector[3]) > 0.00001) {
+        while (Math.abs(ballVector[2]) > 0.000001 || Math.abs(ballVector[3]) > 0.000001) {
             uk = read.muk;
             us = read.mus;
             if ((ballVector[0] >= read.sandPitXMin && ballVector[0] <= read.sandPitXMin)
@@ -64,7 +64,7 @@ public class Rk4 implements Solver {
 //                return ballVector;
 //            }
 
-            if ((Math.abs(ballVector[2]) <= 0.00001 && Math.abs(ballVector[3]) <= 0.00001) && (Math.abs(partialx) > 0.00001 || Math.abs(partialy) > 0.00001)) {
+            if ((Math.abs(ballVector[2]) <= 0.000001 && Math.abs(ballVector[3]) <= 0.000001) && (Math.abs(partialx) > 0.000001 || Math.abs(partialy) > 0.000001)) {
                 double sqrt = Math.sqrt(partialx * partialx + partialy * partialy);
                 if (us > sqrt) {
                     break;
