@@ -1,0 +1,210 @@
+Index: Crazy/core/src/com/badlogic/GameLogistics/TerrainInput.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.badlogic.GameLogistics;\r\npublic class TerrainInput{\r\npublic double terrain(double x,double y) {\r\nreturn 1;\r\n}\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Crazy/core/src/com/badlogic/GameLogistics/TerrainInput.java b/Crazy/core/src/com/badlogic/GameLogistics/TerrainInput.java
+--- a/Crazy/core/src/com/badlogic/GameLogistics/TerrainInput.java	(revision f31c30cbdda80c7f4da942cbd9d38cc5be5a2a9b)
++++ b/Crazy/core/src/com/badlogic/GameLogistics/TerrainInput.java	(date 1655581579866)
+@@ -1,6 +1,6 @@
+ package com.badlogic.GameLogistics;
+ public class TerrainInput{
+ public double terrain(double x,double y) {
+-return 1;
++return 0.5*(Math.sin((x-y)/7)+0.9);
+ }
+ }
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"0251d20a-eded-4767-9e0a-c1b9f43dc18d\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/gradle.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/gradle.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/jarRepositories.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/jarRepositories.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/misc.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Crazy/core/src/com/badlogic/Bots/AdvancedHillClibing.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Crazy/core/src/com/badlogic/Bots/AdvancedHillClibing.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/TerrainInput.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/TerrainInput.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameScreens/BotGameScreen.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameScreens/BotGameScreen.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameScreens/GameField.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameScreens/GameField.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameScreens/UserGameController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameScreens/UserGameController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Rk2.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Rk2.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Crazy/desktop/build/resources/main/input.txt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Crazy/desktop/build/resources/main/input.txt\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ExternalProjectsData\">\r\n    <projectState path=\"$PROJECT_DIR$/Crazy\">\r\n      <ProjectState />\r\n    </projectState>\r\n  </component>\r\n  <component name=\"ExternalProjectsManager\">\r\n    <system id=\"GRADLE\">\r\n      <state>\r\n        <task path=\"$PROJECT_DIR$/Crazy\">\r\n          <activation />\r\n        </task>\r\n        <projects_view>\r\n          <tree_state>\r\n            <expand>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"Crazy\" type=\"f1a62948:ProjectNode\" />\r\n              </path>\r\n            </expand>\r\n            <select />\r\n          </tree_state>\r\n        </projects_view>\r\n      </state>\r\n    </system>\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitSEFilterConfiguration\">\r\n    <file-type-list>\r\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\r\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\r\n      <filtered-out-file-type name=\"TAG\" />\r\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\r\n    </file-type-list>\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2AMAx9v5AEHmbGjFArLzmoyMLup\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/Crazy/desktop/build/resources/main\" />\r\n    <property name=\"project.structure.last.edited\" value=\"Project\" />\r\n    <property name=\"project.structure.proportion\" value=\"0.15\" />\r\n    <property name=\"project.structure.side.proportion\" value=\"0.2\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\DELL\\OneDrive\\Desktop\\School\\Crazy-Putting-Project-7\\Crazy\\desktop\\build\\resources\\main\" />\r\n    </key>\r\n    <key name=\"CopyClassDialog.RECENTS_KEY\">\r\n      <recent name=\"com.badlogic.Bots\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"DesktopLauncher\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.badlogic.Base.DesktopLauncher\" />\r\n      <module name=\"Crazy.desktop.main\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.badlogic.Base.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.DesktopLauncher\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"0251d20a-eded-4767-9e0a-c1b9f43dc18d\" name=\"Changes\" comment=\"\" />\r\n      <created>1654809324714</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1654809324714</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\r\n    <SUITE FILE_PATH=\"coverage/Crazy_Putting_Project_7$DesktopLauncher.ic\" NAME=\"DesktopLauncher Coverage Results\" MODIFIED=\"1654809782490\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\">\r\n      <FILTER>com.badlogic.Base.*</FILTER>\r\n    </SUITE>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision f31c30cbdda80c7f4da942cbd9d38cc5be5a2a9b)
++++ b/.idea/workspace.xml	(date 1655596849950)
+@@ -4,18 +4,19 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="0251d20a-eded-4767-9e0a-c1b9f43dc18d" name="Changes" comment="">
+-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++    <list default="true" id="0251d20a-eded-4767-9e0a-c1b9f43dc18d" name="Changes" comment="small fixes/buttons pictures">
++      <change afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameScreens/CustomMap.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/ModelInstances/Sand.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Bots/AdvancedHillClibing.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Bots/AdvancedHillClibing.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Bots/BasicBruteForce.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/Bots/BasicBruteForce.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/ShootAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/ShootAI.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/ShootUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/ShootUser.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/TerrainInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameLogistics/TerrainInput.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameScreens/BotGameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameScreens/BotGameScreen.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameScreens/GameField.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameScreens/GameField.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameScreens/UserGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameScreens/UserGameController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameScreens/MainMenuScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/GameScreens/MainMenuScreen.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/ModelInstances/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/ModelInstances/Map.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Euler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Euler.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Rk2.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Rk2.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Crazy/desktop/build/resources/main/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/desktop/build/resources/main/input.txt" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Rk4.java" beforeDir="false" afterPath="$PROJECT_DIR$/Crazy/core/src/com/badlogic/PhyiscSolvers/Rk4.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -90,13 +91,39 @@
+       <recent name="com.badlogic.Bots" />
+     </key>
+   </component>
+-  <component name="RunManager">
++  <component name="RunManager" selected="Application.DesktopLauncher">
+     <configuration name="DesktopLauncher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="com.badlogic.Base.DesktopLauncher" />
+       <module name="Crazy.desktop.main" />
+       <extension name="coverage">
+         <pattern>
+           <option name="PATTERN" value="com.badlogic.Base.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="PredicatorCorrector" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="com.badlogic.PhyiscSolvers.PredicatorCorrector" />
++      <module name="Crazy.core.main" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="com.badlogic.PhyiscSolvers.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="Rk2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="com.badlogic.PhyiscSolvers.Rk2" />
++      <module name="Crazy.core.main" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="com.badlogic.PhyiscSolvers.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+@@ -107,6 +134,8 @@
+     <recent_temporary>
+       <list>
+         <item itemvalue="Application.DesktopLauncher" />
++        <item itemvalue="Application.Rk2" />
++        <item itemvalue="Application.PredicatorCorrector" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -119,6 +148,14 @@
+       <option name="presentableId" value="Default" />
+       <updated>1654809324714</updated>
+     </task>
++    <task id="LOCAL-00001" summary="small fixes/buttons pictures">
++      <created>1655463968249</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1655463968249</updated>
++    </task>
++    <option name="localTasksCounter" value="2" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -132,8 +169,15 @@
+       </map>
+     </option>
+   </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="small fixes/buttons pictures" />
++    <option name="LAST_COMMIT_MESSAGE" value="small fixes/buttons pictures" />
++  </component>
+   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+     <SUITE FILE_PATH="coverage/Crazy_Putting_Project_7$DesktopLauncher.ic" NAME="DesktopLauncher Coverage Results" MODIFIED="1654809782490" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
++      <FILTER>com.badlogic.Base.*</FILTER>
++    </SUITE>
++    <SUITE FILE_PATH="coverage/Crazy_Putting_Project_2$DesktopLauncher.ic" NAME="DesktopLauncher Coverage Results" MODIFIED="1655580680514" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+       <FILTER>com.badlogic.Base.*</FILTER>
+     </SUITE>
+   </component>
+Index: Crazy/core/src/com/badlogic/PhyiscSolvers/Euler.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.badlogic.PhyiscSolvers;\r\n\r\nimport com.badlogic.FileHandling.FileReader;\r\nimport com.badlogic.GameLogistics.TerrainInput;\r\n\r\nimport javax.swing.*;\r\n\r\npublic class Euler implements Solver {\r\n\r\n    FileReader read = new FileReader();\r\n    PartialDerivative Derive = new PartialDerivative();\r\n    TerrainInput function = new TerrainInput();\r\n    Acceleration acceleration;\r\n\r\n    private final double g = 9.81;\r\n    private double uk = read.muk;\r\n    private double us = read.mus;\r\n    private double h = 0.00001;\r\n    static private double[] tempBallVector = new double[4];\r\n\r\n    /**\r\n     * @param ballVector an array that contains x and y positions of the ball and x and y input velocities\r\n     * @return a ballVector representing the resting point of the ball\r\n     */\r\n    @Override\r\n    public double[] solve(double[] ballVector) {\r\n\r\n        double initialX = ballVector[0];\r\n        double initialY = ballVector[1];\r\n        ballVector = speedLimit(ballVector);\r\n\r\n        while (Math.abs(ballVector[2]) > 0.00001 || Math.abs(ballVector[3]) > 0.00001) {\r\n            uk = read.muk;\r\n            us = read.mus;\r\n            if ((ballVector[0] >= read.sandPitXMin && ballVector[0] <= read.sandPitXMin)\r\n                    && (ballVector[1] >= read.sandPitXMin && ballVector[1] <= read.sandPitXMin)) {\r\n                uk = read.muks;\r\n                us = read.muss;\r\n            }\r\n\r\n            tempBallVector[0] = ballVector[0] + h * ballVector[2];\r\n            tempBallVector[1] = ballVector[1] + h * ballVector[3];\r\n\r\n            double partialX = Derive.partialX(tempBallVector[0], tempBallVector[1]);\r\n            double partialY = Derive.partialY(tempBallVector[0], tempBallVector[1]);\r\n\r\n            double accX = acceleration.accelerationEquationX(ballVector[2], ballVector[3], partialX, partialY);\r\n            double accY = acceleration.accelerationEquationY(ballVector[2], ballVector[3], partialX, partialY);\r\n\r\n            tempBallVector[2] = ballVector[2] + h * accX;\r\n            tempBallVector[3] = ballVector[3] + h * accY;\r\n            if (function.terrain(tempBallVector[0], tempBallVector[1]) < 0) {\r\n                tempBallVector[0] = initialX;\r\n                tempBallVector[1] = initialY;\r\n                System.arraycopy(tempBallVector, 0, ballVector, 0, ballVector.length);\r\n\r\n                JOptionPane.showMessageDialog(new JFrame(), \"Ball under water\");\r\n                return tempBallVector;\r\n            }\r\n            if (tempBallVector[0] > 20 || tempBallVector[0] < -20 || tempBallVector[1] > 20 || tempBallVector[1] < -20) {\r\n                tempBallVector[0] = initialX;\r\n                tempBallVector[1] = initialY;\r\n                System.arraycopy(tempBallVector, 0, ballVector, 0, ballVector.length);\r\n                JOptionPane.showMessageDialog(new JFrame(), \"Ball out of bounds\");\r\n                return tempBallVector;\r\n            }\r\n\r\n            System.arraycopy(tempBallVector, 0, ballVector, 0, ballVector.length);\r\n\r\n            if ((Math.abs(ballVector[2]) <= 0.00001 && Math.abs(ballVector[3]) <= 0.00001) && (Math.abs(partialX) > 0.00001 || Math.abs(partialY) > 0.00001)) {\r\n                double sqrt = Math.sqrt(partialX * partialX + partialY * partialY);\r\n                if (us > sqrt) {\r\n                    break;\r\n                } else {\r\n                    ballVector[2] = h * -g * partialX + uk * g * partialX / sqrt;\r\n                    ballVector[3] = h * -g * partialY + uk * g * partialY / sqrt;\r\n\r\n                }\r\n            }\r\n        }\r\n        System.out.println(ballVector[0]);\r\n        System.out.println(ballVector[1]);\r\n        return tempBallVector;\r\n    }\r\n\r\n    @Override\r\n    public double[] speedLimit(double[] ballVector) {\r\n        if (ballVector[2] > 5) {\r\n            ballVector[2] = 5;\r\n        }\r\n        if (ballVector[2] < -5) {\r\n            ballVector[2] = -5;\r\n        }\r\n        if (ballVector[3] > 5) {\r\n            ballVector[3] = 5;\r\n        }\r\n        if (ballVector[3] < -5) {\r\n            ballVector[3] = -5;\r\n        }\r\n        return ballVector;\r\n    }\r\n\r\n    public void accelerationType(boolean buttonInput){\r\n        if (buttonInput){\r\n            acceleration = new BasicAcceleration();\r\n        }else{\r\n            acceleration = new SteepAcceleration();\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Crazy/core/src/com/badlogic/PhyiscSolvers/Euler.java b/Crazy/core/src/com/badlogic/PhyiscSolvers/Euler.java
+--- a/Crazy/core/src/com/badlogic/PhyiscSolvers/Euler.java	(revision f31c30cbdda80c7f4da942cbd9d38cc5be5a2a9b)
++++ b/Crazy/core/src/com/badlogic/PhyiscSolvers/Euler.java	(date 1655474877591)
+@@ -15,8 +15,8 @@
+     private final double g = 9.81;
+     private double uk = read.muk;
+     private double us = read.mus;
+-    private double h = 0.00001;
+-    static private double[] tempBallVector = new double[4];
++    private double h = 0.000001;
++    private double[] tempBallVector = new double[4];
+ 
+     /**
+      * @param ballVector an array that contains x and y positions of the ball and x and y input velocities
+@@ -24,12 +24,11 @@
+      */
+     @Override
+     public double[] solve(double[] ballVector) {
+-
+         double initialX = ballVector[0];
+         double initialY = ballVector[1];
+         ballVector = speedLimit(ballVector);
+ 
+-        while (Math.abs(ballVector[2]) > 0.00001 || Math.abs(ballVector[3]) > 0.00001) {
++        while (Math.abs(ballVector[2]) > 0.000001 || Math.abs(ballVector[3]) > 0.000001) {
+             uk = read.muk;
+             us = read.mus;
+             if ((ballVector[0] >= read.sandPitXMin && ballVector[0] <= read.sandPitXMin)
+@@ -67,7 +66,8 @@
+ 
+             System.arraycopy(tempBallVector, 0, ballVector, 0, ballVector.length);
+ 
+-            if ((Math.abs(ballVector[2]) <= 0.00001 && Math.abs(ballVector[3]) <= 0.00001) && (Math.abs(partialX) > 0.00001 || Math.abs(partialY) > 0.00001)) {
++            if ((Math.abs(ballVector[2]) <= 0.000001 && Math.abs(ballVector[3]) <= 0.000001) && (Math.abs(partialX) > 0.000001 || Math.abs(partialY) > 0.000001)) {
++                System.out.println(" im in if");
+                 double sqrt = Math.sqrt(partialX * partialX + partialY * partialY);
+                 if (us > sqrt) {
+                     break;
+Index: Crazy/core/src/com/badlogic/Bots/BasicBruteForce.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.badlogic.Bots;\r\n\r\nimport com.badlogic.FileHandling.FileReader;\r\nimport com.badlogic.PhyiscSolvers.Rk4;\r\n\r\n\r\npublic class BasicBruteForce {\r\n\r\n    private static FileReader r = new FileReader();\r\n    private static final Rk4 rk4 = new Rk4();\r\n\r\n    public double[] basicShooting(double xpos, double ypos) {\r\n        double holeX = r.xt;\r\n        double holeY = r.yt;\r\n\r\n        double[] arrXt = new double[4];\r\n        double[] save = new double[4];\r\n        double xvel = -5;\r\n        double yvel = -5;\r\n\r\n        arrXt[0] = xpos;\r\n        arrXt[1] = ypos;\r\n        arrXt[2] = xvel;\r\n        arrXt[3] = yvel;\r\n\r\n        save[0] = xpos;\r\n        save[1] = ypos;\r\n        save[2] = xvel;\r\n        save[3] = yvel;\r\n\r\n        while (((r.r <= distance(save[0], save[1], holeX, holeY) ))\r\n                && (yvel <= 5 || (xvel <= 5))) {\r\n\r\n            if (xvel <= 5) {\r\n                xvel += Math.max(Math.abs(xpos - holeX) / 10, 0.1);\r\n            }\r\n            if (yvel <= 5) {\r\n                yvel += Math.max(Math.abs(ypos - holeY) / 10, 0.1);\r\n            }\r\n\r\n            arrXt[0] = xpos;\r\n            arrXt[1] = ypos;\r\n            arrXt[2] = xvel;\r\n            arrXt[3] = yvel;\r\n\r\n            arrXt = rk4.solve(arrXt);\r\n\r\n            if (distance(save[0], save[1], holeX, holeY) > distance(arrXt[0], arrXt[1], holeX, holeY)) {\r\n                save[0] = arrXt[0];\r\n                save[1] = arrXt[1];\r\n                save[2] = arrXt[2];\r\n                save[3] = arrXt[3];\r\n            }\r\n        }\r\n\r\n        yvel = -5;\r\n        while (((r.r <= distance(save[0], save[1], holeX, holeY) ))\r\n                && (yvel <= 5)) {\r\n\r\n            yvel += Math.abs(ypos - holeY) / 10;\r\n\r\n            arrXt[0] = xpos;\r\n            arrXt[1] = ypos;\r\n            arrXt[2] = 0;\r\n            arrXt[3] = yvel;\r\n\r\n            arrXt = rk4.solve(arrXt);\r\n\r\n            if (distance(save[0], save[1], holeX, holeY) > distance(arrXt[0], arrXt[1], holeX, holeY)) {\r\n                save[0] = arrXt[0];\r\n                save[1] = arrXt[1];\r\n                save[2] = arrXt[2];\r\n                save[3] = arrXt[3];\r\n            }\r\n        }\r\n\r\n        xvel = -5;\r\n        while (((r.r <= distance(save[0], save[1], holeX, holeY) ))\r\n                && (xvel <= 5)) {\r\n\r\n            xvel += Math.abs(xpos - holeY) / 10;\r\n\r\n            arrXt[0] = xpos;\r\n            arrXt[1] = ypos;\r\n            arrXt[2] = xvel;\r\n            arrXt[3] = 0;\r\n\r\n            arrXt = rk4.solve(arrXt);\r\n\r\n            if (distance(save[0], save[1], holeX, holeY) > distance(arrXt[0], arrXt[1], holeX, holeY)) {\r\n                save[0] = arrXt[0];\r\n                save[1] = arrXt[1];\r\n                save[2] = arrXt[2];\r\n                save[3] = arrXt[3];\r\n            }\r\n        }\r\n\r\n        xpos = save[0];\r\n        ypos = save[1];\r\n        xvel = save[2];\r\n        yvel = save[3];\r\n        System.out.println(\"EndX: \" + xpos + \" EndY: \" + ypos);\r\n        System.out.println(\"EndXV: \" + xvel + \" EndYV: \" + yvel);\r\n        System.out.println();\r\n\r\n        return save;\r\n    }\r\n\r\n    public static double distance(double xpos, double ypos, double holex, double holey) {\r\n        return Math.sqrt(Math.pow((xpos - holex), 2) + Math.pow((ypos - holey), 2));\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Crazy/core/src/com/badlogic/Bots/BasicBruteForce.java b/Crazy/core/src/com/badlogic/Bots/BasicBruteForce.java
+--- a/Crazy/core/src/com/badlogic/Bots/BasicBruteForce.java	(revision f31c30cbdda80c7f4da942cbd9d38cc5be5a2a9b)
++++ b/Crazy/core/src/com/badlogic/Bots/BasicBruteForce.java	(date 1655474743408)
+@@ -1,6 +1,8 @@
+ package com.badlogic.Bots;
+ 
+ import com.badlogic.FileHandling.FileReader;
++import com.badlogic.GameLogistics.ShootAI;
++import com.badlogic.GameLogistics.ShootUser;
+ import com.badlogic.PhyiscSolvers.Rk4;
+ 
+ 
+@@ -43,6 +45,7 @@
+             arrXt[2] = xvel;
+             arrXt[3] = yvel;
+ 
++            rk4.accelerationType(ShootAI.accelerationButton);
+             arrXt = rk4.solve(arrXt);
+ 
+             if (distance(save[0], save[1], holeX, holeY) > distance(arrXt[0], arrXt[1], holeX, holeY)) {
